@@ -1,4 +1,7 @@
+<?php $this->layout('layouts::main_template', ['title' => 'Dashboard'])?>
 
+<!-- SECTION CONTENT -->
+<?php $this->start('contents') ?>
 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -100,5 +103,9 @@
 
 	</div>
 	<!-- /.container-fluid -->
+
+
+
+	<?php $this->stop() ?>
 
 
