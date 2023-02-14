@@ -21,7 +21,7 @@ final class CreateCategoryTable extends AbstractMigration
     {
         $table = $this->table('categories');
         $table->addColumn('category_name', 'string', ['limit' => 240]);
-        $table->addColumn('parent_category', 'integer', ['limit' => 100]);
+        $table->addColumn('parent_category', 'integer', ['null' => TRUE, 'default' => NULL]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
         $table->addTimestamps();
