@@ -18,15 +18,14 @@ class User extends CI_Controller {
 
 		if(isset($post['submit'])){
 			$data = [
-				'id' => $post['id'],
-				'username' => $post['userName'],
+				'user_name' => $post['userName'],
 				'full_name' => $post['fullName'],
 				'email' => $post['email'],
-				'password' => (isset($post['changePassword'])) ? md5($post['password']) : $post['password'],
-				'role' => $post['role'],
+				'user_pass' => (isset($post['changePassword'])) ? password_hash($post['password'], PASSWORD_DEFAULT) : $post['password'],
+				'role_id' => $post['role'],
 				'status' => $post['status']
 			];
-			$this->User_model->update($data);
+			$this->User_model->update($post['id'], $data);
 			redirect(base_url('user'));
 			
 		}
