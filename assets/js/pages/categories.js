@@ -4,13 +4,32 @@
 (async ($) => {
     // Datatable
     const tableMain = $('#table-main').DataTable({
-       columnDefs: [
+        ajax: {
+            url: BASE_URL + '/kategori/get_all'
+        },
+        pageLength: 8,
+        columns: [
             {
-                targets: [0,2],
-                visible: false,
+                data: 'id',
+                visible: false
             },
             {
-                target: 4,
+                data: 'category_name',
+            },
+            {
+                data: 'parent_category',
+                visible: false
+            },
+            {
+                data: null,
+                render(data, type, row, _meta)
+                {
+                    console.log(row);
+                    return '';
+                }
+            },
+            {
+                data: null,
                 render(data, type, row, _meta)
                 {
                     const btn = '<button class"btn btn-success rounded-circle border-0"><i class="fas fa-edit"></i></button>' + 
@@ -21,7 +40,6 @@
             }
        ]
     });
-
 
     // TREE
     $('#tree-container').jstree({
@@ -37,6 +55,8 @@
         },
         plugins: ['checkbox']
     });
+
+    
 })(jQuery);
 
 // 

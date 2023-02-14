@@ -7,7 +7,7 @@ class Kategori extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Kategori_model');
+		$this->load->model('kategori_model');
 		$this->load->library('form_validation');
 	}
 
@@ -30,10 +30,13 @@ class Kategori extends MY_Controller
 	{
 		$limit  = $this->input->get('length');
 		$offset = $this->input->get('start');
+        $filter = $this->input->get('columns');
 
         $dataTable = [
-            'draw'  => $this->input->get('draw') ?? NULL,
-            'data'  => $this->kategori_model->get_all()
+            'draw'            => $this->input->get('draw') ?? NULL,
+            'data'            => $this->kategori_model->get_all($filter, $limit, $offset),
+            'recordsTotal'    => $this->db->count_all_results('categories'),
+            'recordsFiltered' => $this->kategori_model->count_all($filter)
         ];
 
         echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
@@ -71,7 +74,7 @@ class Kategori extends MY_Controller
             return;
         }
        
-        echo json_encode(['success' => false, 'message' => 'Data Berhasil Di Simpan !!!']);
+        echo json_encode(['success' => true, 'message' => 'Data Berhasil Di Simpan !!!']);
     }
 
 

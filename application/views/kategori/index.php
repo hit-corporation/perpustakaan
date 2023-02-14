@@ -2,7 +2,7 @@
 
 <!-- SECTION CSS -->
 <?php $this->start('css') ?>
-<link href="<?=$this->e(base_url('vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
+<link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 <style>
     #tree-container {
