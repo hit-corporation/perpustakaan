@@ -15,8 +15,11 @@ class Dashboard extends CI_Controller {
 	public function index(){
 		$data['user'] = $this->User_model->get_user($this->session->userdata('user')['id']);
 
-		$this->load->view('header');
-		$this->load->view('dashboard/index', $data);
-		$this->load->view('footer');
+		// $this->load->view('header');
+		// $this->load->view('dashboard/index', $data);
+		// $this->load->view('footer');
+
+		// MENGGUNAKAN TEMPLATE ENGINE PLATES
+		echo $this->template->render('index', ['user' => $data['user']]);
 	}
 }
