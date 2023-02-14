@@ -7,7 +7,21 @@
 
 <!-- SECTION CONTENT -->
 <?php $this->start('contents') ?>
-<h3> Hello </h3>
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card">
+            <div class="card-body">
+                <div class="table-reponsive">
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <?php $this->stop() ?>
 
 <!-- SECTION JS -->
