@@ -22,7 +22,7 @@ final class CreateUserTable extends AbstractMigration
         $table = $this->table('users');
         $table->addColumn('user_name', 'string', ['limit' => 200]);
         $table->addColumn('user_pass', 'string');
-        $table->addColumn('status', 'string');
+        $table->addColumn('status', 'string'); // test
         $table->addColumn('role_id', 'integer', ['default' => 1]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
