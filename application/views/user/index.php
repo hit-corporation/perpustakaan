@@ -37,10 +37,10 @@
 								<?php $i=1; foreach ($users as $key => $value) { ?>
 
 								<tr>
-									<td><?=$value['username']?></td>
+									<td><?=$value['user_name']?></td>
 									<td><?=$value['full_name']?></td>
 									<td><?=$value['email']?></td>
-									<td><?=$value['role']?></td>
+									<td><?=$value['role_id']?></td>
 									<td><?=$value['status']?></td>
 									<td>
 										<button type="button" href="<?=base_url('user/edit/'.$value['id'])?>" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#editModal<?=$i?>">
@@ -62,7 +62,7 @@
 														<div class="form-group">
 															<label for="userName">User Name</label>
 															<input type="hidden" id="id" name="id" value="<?=$value['id']?>">
-															<input type="text" class="form-control" id="userName" name="userName" value="<?=$value['username']?>" placeholder="Enter Username">
+															<input type="text" class="form-control" id="userName" name="userName" value="<?=$value['user_name']?>" placeholder="Enter Username">
 														</div>
 														<div class="form-group">
 															<label for="fullName">Full Name</label>
@@ -75,8 +75,8 @@
 														<div class="form-group">
 															<label for="role">Role</label>
 															<select class="form-control" name="role" id="role">
-																<option value="admin" <?=($value['role'] == 'admin') ? 'selected' : '' ?>>Admin</option>
-																<option value="user" <?=($value['role'] == 'user') ? 'selected' : '' ?>>User</option>
+																<option value="1" <?=($value['role_id'] == 1) ? 'selected' : '' ?>>Admin</option>
+																<option value="2" <?=($value['role_id'] == 2) ? 'selected' : '' ?>>User</option>
 															</select>
 														</div>
 														<div class="form-group">
@@ -88,7 +88,7 @@
 														</div>
 														<div class="form-group">
 															<label for="password">Password</label>
-															<input type="password" class="form-control" id="password<?=$i?>" name="password" value="<?=$value['password']?>" placeholder="Password" readonly>
+															<input type="password" class="form-control" id="password<?=$i?>" name="password" value="<?=$value['user_pass']?>" placeholder="Password" readonly>
 														</div>
 														<div class="form-check">
 															<input type="checkbox" class="form-check-input" id="changePassword<?=$i?>" name="changePassword">
