@@ -11,10 +11,9 @@ class User_model extends CI_Model {
 	public function login($data){
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('username', $data['username']);
-		$this->db->where('password', $data['password']);
+		$this->db->where('user_name', $data['user_name']);
 		$this->db->where('status', 'active');
-		$this->db->where('deleted', 'false');
+		$this->db->where('deleted_at', null);
 		$query = $this->db->get();
 		return $query->row_array();
 	}
@@ -22,7 +21,7 @@ class User_model extends CI_Model {
 	public function get_all_users(){
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where('deleted', 'false');
+		$this->db->where('deleted_at', null);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
