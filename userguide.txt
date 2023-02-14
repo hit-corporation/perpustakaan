@@ -1,0 +1,11 @@
+CARA MIGRASI
+vendor/bin/phinx migrate -e development 
+
+MENJALANKAN SEEDER
+vendor/bin/phinx seed:run -e development
+
+ROLEBACK MIGRASI
+vendor/bin/phinx rollback -e development
+
+RUN SERVER
+php -S localhost:8000   
