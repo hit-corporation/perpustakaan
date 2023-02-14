@@ -14,16 +14,17 @@ class Login extends CI_Controller {
 
 		if(isset($post['submit'])){
 			$data = [
-				'username' => $post['userName'],
-				'password' => md5($post['password'])
+				'user_name' => $post['userName'],
+				'user_pass' => password_verify($post['password'], PASSWORD_DEFAULT)
 			];
 
+
 			$user = $this->User_model->login($data);
-			
-			if($user){
+
+			if (password_verify($post['password'], $user['user_pass'])) {
 				$this->session->set_userdata('user', $user);
 				redirect(base_url('dashboard'));
-			}else{
+			} else {
 				$this->session->set_flashdata('error', 'Username or password is incorrect');
 			}
 
@@ -44,10 +45,10 @@ class Login extends CI_Controller {
 
 			if($this->form_validation->run() == TRUE){
 				$data = [
-					'username' => $post['userName'],
+					'user_name' => $post['userName'],
 					'full_name' => $post['fullName'],
 					'email' => $post['email'],
-					'password' => md5($post['password']),
+					'user_pass' => password_hash($post['password'], PASSWORD_DEFAULT),
 					'role' => 'user',
 					'status' => 'active'
 				];
