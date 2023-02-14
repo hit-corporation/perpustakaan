@@ -21,8 +21,9 @@ final class CreatPenerbitTable extends AbstractMigration
     {
         $table = $this->table('publisher');
         $table->addColumn('publisher_name', 'string', ['limit' => 254]);
-        $table->addTimestamps();
+        $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
+        $table->addTimestamps();
         $table->addIndex('publisher_name', ['unique' => true]);
         $table->create();
     }

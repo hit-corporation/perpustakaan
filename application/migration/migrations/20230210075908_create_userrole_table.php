@@ -21,8 +21,9 @@ final class CreateUserroleTable extends AbstractMigration
     {
         $table = $this->table('userrole');
         $table->addColumn('rolename', 'string', ['limit' => 220]);
-        $table->addTimestamps();
+        $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
+        $table->addTimestamps();
         $table->addIndex('rolename', ['unique' => true]);
         $table->create();
     }

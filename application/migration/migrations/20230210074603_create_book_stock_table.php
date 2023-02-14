@@ -24,8 +24,9 @@ final class CreateBookStockTable extends AbstractMigration
         $table->addColumn('book_id', 'integer');
         $table->addColumn('availability_status', 'smallinteger');
         $table->addColumn('rack_no', 'string', ['limit' => 50, 'default' => NULL, 'null' => true]);
-        $table->addTimestamps();
+        $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
+        $table->addTimestamps();
         $table->addIndex('stock_code', ['unique' => true]);
         $table->addForeignKey('book_id', 'books', ['id'], ['update' => 'CASCADE', 'delete' => 'CASCADE']);
         $table->create();
