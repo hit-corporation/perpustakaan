@@ -26,7 +26,8 @@ class UserSeeder extends AbstractSeed
             [
                 'user_name' => 'admin',
                 'user_pass' => password_hash('admin', PASSWORD_DEFAULT),
-                'role_id'   => 1
+                'role_id'   => 1,
+				'status'	=> 'active'
             ]
         ];
 
