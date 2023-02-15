@@ -47,7 +47,7 @@
 										<td><?=$value['address']?></td>
 										<td><?=$value['created_at']?></td>
 										<td>
-											<button type="button" name="editBtn" id="editBtn" href="<?=base_url('user/edit/'.$value['id'])?>" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#editModal<?=$i?>">
+											<button type="button" name="editBtn" id="editBtn" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#editModal<?=$i?>">
 												<i class="fas fa-edit"></i>
 											</button>
 
@@ -84,23 +84,43 @@
 												</div>
 											</div>
 
-											<a href="<?=base_url('user/delete/'.$value['id'])?>" class="btn btn-danger btn-circle btn-sm" id="delete<?=$i?>">
+											<button name="deleteBtn" id="deleteBtn" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" data-target="#deleteModal<?=$i?>">
 												<i class="fas fa-trash"></i>
-											</a>
-											<script>
-												$('#delete<?=$i?>').click(function() {
-													var data = confirm('Are you sure?');
-													console.log(data);
-													if (data == true) {
-														var url = $(this).attr('href');
-														$('#content').load(url);
-													}
-													// if (confirm('Are you sure?')) {
-													// 	var url = $(this).attr('href');
-													// 	$('#content').load(url);
-													// }
-												});
-											</script>
+											</button>
+
+											<!-- Modal Edit -->
+											<div class="modal fade" id="deleteModal<?=$i?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Hapus Penerbit</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<form method="post" action="<?=base_url('publisher')?>">
+															<div class="form-group">
+																<label for="publisher_name">User Name</label>
+																<input type="hidden" id="id" name="id" value="<?=$value['id']?>">
+																<input type="text" readonly class="form-control" id="publisher_name" name="publisher_name" value="<?=$value['publisher_name']?>" placeholder="Masukan Nama Penerbit">
+															</div>
+															<div class="form-group">
+																<label for="address">Full Name</label>
+																<input type="text" readonly class="form-control" id="address" name="address" value="<?=$value['address']?>" placeholder="Masukan Alamat Penerbit">
+															</div>
+															
+														
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="submit" class="btn btn-primary" name="delete">Hapus</button>
+													</div>
+													</form>
+													</div>
+												</div>
+											</div>
+											
 										</td>
 									</tr>
 										
