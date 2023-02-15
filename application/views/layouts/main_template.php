@@ -138,6 +138,13 @@
                     <span>Penerbit</span></a>
             </li>
 
+             <!-- Nav Item - Kategori -->
+            <li class="nav-item <?=$this->uri('kategori') == 'kategori' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('kategori')?>">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span>Kategori</span></a>
+            </li>
+
             <!-- Nav Item - Users -->
             <li class="nav-item <?=$this->uri('book') == 'book' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('book')?>">
