@@ -21,7 +21,7 @@ final class CreatePublisherTable extends AbstractMigration
     {
 		$table = $this->table('publishers');
 		$table->addColumn('publisher_name', 'string', ['limit' => 255])
-			  ->addColumn('address', 'string', ['limit' => 100])
+			  ->addColumn('address', 'string', ['limit' => 255])
 			  ->addColumn('created_at', 'datetime', ['null' => true])
 			  ->addColumn('updated_at', 'datetime', ['null' => true])
 			  ->addColumn('deleted_at', 'datetime', ['null' => true])
