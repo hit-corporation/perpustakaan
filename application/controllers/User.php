@@ -32,9 +32,11 @@ class User extends CI_Controller {
 
 		$data['users'] = $this->User_model->get_all_users();
 
-		$this->load->view('header');
-		$this->load->view('user/index', $data);
-		$this->load->view('footer');
+		// $this->load->view('header');
+		// $this->load->view('user/index', $data);
+		// $this->load->view('footer');
+
+		echo $this->template->render('index', $data);
 	}
 
 	public function delete(){
