@@ -78,11 +78,18 @@
         </li> -->
 
 
-        <!-- Nav Item - Users -->
+        <!-- Nav Item - Books -->
         <li class="nav-item <?=$this->uri('book') == 'book' ? 'active' : '' ?>">
             <a class="nav-link" href="<?=base_url('book')?>">
                 <i class="fa fa-book" aria-hidden="true"></i>
                 <span>Buku</span></a>
+        </li>
+
+		 <!-- Nav Item - Publisher -->
+		 <li class="nav-item <?=$this->uri('publisher') == 'publisher' ? 'active' : '' ?>">
+            <a class="nav-link" href="<?=base_url('publisher')?>">
+                <i class="fa fa-user" aria-hidden="true"></i>
+                <span>Penerbit</span></a>
         </li>
   
 
