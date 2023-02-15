@@ -7,7 +7,7 @@ class Publisher_model extends CI_Model {
 	public function getAll(){
 		$this->db->select('*');
 		$this->db->from('publishers');
-		$this->db->where('deleted', null);
+		$this->db->where('deleted_at', null);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
