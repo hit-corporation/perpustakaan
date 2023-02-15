@@ -141,7 +141,7 @@
              <!-- Nav Item - Kategori -->
             <li class="nav-item <?=$this->uri('kategori') == 'kategori' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('kategori')?>">
-                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <i class="fas fa-tags"></i>
                     <span>Kategori</span></a>
             </li>
 
@@ -300,11 +300,15 @@
         </div>
     </div>
 
+    <?php if(empty($_SESSION['error']) && empty($_SESSION['success'])): ?>
+
     <div id="welcome-loader" class="bg-primary">
         <div id="welcome-content">
             <img src="<?=$this->e(base_url('assets/img/w logo.svg'))?>" height="100%">
         </div>
     </div>
+
+    <?php endif ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>

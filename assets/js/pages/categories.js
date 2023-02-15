@@ -1,5 +1,6 @@
 'use strict';
 
+const form = document.forms['form-input'];
 
 // get all data
 const getAll = async () => {
@@ -82,18 +83,16 @@ const getAll = async () => {
         plugins: ['checkbox']
     })
     .bind('select_node.jstree', (e, data) => {
-        console.log(data);
         document.querySelector('input[name="category_parent"]').value = data.node.id;
     })
     .bind('deselect_node.jstree', (e, data) => {
         document.querySelector('input[name="category_parent"]').value = '';
+    })
+    .bind('loaded.jstree', (e, data) => {
+        console.log(data);
+        if(document.querySelector('input[name="category_parent"]').value)
+            $('#tree-container').jstree(true).select_node(document.querySelector('input[name="category_parent"]').value);
     });
 
 
 })(jQuery);
-
-
-
-
-
-

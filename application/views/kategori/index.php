@@ -10,6 +10,8 @@
     overflow: auto;
 }
 </style>
+
+
 <?php $this->stop() ?>
 
 <!-- SECTION CONTENT -->
@@ -31,7 +33,7 @@
                     </div>
                 </div>
                 <div class="table-reponsive">
-                    <table id="table-main" class="table table-sm">
+                    <table id="table-main" class="table table-sm table-striped">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
@@ -49,7 +51,9 @@
     </div>
 </div>
 
-<div id="modal-input" class="modal fade" tabindex="-1">
+
+<div id="modal-input" class="modal fade <?php if(!empty($_SESSION['error'])): ?> show <?php endif ?>" tabindex="-1" 
+    <?php if(!empty($_SESSION['error'])): ?> style="display: block;" <?php endif ?>>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -63,11 +67,14 @@
                     <input type="text" class="d-none" name="category_id">
                     <div class="form-group">
                         <label>Nama Kategori <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="category_name" required>
+                        <input type="text" class="form-control" name="category_name" value="<?=$_SESSION['error']['old']['category_name'] ?? ''?>" required>
+                        <?php if(!empty($_SESSION['error']['erorrs'])): ?>
+                            <small></small>
+                        <?php endif ?>
                     </div>
                     <div class="form-group mt-2">
                         <label>Induk Kategori <span class="text-danger">*</span></label>
-                        <input type="text" name="category_parent" class="d-none">
+                        <input type="text" name="category_parent" class="d-none" value="<?=$_SESSION['error']['old']['category_parent'] ?? ''?>">
                         <div class="border rounded" id="tree-container">
 
                         </div>

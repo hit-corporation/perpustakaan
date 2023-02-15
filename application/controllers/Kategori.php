@@ -69,7 +69,7 @@ class Kategori extends MY_Controller
         if(!$this->form_validation->run())
         {
             $return = ['success' => false, 'errors' => validation_errors(), 'old' => $_POST];
-            $this->session->flashdata($return);
+            $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
 
@@ -81,12 +81,12 @@ class Kategori extends MY_Controller
         if(!$this->db->insert('categories', $data))
         {
             $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
-            $this->session->flashdata($return);
+            $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
        
        $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];
-       $this->session->flashdata($return);
+       $this->session->set_flashdata('success', $return);
        redirect($_SERVER['HTTP_REFERER']);
     }
 
@@ -106,7 +106,7 @@ class Kategori extends MY_Controller
         if(!$this->form_validation->run())
         {
             $return = ['success' => false, 'errors' => validation_errors(), 'old' => $_POST];
-            $this->session->flashdata($return);
+            $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
 
@@ -118,12 +118,12 @@ class Kategori extends MY_Controller
         if(!$this->db->insert('categories', $data))
         {
             $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
-            $this->session->flashdata($return);
+            $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
        
        $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];
-       $this->session->flashdata($return);
+       $this->session->set_flashdata('success', $return);
        redirect($_SERVER['HTTP_REFERER']);
     }
 
