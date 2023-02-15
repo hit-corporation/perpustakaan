@@ -284,7 +284,6 @@
                     <a class="btn btn-primary" href="<?=base_url('login/logout')?>">Logout</a>
                 </div>
             </div>
-<<<<<<< Updated upstream
         </li> -->
 
 
@@ -316,8 +315,6 @@
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
-=======
->>>>>>> Stashed changes
         </div>
     </div>
 
