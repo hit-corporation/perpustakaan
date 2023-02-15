@@ -1,9 +1,10 @@
 <?php
+
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class Publishers extends AbstractMigration
+final class CreatePublisherTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -21,10 +22,10 @@ final class Publishers extends AbstractMigration
 		$table = $this->table('publishers');
 		$table->addColumn('publisher_name', 'string', ['limit' => 255])
 			  ->addColumn('address', 'string', ['limit' => 100])
-			  ->addColumn('created_at', 'datetime')
+			  ->addColumn('created_at', 'datetime', ['null' => true])
 			  ->addColumn('updated_at', 'datetime', ['null' => true])
 			  ->addColumn('deleted_at', 'datetime', ['null' => true])
-			  ->addTimestamps()
+
 			  ->addIndex('publisher_name', ['unique' => true])
 			  ->create();
     }
