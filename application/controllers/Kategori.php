@@ -22,11 +22,11 @@ class Kategori extends MY_Controller
 	}
 
     /**
-     * get_all data and send as json
+     * get all paginated data and send as json for datatable consume
      *
      * @return void
      */
-	public function get_all(): void
+	public function get_all_paginated(): void
 	{
 		$limit  = $this->input->get('length');
 		$offset = $this->input->get('start');
@@ -41,6 +41,17 @@ class Kategori extends MY_Controller
 
         echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
 	}
+
+    /**
+     * get all data
+     *
+     * @return void
+     */
+    public function get_all(): void
+    {
+        $data = $this->kategori_model->get_all();
+        echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+    }
 
     /**
      * Storing submitted Data to database

@@ -5,10 +5,10 @@
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 <style>
-    #tree-container {
-        height: 128px;
-        overflow: auto;
-    }
+#tree-container {
+    height: 128px;
+    overflow: auto;
+}
 </style>
 <?php $this->stop() ?>
 
@@ -53,9 +53,9 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title">Modal title</h5>
+                <h5 class="modal-title">Modal Title</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -72,10 +72,10 @@
                         </div>
                     </div>
                     <div class="row justify-content-end mt-4 border-top pt-3 px-2">
-                        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button> 
-                        <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button> 
+                        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
+                        <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
                     </div>
-                  
+
                 </form>
             </div>
         </div>
@@ -86,6 +86,6 @@
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
-<script src="<?=$this->e(base_url('assets/js/pages/categories.min.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/js/pages/categories.js'))?>"></script>
 
 <?php $this->stop() ?>

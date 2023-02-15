@@ -10,9 +10,6 @@ class Book extends MY_Controller
 		$this->load->model('Book_model');
 		$this->load->library('form_validation');
 
-		// if (!$this->session->userdata('user')) {
-		// 	redirect(base_url('login'));
-		// }
 	}
 
 	public function index()

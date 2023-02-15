@@ -10,8 +10,8 @@ class MY_Controller extends CI_Controller
     {
         parent::__construct();
 
-        // if (!isset($_SESSION['userdata']))
-        //     redirect(base_url('login'));
+        if (!isset($_SESSION['user']))
+            redirect(base_url('login'));
 
         $this->template->registerFunction('base_url', function () {
             return base_url();

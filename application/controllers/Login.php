@@ -23,6 +23,8 @@ class Login extends CI_Controller {
 
 			if (password_verify($post['password'], $user['user_pass'])) {
 				$this->session->set_userdata('user', $user);
+
+
 				redirect(base_url('dashboard'));
 			} else {
 				$this->session->set_flashdata('error', 'Username or password is incorrect');
