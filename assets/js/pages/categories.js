@@ -18,13 +18,16 @@ const getAll = async () => {
 
 // INIT
 (async ($) => {
+    const allData = await getAll();
+
     // Datatable
     const tableMain = $('#table-main').DataTable({
         serverSide: true,
+        processing: true,
         ajax: {
             url: BASE_URL + '/kategori/get_all_paginated'
         },
-        pageLength: 8,
+        pageLength: 7,
         columns: [
             {
                 data: 'id',
@@ -42,8 +45,11 @@ const getAll = async () => {
                 data: 'parent_category',
                 render(data, type, row, _meta)
                 {
-                    let parentName = (typeof data !== 'undefined' && data !== null) ? _meta.settings.json.data.find(x => x.id == data).category_name : '';
-                    return parentName;
+                    let parent = '';
+
+                    if(allData.find(x => x.id == data))
+                        parent = allData.find(x => x.id == data).category_name;
+                    return parent;
                 }
             },
             {
@@ -62,13 +68,22 @@ const getAll = async () => {
     });
     
     // tree
-    const treedata = [...(await getAll())].map(x => ({id: x.id, text: x.category_name, parent: x.parent_category}));
+    const treedata = allData.map(x => ({id: x.id, text: x.category_name, parent: x.parent_category == null ? '#' : x.parent_category }));
 
-    $('tree-container').jstree({
+    $('#tree-container').jstree({
         core: {
+            multiple: false,
             data: treedata
         },
+        checkbox: {
+            'three_state': false,
+            'tie_selection': true
+        },
         plugins: ['checkbox']
+    })
+    .bind('select_node.jstree', (e, data) => {
+        console.log(data);
+        document.querySelector('input[name="category_parent"]').value = data.node.id;
     });
 
 

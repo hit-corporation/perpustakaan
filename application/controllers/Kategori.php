@@ -68,24 +68,26 @@ class Kategori extends MY_Controller
 
         if(!$this->form_validation->run())
         {
-            http_response_code(422);
-            echo json_encode(validation_errors());
-            return;
+            $return = ['success' => false, 'errors' => validation_errors(), 'old' => $_POST];
+            $this->session->flashdata($return);
+            redirect($_SERVER['HTTP_REFERER']);
         }
 
         $data = [
             'category_name' => $name,
-            'category_parent' => $parent
+            'parent_category' => $parent
         ];
 
         if(!$this->db->insert('categories', $data))
         {
-            http_response_code(422);
-            echo json_encode(['success' => false, 'message' => 'Data Gagal Di Simpan']);
-            return;
+            $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
+            $this->session->flashdata($return);
+            redirect($_SERVER['HTTP_REFERER']);
         }
        
-        echo json_encode(['success' => true, 'message' => 'Data Berhasil Di Simpan !!!']);
+       $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];
+       $this->session->flashdata($return);
+       redirect($_SERVER['HTTP_REFERER']);
     }
 
 

@@ -74,7 +74,14 @@
     }
     </style>
 
-    
+    <script defer>
+        window.addEventListener('load', e => {
+            e.preventDefault();
+            setTimeout(() => {
+                document.querySelector('#welcome-loader').classList.add('hide');
+            }, 2000);
+        });
+    </script>
 
     <?=$this->section('css')?>
 
@@ -351,14 +358,7 @@
 
     <?=$this->section('js')?>
 
-    <script defer>
-        window.addEventListener('load', e => {
-            e.preventDefault();
-            setTimeout(() => {
-                document.querySelector('#welcome-loader').classList.add('hide');
-            }, 2000);
-        });
-    </script>
+  
 </body>
 
 </html>

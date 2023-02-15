@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 <style>
 #tree-container {
-    height: 128px;
+    height: 240px;
     overflow: auto;
 }
 </style>
@@ -59,14 +59,15 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-input" name="form-input">
+                <form id="form-input" name="form-input" method="POST" action="<?=base_url('kategori/store')?>">
                     <input type="text" class="d-none" name="category_id">
                     <div class="form-group">
                         <label>Nama Kategori <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="category_name">
+                        <input type="text" class="form-control" name="category_name" required>
                     </div>
                     <div class="form-group mt-2">
                         <label>Induk Kategori <span class="text-danger">*</span></label>
+                        <input type="text" name="category_parent" class="d-none">
                         <div class="border rounded" id="tree-container">
 
                         </div>
