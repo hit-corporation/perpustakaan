@@ -12,8 +12,7 @@
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Users</h1>
-			<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-					class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+			<button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</button>
 		</div>
 
 		<!-- Content Row -->
@@ -22,7 +21,7 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+					<h6 class="m-0 font-weight-bold text-primary">List Data User</h6>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -45,7 +44,7 @@
 									<td><?=$value['user_name']?></td>
 									<td><?=$value['full_name']?></td>
 									<td><?=$value['email']?></td>
-									<td><?=$value['role_id']?></td>
+									<td><?=$value['rolename']?></td>
 									<td><?=$value['status']?></td>
 									<td>
 										<button type="button" href="<?=base_url('user/edit/'.$value['id'])?>" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#editModal<?=$i?>">
@@ -65,23 +64,24 @@
 												<div class="modal-body">
 													<form method="post" action="<?=base_url('user')?>">
 														<div class="form-group">
-															<label for="userName">User Name</label>
+															<label for="user_name">User Name</label>
 															<input type="hidden" id="id" name="id" value="<?=$value['id']?>">
-															<input type="text" class="form-control" id="userName" name="userName" value="<?=$value['user_name']?>" placeholder="Enter Username">
+															<input type="text" class="form-control" id="user_name" name="user_name" value="<?=$value['user_name']?>" placeholder="Enter Username">
 														</div>
 														<div class="form-group">
-															<label for="fullName">Full Name</label>
-															<input type="text" class="form-control" id="fullName" name="fullName" value="<?=$value['full_name']?>" placeholder="Enter Full Name">
+															<label for="full_name">Full Name</label>
+															<input type="text" class="form-control" id="full_name" name="full_name" value="<?=$value['full_name']?>" placeholder="Enter Full Name">
 														</div>
 														<div class="form-group">
 															<label for="email">Email</label>
 															<input type="email" class="form-control" id="email" name="email" value="<?=$value['email']?>" placeholder="Enter Your Email">
 														</div>
 														<div class="form-group">
-															<label for="role">Role</label>
-															<select class="form-control" name="role" id="role">
-																<option value="1" <?=($value['role_id'] == 1) ? 'selected' : '' ?>>Admin</option>
-																<option value="2" <?=($value['role_id'] == 2) ? 'selected' : '' ?>>User</option>
+															<label for="user_role">Role</label>
+															<select class="form-control" name="user_role" id="user_role">
+																<?php foreach ($user_role as $key => $user) { ?>
+																	<option value="<?=$user['id']?>" <?=($value['role_id'] == $user['id']) ? 'selected' : '' ?>><?=$user['rolename']?></option>
+																<?php } ?>
 															</select>
 														</div>
 														<div class="form-group">
@@ -113,7 +113,7 @@
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+													<button type="submit" class="btn btn-primary" name="update">Save changes</button>
 												</div>
 												</form>
 												</div>
@@ -159,6 +159,60 @@
 	</div>
 	<!-- /.container-fluid -->
 
+	<!-- Modal tambah -->
+	<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="post" action="<?=base_url('user')?>">
+					<div class="form-group">
+						<label for="user_name">Nama User</label>
+						<input type="text" class="form-control" id="user_name" name="user_name" placeholder="Masukan Nama Pengguna">
+					</div>
+					<div class="form-group">
+						<label for="full_name">Nama Lengkap</label>
+						<input type="text" class="form-control" id="full_name" name="full_name" placeholder="Masukan Nama Lengkap">
+					</div>
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email Pengguna">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password Pengguna">
+					</div>
+					<div class="form-group">
+						<label for="status">Status</label>
+						<select class="form-control" name="status" id="status">
+							<option value="active">Active</option>
+							<option value="inactive">Inactive</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="user_role">User Role</label>
+						<select class="form-control" name="user_role" id="user_role">
+							<?php foreach ($user_role as $key => $role) { ?>
+								<option value="<?=$role['id']?>"><?=$role['rolename']?></option>
+							<?php } ?>
+						</select>
+					</div>
+					
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" name="save">Save changes</button>
+			</div>
+			</form>
+			</div>
+		</div>
+	</div>
 
 
 
