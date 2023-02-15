@@ -1,3 +1,8 @@
+<?php $this->layout('layouts::main_template', ['title' => 'Publisher'])?>
+
+<!-- SECTION CONTENT -->
+<?php $this->start('contents') ?>
+
 <script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
 
 
@@ -157,3 +162,4 @@
 
 
 
+	<?php $this->stop() ?>
