@@ -63,7 +63,9 @@ class Kategori extends MY_Controller
         $name   = $this->input->post('category_name');
         $parent = $this->input->post('category_parent');
 
-        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_name_unique');
+        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_new_name_unique['.$parent.']', [
+            'check_new_name_unique' => '{field} dengan nilai '.$name.' sudah tersedia'
+        ]);
         $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
 
         if(!$this->form_validation->run())
@@ -97,10 +99,13 @@ class Kategori extends MY_Controller
      */
     public function edit(): void
     {
-        $name   = $this->input->post('category_name');
-        $parent = $this->input->post('category_parent');
+        $id     = trim($this->input->post('category_id', TRUE));
+        $name   = trim($this->input->post('category_name', TRUE));
+        $parent = trim($this->input->post('category_parent', TRUE));
 
-        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_name_unique');
+        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_name_unique['.$parent.']', [
+            'check_new_name_unique' => 'Bidang {field} sudah tersedia'
+        ]);
         $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
 
         if(!$this->form_validation->run())
@@ -115,7 +120,7 @@ class Kategori extends MY_Controller
             'parent_category' => $parent
         ];
 
-        if(!$this->db->insert('categories', $data))
+        if(!$this->db->update('categories', $data, ['id' => $id]))
         {
             $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
             $this->session->set_flashdata('error', $return);
@@ -135,9 +140,11 @@ class Kategori extends MY_Controller
      */
 
     // check unique username
-    public function check_new_name_unique($str): bool
+    public function check_new_name_unique($str, $parent): bool
     {
-        if($this->db->get_where('categories', ['category_name' => $str, 'deleted_at' => NULL])->num_rows() > 0)
+        if($this->db
+                ->get_where('categories', ['category_name' => $str, 'parent_category' => $parent,'deleted_at' => NULL])
+                ->num_rows() > 0)
             return FALSE;
         return TRUE;
     }

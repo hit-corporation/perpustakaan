@@ -36,7 +36,7 @@ const getAll = async () => {
             },
             {
                 data: 'category_name',
-                className: 'align-center'
+                className: 'align-middle pl-2'
             },
             {
                 data: 'parent_category',
@@ -44,6 +44,7 @@ const getAll = async () => {
             },
             {
                 data: 'parent_category',
+                className: 'align-middle',
                 render(data, type, row, _meta)
                 {
                     let parent = '';
@@ -89,7 +90,6 @@ const getAll = async () => {
         document.querySelector('input[name="category_parent"]').value = '';
     })
     .bind('loaded.jstree', (e, data) => {
-        console.log(data);
         if(document.querySelector('input[name="category_parent"]').value)
             $('#tree-container').jstree(true).select_node(document.querySelector('input[name="category_parent"]').value);
     });

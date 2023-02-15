@@ -10,8 +10,6 @@
     overflow: auto;
 }
 </style>
-
-
 <?php $this->stop() ?>
 
 <!-- SECTION CONTENT -->
@@ -52,8 +50,7 @@
 </div>
 
 
-<div id="modal-input" class="modal fade <?php if(!empty($_SESSION['error'])): ?> show <?php endif ?>" tabindex="-1" 
-    <?php if(!empty($_SESSION['error'])): ?> style="display: block;" <?php endif ?>>
+<div id="modal-input" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -63,13 +60,18 @@
                 </button>
             </div>
             <div class="modal-body">
+                <?php 
+                    if(isset($_SESSION['error'])):
+                        echo $_SESSION['error']['errors'];
+                    endif; 
+                ?>
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('kategori/store')?>">
                     <input type="text" class="d-none" name="category_id">
                     <div class="form-group">
                         <label>Nama Kategori <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="category_name" value="<?=$_SESSION['error']['old']['category_name'] ?? ''?>" required>
-                        <?php if(!empty($_SESSION['error']['erorrs'])): ?>
-                            <small></small>
+                        <?php if(!empty($_SESSION['error']['errors'])): ?>
+                            <small class="text-danger"></small>
                         <?php endif ?>
                     </div>
                     <div class="form-group mt-2">
@@ -93,7 +95,16 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
+
+<?php if(isset($_SESSION['error'])): ?>
+<script>
+   $('#modal-input').modal('show');
+</script>
+<?php endif; ?>
+
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/js/pages/categories.js'))?>"></script>
+
+
 
 <?php $this->stop() ?>
