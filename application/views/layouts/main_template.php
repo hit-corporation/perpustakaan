@@ -74,14 +74,7 @@
     }
     </style>
 
-    <script defer>
-        window.addEventListener('load', e => {
-            e.preventDefault();
-            setTimeout(() => {
-                document.querySelector('#welcome-loader').classList.add('hide');
-            }, 2000);
-        });
-    </script>
+    
 
     <?=$this->section('css')?>
 
@@ -138,6 +131,12 @@
                 </div>
             </li> -->
 
+             <!-- Nav Item - Publisher -->
+            <li class="nav-item <?=$this->uri('publisher') == 'publisher' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('publisher')?>">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Penerbit</span></a>
+            </li>
 
             <!-- Nav Item - Users -->
             <li class="nav-item <?=$this->uri('book') == 'book' ? 'active' : '' ?>">
@@ -291,37 +290,6 @@
                     <a class="btn btn-primary" href="<?=base_url('login/logout')?>">Logout</a>
                 </div>
             </div>
-        </li> -->
-
-
-        <!-- Nav Item - Books -->
-        <li class="nav-item <?=$this->uri('book') == 'book' ? 'active' : '' ?>">
-            <a class="nav-link" href="<?=base_url('book')?>">
-                <i class="fa fa-book" aria-hidden="true"></i>
-                <span>Buku</span></a>
-        </li>
-
-		 <!-- Nav Item - Publisher -->
-		 <li class="nav-item <?=$this->uri('publisher') == 'publisher' ? 'active' : '' ?>">
-            <a class="nav-link" href="<?=base_url('publisher')?>">
-                <i class="fa fa-user" aria-hidden="true"></i>
-                <span>Penerbit</span></a>
-        </li>
-  
-
-        <!-- Nav Item - Users -->
-        <li class="nav-item <?=$this->uri('user') == 'user' ? 'active' : '' ?>">
-            <a class="nav-link" href="<?=base_url('user')?>">
-                <i class="fas fa-fw fa-user"></i>
-                <span>User</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
     </div>
 
@@ -358,7 +326,14 @@
 
     <?=$this->section('js')?>
 
-  
+    <script defer>
+        window.addEventListener('load', e => {
+            e.preventDefault();
+            setTimeout(() => {
+                document.querySelector('#welcome-loader').classList.add('hide');
+            }, 2000);
+        });
+    </script>
 </body>
 
 </html>

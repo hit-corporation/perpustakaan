@@ -84,6 +84,9 @@ const getAll = async () => {
     .bind('select_node.jstree', (e, data) => {
         console.log(data);
         document.querySelector('input[name="category_parent"]').value = data.node.id;
+    })
+    .bind('deselect_node.jstree', (e, data) => {
+        document.querySelector('input[name="category_parent"]').value = '';
     });
 
 

@@ -90,6 +90,43 @@ class Kategori extends MY_Controller
        redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * Editing data in database
+     *
+     * @return void
+     */
+    public function edit(): void
+    {
+        $name   = $this->input->post('category_name');
+        $parent = $this->input->post('category_parent');
+
+        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_name_unique');
+        $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
+
+        if(!$this->form_validation->run())
+        {
+            $return = ['success' => false, 'errors' => validation_errors(), 'old' => $_POST];
+            $this->session->flashdata($return);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        $data = [
+            'category_name' => $name,
+            'parent_category' => $parent
+        ];
+
+        if(!$this->db->insert('categories', $data))
+        {
+            $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
+            $this->session->flashdata($return);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+       
+       $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];
+       $this->session->flashdata($return);
+       redirect($_SERVER['HTTP_REFERER']);
+    }
+
 
     /**
      * *******************************************************************************************
@@ -98,7 +135,7 @@ class Kategori extends MY_Controller
      */
 
     // check unique username
-    public function check_name_unique($str): bool
+    public function check_new_name_unique($str): bool
     {
         if($this->db->get_where('categories', ['category_name' => $str, 'deleted_at' => NULL])->num_rows() > 0)
             return FALSE;
