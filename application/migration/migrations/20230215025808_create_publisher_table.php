@@ -1,10 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreatPenerbitTable extends AbstractMigration
+final class Publishers extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,12 +18,14 @@ final class CreatPenerbitTable extends AbstractMigration
      */
     public function change(): void
     {
-        $table = $this->table('publisher');
-        $table->addColumn('publisher_name', 'string', ['limit' => 254]);
-        $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
-
-        $table->addTimestamps();
-        $table->addIndex('publisher_name', ['unique' => true]);
-        $table->create();
+		$table = $this->table('publishers');
+		$table->addColumn('publisher_name', 'string', ['limit' => 255])
+			  ->addColumn('address', 'string', ['limit' => 100])
+			  ->addColumn('created_at', 'datetime')
+			  ->addColumn('updated_at', 'datetime', ['null' => true])
+			  ->addColumn('deleted_at', 'datetime', ['null' => true])
+			  ->addTimestamps()
+			  ->addIndex('publisher_name', ['unique' => true])
+			  ->create();
     }
 }
