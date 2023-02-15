@@ -7,6 +7,9 @@ vendor/bin/phinx seed:run -e development
 ROLEBACK MIGRASI
 vendor/bin/phinx rollback -e development
 
+ROLLBACK ALL
+vendor/bin/phinx rollback -e development -t 0
+
 RUN SERVER
 php -S localhost:8000
 
