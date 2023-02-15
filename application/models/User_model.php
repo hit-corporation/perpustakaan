@@ -19,9 +19,10 @@ class User_model extends CI_Model {
 	}
 
 	public function get_all_users(){
-		$this->db->select('*');
-		$this->db->from('users');
-		$this->db->where('deleted_at', null);
+		$this->db->select('u.*, ur.rolename');
+		$this->db->from('users u');
+		$this->db->join('userrole ur', 'ur.id = u.role_id');
+		$this->db->where('u.deleted_at', null);
 		$query = $this->db->get();
 		return $query->result_array();
 	}
@@ -41,7 +42,16 @@ class User_model extends CI_Model {
 
 	public function delete($id){
 		$this->db->where('id', $id);
-		$this->db->delete('users');
+		$this->db->update('users', ['deleted_at' => date('Y-m-d H:i:s')] );
+		return true;
+	}
+
+	public function get_user_role(){
+		$this->db->select('*');
+		$this->db->from('userrole');
+		$this->db->where('deleted_at', null);
+		$query = $this->db->get();
+		return $query->result_array();
 	}
 
 }
