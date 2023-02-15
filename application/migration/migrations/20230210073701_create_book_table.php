@@ -28,17 +28,17 @@ final class CreateBookTable extends AbstractMigration
         $table->addColumn('title', 'string', ['limit' => 239]);
         $table->addColumn('cover_img', 'text');
         $table->addColumn('author', 'string', ['limit' => 229]);
-        $table->addColumn('publisher_id', 'integer', ['null' => true]);
         $table->addColumn('publish_year', 'date');
         $table->addColumn('category_id', 'integer', ['null' => true]);
+        $table->addColumn('publisher_id', 'integer', ['null' => true]);
         $table->addColumn('description', 'text');
         $table->addColumn('qty', 'integer', ['default' => 0]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
         $table->addIndex('book_code', ['unique' => true]);
 
-        $table->addForeignKey('publisher_id', 'publisher', ['id'], ['delete' => 'SET NULL', 'update' => 'CASCADE']);
         $table->addForeignKey('category_id', 'categories', ['id'], ['delete' => 'SET NULL', 'update' => 'CASCADE']);
+        $table->addForeignKey('publisher_id', 'publishers', ['id'], ['delete' => 'SET NULL', 'update' => 'CASCADE']);
         $table->create();
     }
 }
