@@ -12,4 +12,15 @@ class Publisher_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function add($data){
+		$this->db->insert('publishers', $data);
+		return $this->db->affected_rows();
+	}
+
+	public function update($id, $data){
+		$this->db->where('id', $id);
+		$this->db->update('publishers', $data);
+		return $this->db->affected_rows();
+	}
+
 }
