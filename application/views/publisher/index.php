@@ -15,7 +15,8 @@
 			<!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
 				<h1 class="h3 mb-0 text-gray-800">Penerbit</h1>
-				<a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+				<button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</button>
+				
 			</div>
 
 			<!-- Content Row -->
@@ -61,22 +62,22 @@
 														</button>
 													</div>
 													<div class="modal-body">
-														<form method="post" action="<?=base_url('user')?>">
+														<form method="post" action="<?=base_url('publisher')?>">
 															<div class="form-group">
-																<label for="userName">User Name</label>
+																<label for="publisher_name">User Name</label>
 																<input type="hidden" id="id" name="id" value="<?=$value['id']?>">
-																<input type="text" class="form-control" id="userName" name="userName" value="<?=$value['publisher_name']?>" placeholder="Enter Username">
+																<input type="text" class="form-control" id="publisher_name" name="publisher_name" value="<?=$value['publisher_name']?>" placeholder="Masukan Nama Penerbit">
 															</div>
 															<div class="form-group">
-																<label for="fullName">Full Name</label>
-																<input type="text" class="form-control" id="fullName" name="fullName" value="<?=$value['address']?>" placeholder="Enter Full Name">
+																<label for="address">Full Name</label>
+																<input type="text" class="form-control" id="address" name="address" value="<?=$value['address']?>" placeholder="Masukan Alamat Penerbit">
 															</div>
 															
 														
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-														<button type="submit" class="btn btn-primary" name="submit">Save changes</button>
+														<button type="submit" class="btn btn-primary" name="update">Save changes</button>
 													</div>
 													</form>
 													</div>
@@ -122,6 +123,38 @@
 		</div>
 		<!-- /.container-fluid -->
 
+	</div>
+
+	<!-- Modal tambah -->
+	<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tambah Penerbit</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="post" action="<?=base_url('publisher')?>">
+					<div class="form-group">
+						<label for="publisher_name">Nama Penerbit</label>
+						<input type="text" class="form-control" id="publisher_name" name="publisher_name" placeholder="Masukan Nama Penerbit">
+					</div>
+					<div class="form-group">
+						<label for="address">Alamat Penerbit</label>
+						<input type="text" class="form-control" id="address" name="address" placeholder="Masukan Alamat Penerbit">
+					</div>
+					
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" name="save">Save changes</button>
+			</div>
+			</form>
+			</div>
+		</div>
 	</div>
 
 
