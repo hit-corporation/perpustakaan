@@ -59,8 +59,8 @@ const getAll = async () => {
                 render(data, type, row, _meta)
                 {
                     const btn = '<span class="d-flex flex-nowrap">' +
-                                '<button role="button" class="btn-circle btn-success rounded-circle border-0"><i class="fas fa-edit"></i></button>' + 
-                                '<button role="button" class="btn-circle btn-danger rounded-circle border-0"><i class="fas fa-trash"></i></button>' + 
+                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
+                                '<button role="button" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>' + 
                                 '</span>';
 
                     return btn;
@@ -91,8 +91,31 @@ const getAll = async () => {
     })
     .bind('loaded.jstree', (e, data) => {
         if(document.querySelector('input[name="category_parent"]').value)
-            $('#tree-container').jstree(true).select_node(document.querySelector('input[name="category_parent"]').value);
+            $('#tree-container').jstree(true).select_node(form['category_parent'].value);
     });
 
+    // store
+    document.getElementById('btn-add').addEventListener('click', e => {
+        form.reset();
+        form.action = BASE_URL + '/kategori/store';
+
+        $('#tree-container').jstree(true).deselect_all();
+    });
+
+    // update
+    $('#table-main').on('click', 'button.edit_data', e => {
+        let row = tableMain.row($(e.target).parents('tr')[0]).data();
+        
+        form.reset();
+        form['category_id'].value = row.id;
+        form['category_name'].value = row.category_name;
+        form['category_parent'].value = row.parent_category;
+        $('#tree-container').jstree(true).deselect_all();
+        $('#tree-container').jstree(true).select_node(form['category_parent'].value);
+
+        form.action = BASE_URL + 'kategori/edit';
+
+        $('#modal-input').modal('show');
+    });
 
 })(jQuery);
