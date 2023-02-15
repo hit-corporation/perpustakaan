@@ -8,4 +8,7 @@ ROLEBACK MIGRASI
 vendor/bin/phinx rollback -e development
 
 RUN SERVER
-php -S localhost:8000   
+php -S localhost:8000
+
+MEMBUAT MIGRASI
+vendor/bin/phinx create MyNewMigration
