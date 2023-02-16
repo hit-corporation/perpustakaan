@@ -1,10 +1,9 @@
 <?php
-
 declare(strict_types=1);
 
 use Phinx\Migration\AbstractMigration;
 
-final class CreateMemberTable extends AbstractMigration
+final class CreateMembersTable extends AbstractMigration
 {
     /**
      * Change Method.
@@ -19,7 +18,7 @@ final class CreateMemberTable extends AbstractMigration
      */
     public function change(): void
     {
-		$table = $this->table('members');
+        $table = $this->table('members');
 		$table->addColumn('member_name', 'string', ['limit' => 100])
 			  ->addColumn('no_induk', 'string', ['limit' => 100])
 			  ->addColumn('email', 'string', ['limit' => 100])

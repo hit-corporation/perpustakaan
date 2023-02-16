@@ -33,3 +33,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 application/session/
 application/config/database.php
 assets/node_modules
+phinx.php

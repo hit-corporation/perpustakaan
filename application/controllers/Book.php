@@ -7,7 +7,7 @@ class Book extends MY_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Book_model');
+		$this->load->model('book_model');
 		$this->load->library('form_validation');
 
 	}
@@ -15,5 +15,15 @@ class Book extends MY_Controller
 	public function index()
 	{
 		echo $this->template->render('index');
+	}
+
+	public function get_all_paginated()
+	{
+		
+	}
+
+	public function store()
+	{
+
 	}
 }
