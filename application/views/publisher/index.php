@@ -7,8 +7,6 @@
 <!-- <div class="container"> -->
 	<div class="row">
 
-		<script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
-
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 
