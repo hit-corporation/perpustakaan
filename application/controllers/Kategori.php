@@ -112,7 +112,7 @@ class Kategori extends MY_Controller
 
         if(!$this->form_validation->run())
         {
-            $return = ['success' => false, 'errors' => error_array(), 'old' => $_POST];
+            $return = ['success' => false, 'errors' => $this->form_validation->error_array(), 'old' => $_POST];
             $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
