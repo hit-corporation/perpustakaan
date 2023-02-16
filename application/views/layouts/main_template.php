@@ -308,6 +308,15 @@
         </div>
     </div>
 
+    <script defer>
+        window.addEventListener('load', e => {
+            e.preventDefault();
+            setTimeout(() => {
+                document.querySelector('#welcome-loader').classList.add('hide');
+            }, 2000);
+        });
+    </script>
+
     <?php endif ?>
 
     <!-- Bootstrap core JavaScript-->
@@ -337,14 +346,7 @@
 
     <?=$this->section('js')?>
 
-    <script defer>
-        window.addEventListener('load', e => {
-            e.preventDefault();
-            setTimeout(() => {
-                document.querySelector('#welcome-loader').classList.add('hide');
-            }, 2000);
-        });
-    </script>
+  
 </body>
 
 </html>

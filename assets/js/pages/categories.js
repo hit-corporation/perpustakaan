@@ -121,9 +121,25 @@ const getAll = async () => {
 
     // delete
     $('#table-main').on('click', 'button.delete_data', e => {
-        let row = tableMain.row($(e.target).parents('tr')[0]).data();
-        loading();
-        window.location.href = BASE_URL + 'kategori/erase/' + row.id;
+
+        Swal.fire({
+            icon: 'warning',
+            title: '<h4 class="text-warning">Apakah anda yakin !?</h4>',
+            html: '<h5 class="text-warning">Data yang di hapus tidak dapat di kembalikan.</h5>',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        })
+        .then(t => {
+          
+            if(!t.value) 
+                return;
+
+            let row = tableMain.row($(e.target).parents('tr')[0]).data();
+            loading();
+            window.location.href = BASE_URL + 'kategori/erase/' + row.id;
+        });
     });
 
     // form reset
