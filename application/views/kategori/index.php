@@ -61,27 +61,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                <?php 
-                    if(isset($_SESSION['error'])):
-                        echo $_SESSION['error']['errors'];
-                    endif; 
-                ?>
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('kategori/store')?>">
                     <input type="text" class="d-none" name="category_id">
                     <div class="form-group">
                         <label>Nama Kategori <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="category_name" value="<?=$_SESSION['error']['old']['category_name'] ?? ''?>" required>
-                        <?php if(!empty($_SESSION['error']['errors'])): ?>
-                            <small class="text-danger"></small>
+                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['category_name'])):?> is-invalid <?php endif ?>" 
+                              name="category_name" value="<?=$_SESSION['error']['old']['category_name'] ?? ''?>" required>
+                        
+                        <?php if(!empty($_SESSION['error']['errors']['category_name'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['category_name']?></small>
                         <?php endif ?>
                     </div>
+
                     <div class="form-group mt-2">
                         <label>Induk Kategori <span class="text-danger">*</span></label>
                         <input type="text" name="category_parent" class="d-none" value="<?=$_SESSION['error']['old']['category_parent'] ?? ''?>">
-                        <div class="border rounded" id="tree-container">
+                        <div class="border rounded <?php if(!empty($_SESSION['error']['errors']['category_parent'])):?> border-danger <?php endif ?>" id="tree-container">
 
                         </div>
+                        <?php if(!empty($_SESSION['error']['errors']['category_parent'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['category_parent']?></small>
+                        <?php endif ?>
                     </div>
+
                     <div class="row justify-content-end mt-4 border-top pt-3 px-2">
                         <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>

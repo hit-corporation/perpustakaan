@@ -97,7 +97,7 @@ const getAll = async () => {
     // store
     document.getElementById('btn-add').addEventListener('click', e => {
         form.reset();
-        form.action = BASE_URL + '/kategori/store';
+        form.action = BASE_URL + 'kategori/store';
 
         $('#tree-container').jstree(true).deselect_all();
     });
