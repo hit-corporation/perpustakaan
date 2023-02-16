@@ -1,6 +1,7 @@
 'use strict';
 
-const form = document.forms['form-input'];
+const form = document.forms['form-input'],
+      formSearch = document.forms['form-search'];
 
 // get all data
 const getAll = async () => {
@@ -118,4 +119,76 @@ const getAll = async () => {
         $('#modal-input').modal('show');
     });
 
+    // delete
+    $('#table-main').on('click', 'button.delete_data', e => {
+        let row = tableMain.row($(e.target).parents('tr')[0]).data();
+        loading();
+        window.location.href = BASE_URL + 'kategori/erase/' + row.id;
+    });
+
+    // form reset
+    form.addEventListener('reset', e => {
+        $('#tree-container').jstree(true).deselect_all();
+    });
+
+    // form submit
+    form.addEventListener('submit', e => {
+        loading();
+    });
+
+    // search-tree
+    $('#search-tree div:first-child').jstree({
+        core: {
+            multiple: false,
+            data: treedata
+        },
+        checkbox: {
+            'three_state': false,
+            'tie_selection': true
+        },
+        plugins: ['checkbox']
+    })
+    .bind('select_node.jstree', (e, data) => {
+        formSearch['s_category_parent'].value = data.node.id;
+        formSearch['s_category_parent_text'].value = data.node.text;
+    })
+    .bind('deselect_node.jstree', (e, data) => {
+        formSearch['s_category_parent'].value = '';
+        formSearch['s_category_parent_text'].value = '';
+    });
+
+    // dropdown click (sbiar ga langsung close abis klik)
+    $('#search-tree').on('click', e => {
+        e.stopPropagation();
+    });
+
+    // Search submit
+    formSearch.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if(formSearch['s_category_name'].value)
+            tableMain.columns(1).search(formSearch['s_category_name'].value).draw();
+        if(formSearch['s_category_parent'].value)
+            tableMain.columns(2).search(formSearch['s_category_parent'].value).draw();
+        
+    });
+
+    // reset submit
+    formSearch.addEventListener('reset', e => {
+        $('#search-tree div:first-child').jstree(true).deselect_all();
+        tableMain.columns(1).search('').draw();
+        tableMain.columns(2).search('').draw();
+    });
+
 })(jQuery);
+
+const loading = () => {
+    Swal.fire({
+        html: 	'<div class="d-flex flex-column align-items-center">'
+        + '<span class="spinner-border text-primary"></span>'
+        + '<h3 class="mt-2">Loading...</h3>'
+        + '<div>',
+        showConfirmButton: false,
+        width: '10rem'
+    });
+}

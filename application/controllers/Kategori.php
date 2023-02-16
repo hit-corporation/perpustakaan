@@ -118,8 +118,9 @@ class Kategori extends MY_Controller
         }
 
         $data = [
-            'category_name' => $name,
-            'parent_category' => $parent
+            'category_name'   => $name,
+            'parent_category' => $parent,
+            'updated_at'      => date('Y-m-d H:i:s')  
         ];
 
         if(!$this->db->update('categories', $data, ['id' => $id]))
@@ -134,6 +135,23 @@ class Kategori extends MY_Controller
        redirect($_SERVER['HTTP_REFERER']);
     }
 
+    /**
+     * Delete data in db
+     *
+     * @return void
+     */
+    public function erase(int $id): void {
+        if(!$this->db->update('categories', ['deleted_at' => date('Y-m-d H:i:s')], ['id' => $id]))
+        {
+            $return = ['success' => false, 'message' =>  'Data Gagal Di Hapus'];
+            $this->session->set_flashdata('error', $return);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+
+        $return = ['success' => true, 'message' =>  'Data Berhasil Di Hapus'];
+        $this->session->set_flashdata('success', $return);
+        redirect($_SERVER['HTTP_REFERER']);
+    }
 
     /**
      * *******************************************************************************************

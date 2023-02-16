@@ -10,6 +10,11 @@
     height: 240px;
     overflow: auto;
 }
+
+#search-tree.show {
+    width: 24em;
+    height: 18em;
+}
 </style>
 <?php $this->stop() ?>
 
@@ -30,16 +35,25 @@
 
         <div class="card">
             <div class="card-body">
-                <form class="row mb-3">
+                <form name="form-search" class="row mb-3">
                     <div class="col-12 col-lg-5">
                        <input type="text" class="form-control form-control-sm" name="s_category_name" placeholder="Nama Kategori">
                     </div>
                     <div class="col-12 col-lg-5">
-                        <input type="text" class="form-control form-control-sm" name="s_category_parent" placeholder="Induk Kategori">
+                        <div class="form-group">
+                            <input type="text" class="d-none" name="s_category_parent">
+                            <input type="text" class="form-control form-control-sm dropdown-toggle cursor-pointer" data-toggle="dropdown" name="s_category_parent_text" placeholder="Induk Kategori" readonly>
+                            <div id="search-tree" class="dropdown-menu">
+                                <div class="overflow-auto">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12 col-lg-2">
                        <div class="btn-group btn-group-sm">
-
+                            <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+                            <button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
                        </div>
                     </div>
                 </form>
@@ -132,7 +146,20 @@
 </script>
 <?php endif; ?>
 
-<script src="<?=$this->e(base_url('assets/js/pages/categories.js'))?>"></script>
+<?php if(isset($_SESSION['error']['message'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'error',
+        title: '<h4 class="text-danger">GAGAL</h4>',
+        html: '<h5 class="text-danger"><?=$_SESSION['error']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
+<script src="<?=$this->e(base_url('assets/js/pages/categories.min.js'))?>"></script>
 
 
 <?php $this->stop() ?>

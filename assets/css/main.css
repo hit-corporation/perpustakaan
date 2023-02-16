@@ -2,3 +2,7 @@
 .dataTables_filter {
     display: none;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
