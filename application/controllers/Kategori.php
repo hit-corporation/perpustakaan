@@ -61,12 +61,12 @@ class Kategori extends MY_Controller
     public function store(): void
     {
         $name   = $this->input->post('category_name');
-        $parent = $this->input->post('category_parent');
+        $parent = !empty($this->input->post('category_parent')) ? $this->input->post('category_parent') : 0;
 
+        $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
         $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_new_name_unique['.$parent.']', [
             'check_new_name_unique' => '{field} dengan nilai '.$name.' sudah tersedia'
         ]);
-        $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
 
         if(!$this->form_validation->run())
         {
@@ -105,10 +105,10 @@ class Kategori extends MY_Controller
 
         $params = $parent.'.'.$id;
 
+        $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
         $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_edit_name_unique['.$params.']', [
             'check_edit_name_unique' => 'Bidang {field} sudah tersedia'
         ]);
-        $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
 
         if(!$this->form_validation->run())
         {
