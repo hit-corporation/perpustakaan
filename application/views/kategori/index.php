@@ -19,18 +19,30 @@
 <div class="row">
     <div class="col-12">
 
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2">
+            <h1 class="h3 mb-0 text-gray-800"><?=$this->e('Kategori')?></h1>
+            <button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  data-target="#modal-input" data-toggle="modal">
+                <i class="fas fa-plus fa-sm text-white-50"></i> 
+                Tambah Data
+            </button>
+        </div>
+
         <div class="card">
             <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="btn-group">
-                            <button id="btn-add" class="btn btn-primary" data-target="#modal-input" data-toggle="modal">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Tambah</span>
-                            </button>
-                        </div>
+                <form class="row mb-3">
+                    <div class="col-12 col-lg-5">
+                       <input type="text" class="form-control form-control-sm" name="s_category_name" placeholder="Nama Kategori">
                     </div>
-                </div>
+                    <div class="col-12 col-lg-5">
+                        <input type="text" class="form-control form-control-sm" name="s_category_parent" placeholder="Induk Kategori">
+                    </div>
+                    <div class="col-12 col-lg-2">
+                       <div class="btn-group btn-group-sm">
+
+                       </div>
+                    </div>
+                </form>
                 <div class="table-reponsive">
                     <table id="table-main" class="table table-sm table-striped">
                         <thead class="bg-primary text-white">
@@ -121,11 +133,6 @@
 <?php endif; ?>
 
 <script src="<?=$this->e(base_url('assets/js/pages/categories.js'))?>"></script>
-
-
-
-
-
 
 
 <?php $this->stop() ?>
