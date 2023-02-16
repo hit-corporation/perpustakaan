@@ -28,20 +28,4 @@ class Kategori_model extends CI_Model {
     }
 
 
-    
-    /**
-     * *******************************************************************************************
-     *                                 CUSTOM VALIDATOR
-     * *******************************************************************************************
-     */
-
-    // check unique username
-    public function check_new_name_unique($str, $parent): bool
-    {
-        return $this->db
-                    ->get_where('categories', ['category_name' => $str, 'parent_category' => $parent,'deleted_at' => NULL])
-                    ->num_rows() > 0 ? TRUE : FALSE;
-    }
-
-
 }

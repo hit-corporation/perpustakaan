@@ -103,14 +103,16 @@ class Kategori extends MY_Controller
         $name   = trim($this->input->post('category_name', TRUE));
         $parent = trim($this->input->post('category_parent', TRUE));
 
-        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_name_unique['.$parent.']', [
-            'check_new_name_unique' => 'Bidang {field} sudah tersedia'
+        $params = $parent.'.'.$id;
+
+        $this->form_validation->set_rules('category_name', 'Nama Kategori', 'required|callback_check_edit_name_unique['.$params.']', [
+            'check_edit_name_unique' => 'Bidang {field} sudah tersedia'
         ]);
         $this->form_validation->set_rules('category_parent', 'Induk Kategori', 'required');
 
         if(!$this->form_validation->run())
         {
-            $return = ['success' => false, 'errors' => validation_errors(), 'old' => $_POST];
+            $return = ['success' => false, 'errors' => error_array(), 'old' => $_POST];
             $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
@@ -139,11 +141,36 @@ class Kategori extends MY_Controller
      * *******************************************************************************************
      */
 
-    // check unique username
+    /**
+     * custom validation callback for check unique name when store
+     *
+     * @param [type] $str
+     * @param [type] $parent
+     * @return boolean
+     */
     public function check_new_name_unique($str, $parent): bool
     {
         if($this->db
                 ->get_where('categories', ['category_name' => $str, 'parent_category' => $parent,'deleted_at' => NULL])
+                ->num_rows() > 0)
+            return FALSE;
+        return TRUE;
+    }
+
+    /**
+     * custom validation callback for check unique name when edit
+     *
+     * @param [type] $str
+     * @param [type] $params
+     * @return boolean
+     */
+    public function check_edit_name_unique($str, $params): bool
+    {
+        $arr = explode('.', $params);
+
+        $this->db->where('id <> '.$arr[1]);
+        if($this->db
+                ->get_where('categories', ['category_name' => $str, 'parent_category' => $arr[0],'deleted_at' => NULL])
                 ->num_rows() > 0)
             return FALSE;
         return TRUE;

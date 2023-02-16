@@ -3,6 +3,7 @@
 <!-- SECTION CSS -->
 <?php $this->start('css') ?>
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
+<link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 <style>
 #tree-container {
@@ -95,6 +96,8 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
+<script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
 <?php if(isset($_SESSION['error'])): ?>
 <script>
@@ -102,8 +105,24 @@
 </script>
 <?php endif; ?>
 
-<script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
+<?php if(isset($_SESSION['success'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'success',
+        title: '<h4 class="text-success">SUKSES</h4>',
+        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
 <script src="<?=$this->e(base_url('assets/js/pages/categories.js'))?>"></script>
+
+
+
+
 
 
 
