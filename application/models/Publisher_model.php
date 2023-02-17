@@ -4,13 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Publisher_model extends CI_Model {
 
-	public function get_all(){
-		$this->db->select('*');
-		$this->db->from('publishers');
-		$this->db->where('deleted_at', null);
-		$query = $this->db->get();
-		return $query->result_array();
-	}
+	public function get_all(?array $filter = NULL, ?int $limit=NULL, ?int $offset=NULL): array {
+
+        if(!empty($filter[1]['search']['value']))
+            $this->db->where('LOWER(publisher_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+        
+        if(!empty($limit) && !is_null($offset))
+            $this->db->limit($limit, $offset);
+            
+        $this->db->where('deleted_at IS NULL');
+        $query = $this->db->get('publishers');
+        return $query->result_array();
+    }
 
 	public function add($data){
 		$this->db->insert('publishers', $data);
