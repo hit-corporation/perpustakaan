@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Publisher_model extends CI_Model {
 
-	public function getAll(){
+	public function get_all(){
 		$this->db->select('*');
 		$this->db->from('publishers');
 		$this->db->where('deleted_at', null);
@@ -22,5 +22,12 @@ class Publisher_model extends CI_Model {
 		$this->db->update('publishers', $data);
 		return $this->db->affected_rows();
 	}
+
+	public function count_all(?array $filter = NULL)
+    {
+        $this->db->where('deleted_at IS NULL');
+        $query = $this->db->get('publishers');
+        return $query->num_rows();
+    }
 
 }
