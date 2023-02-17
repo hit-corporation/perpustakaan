@@ -17,9 +17,42 @@
 <?php $this->start('contents') ?>
 
 <div class="row">
-    <div class="col-12">
+	<div class="container-fluid">
+
+		<!-- Page Heading -->
+		<div class="d-sm-flex align-items-center justify-content-between mb-4">
+			<h1 class="h3 mb-0 text-gray-800">Member</h1>
+			<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modal-input" >
+				<i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
+			</button>
+			
+		</div>
 
         <div class="card">
+			<div class="card-header py-3">
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-6">
+						<h6 class="m-0 font-weight-bold text-primary">List Data Member</h6>
+
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-6">
+						<form name="form-search">
+							<div class="row">
+								<div class="col-10">
+									<input type="text" class="form-control form-control-sm" name="s_member_name" placeholder="Nama Member">
+								</div>
+								<div class="col-2">
+									<div class="btn-group btn-group-sm">
+										<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+										<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-12">
