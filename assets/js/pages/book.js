@@ -2,11 +2,11 @@
 
 const form = document.forms['form-input'];
 
-// get all data
+// get all Categories
 const getCategories = async () => {
     try
     {
-        const f = await fetch(BASE_URL + '/kategori/get_all');
+        const f = await fetch(BASE_URL + 'kategori/get_all');
         const j = await f.json();
 
         return j;
@@ -15,6 +15,21 @@ const getCategories = async () => {
     {
         console.log(err);
     }    
+}
+
+// get all publisher
+const getPublisher = async () => {
+    try
+    {
+        const f = await fetch(BASE_URL + 'publisher/get_all');
+        const j = await f.json();
+
+        return j;
+    }   
+    catch(err)
+    {
+        console.log(err);
+    }  
 }
 
 (async $ => {
@@ -48,5 +63,30 @@ const getCategories = async () => {
 
     $('#category-tree').on('click', e => {
         e.stopPropagation();
+    });
+
+    // penerbit
+    const publisher = [...(await getPublisher())].map(x => ({'id': x.id, 'text': x.publisher_name}));
+
+    $('select[name="book-publisher"]').select2({
+        data: publisher,
+        placeholder: '-- Pilih Penerbit --',
+        allowClear: true
+    });
+
+    // file upload
+    const imgCover = document.querySelector('#img-cover'),
+          fileInput = document.getElementById('book-image');
+
+    fileInput.addEventListener('change', e => {
+        if(e.target.files && e.target.files[0]) {
+            const fReader = new FileReader();
+
+            fReader.addEventListener('load', e => {
+                imgCover.src = e.target.result;
+            });
+
+            fReader.readAsDataURL(e.target.files[0]);
+        }
     });
 })(jQuery);

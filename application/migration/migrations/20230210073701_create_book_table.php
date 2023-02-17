@@ -24,14 +24,14 @@ final class CreateBookTable extends AbstractMigration
         */
 
         $table = $this->table('books');
-        $table->addColumn('book_code', 'string', ['limit' => 100]);
         $table->addColumn('title', 'string', ['limit' => 239]);
         $table->addColumn('cover_img', 'text');
         $table->addColumn('author', 'string', ['limit' => 229]);
+        $table->addColumn('isbn', 'string', ['limit' => 229]);
         $table->addColumn('publish_year', 'date');
-        $table->addColumn('category_id', 'integer', ['null' => true]);
+        $table->addColumn('category_id', 'integer');
         $table->addColumn('publisher_id', 'integer', ['null' => true]);
-        $table->addColumn('description', 'text');
+        $table->addColumn('description', 'text', ['null' => true]);
         $table->addColumn('qty', 'integer', ['default' => 0]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
