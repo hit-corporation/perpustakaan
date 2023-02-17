@@ -8,9 +8,13 @@ class Member_model extends CI_Model {
 
 	public function get_all(?array $filter = NULL, ?int $limit=NULL, ?int $offset=NULL): array {
         
-        if(!empty($limit) && !is_null($offset))
-            $this->db->limit($limit, $offset);
-            
+		if(!empty($filter[1]['search']['value']))
+		$this->db->where('LOWER(member_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+	
+		if(!empty($limit) && !is_null($offset))
+		$this->db->limit($limit, $offset);
+        
+		$this->db->where('deleted_at IS NULL');
         $query = $this->db->get('members');
         return $query->result_array();
     }
