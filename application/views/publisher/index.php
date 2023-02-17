@@ -22,15 +22,37 @@
 
 				<!-- DataTales Example -->
 				<div class="card shadow mb-4">
+
 					<div class="card-header py-3">
-						<h6 class="m-0 font-weight-bold text-primary">Data Penerbit Buku</h6>
+						<div class="row">
+							<div class="col-xl-6 col-lg-6 col-md-6">
+								<h6 class="m-0 font-weight-bold text-primary">List Data Penerbit</h6>
+
+							</div>
+							<div class="col-xl-6 col-lg-6 col-md-6">
+								<form name="form-search">
+									<div class="row">
+										<div class="col-10">
+											<input type="text" class="form-control form-control-sm" name="s_publisher_name" placeholder="Nama User">
+										</div>
+										<div class="col-2">
+											<div class="btn-group btn-group-sm">
+												<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+												<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
 					</div>
+
 					<div class="card-body">
 						<div class="table-responsive">
 							<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 								<thead>
 									<tr>
-										<th>Username</th>
+										<th>Nama Penerbit</th>
 										<th>Full Name</th>
 										<th>Tanggal Dibuat</th>
 										<th>Action</th>
@@ -175,5 +197,44 @@
 		</div>
 	</div>
 
+
+<?php $this->stop() ?>
+
+<!-- SECTION JS -->
+<?php $this->start('js') ?>
+
+<?php if(isset($_SESSION['error'])): ?>
+<script>
+   $('#modal-input').modal('show');
+</script>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['success'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'success',
+        title: '<h4 class="text-success">SUKSES</h4>',
+        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['error']['message'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'error',
+        title: '<h4 class="text-danger">GAGAL</h4>',
+        html: '<h5 class="text-danger"><?=$_SESSION['error']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
+<script src="<?=$this->e(base_url('assets/js/pages/publishers.js'))?>"></script>
 
 <?php $this->stop() ?>
