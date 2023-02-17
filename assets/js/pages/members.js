@@ -1,6 +1,7 @@
 'use strict';
 
 const form = document.forms['form-input'];
+const formSearch = document.forms['form-search'];
 
 // get all data
 const getAll = async () => {
@@ -90,4 +91,24 @@ const getAll = async () => {
         $('#modal-input').modal('show');
     });
 
+	// Search submit
+    formSearch.addEventListener('submit', e => {
+        e.preventDefault();
+
+        if(formSearch['s_user_name'].value) 
+			tableMain.columns(1).search(formSearch['s_user_name'].value).draw();
+        
+    });
+
 })(jQuery);
+
+const loading = () => {
+    Swal.fire({
+        html: 	'<div class="d-flex flex-column align-items-center">'
+        + '<span class="spinner-border text-primary"></span>'
+        + '<h3 class="mt-2">Loading...</h3>'
+        + '<div>',
+        showConfirmButton: false,
+        width: '10rem'
+    });
+}
