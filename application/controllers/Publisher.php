@@ -4,7 +4,38 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Publisher extends MY_Controller{
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Publisher_model');
+		$this->load->model('publisher_model');
+	}
+
+    /**
+     * get all data
+     *
+     * @return void
+     */
+    public function get_all(): void {
+        $data = $this->publisher_model->get_all();
+        echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+    }
+
+	/**
+     * get all paginated data and send as json for datatable consume
+     *
+     * @return void
+     */
+	public function get_all_paginated(): void
+	{
+		$limit  = $this->input->get('length');
+		$offset = $this->input->get('start');
+        $filter = $this->input->get('columns');
+
+        $dataTable = [
+            'draw'            => $this->input->get('draw') ?? NULL,
+            'data'            => $this->publisher_model->get_all($filter, $limit, $offset),
+            'recordsTotal'    => $this->db->count_all_results('categories'),
+            'recordsFiltered' => $this->publisher_model->count_all($filter)
+        ];
+
+        echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
 	}
 
 	public function index(){
@@ -51,7 +82,7 @@ class Publisher extends MY_Controller{
 		}
 
 		$data['title'] = 'Publisher';
-		$data['publishers'] = $this->Publisher_model->getAll();
+		$data['publishers'] = $this->publisher_model->get_all();
 
 		echo $this->template->render('index', $data);
 	}
