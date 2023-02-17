@@ -111,45 +111,37 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!-- <div class="sidebar-heading">
                 Master
-            </div>
+            </div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooks"
                     aria-expanded="true" aria-controls="collapseBooks">
                     <i class="fa fa-book" aria-hidden="true"></i>
-                    <span>Books</span>
+                    <span>Masters</span>
                 </a>
                 <div id="collapseBooks" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+
+                        <a class="collapse-item" href="<?=base_url('member')?>">
+							<i class="fa fa-user" aria-hidden="true"> </i>
+							<span>Member</span>
+						</a>
+
+                        <a class="collapse-item" href="<?=base_url('publisher')?>">
+							<i class="fa fa-building" aria-hidden="true"></i>
+							<span>Penerbit</span>
+						</a>
+
+						<a class="collapse-item" href="<?=base_url('kategori')?>">
+							<i class="fas fa-tags"></i>
+							<span>Kategori</span>
+						</a>
                     </div>
                 </div>
-            </li> -->
-
-			<!-- Nav Item - Member -->
-            <li class="nav-item <?=$this->uri('member') == 'member' ? 'active' : '' ?>">
-                <a class="nav-link" href="<?=base_url('member')?>">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Member</span></a>
-            </li>
-
-            <!-- Nav Item - Publisher -->
-            <li class="nav-item <?=$this->uri('publisher') == 'publisher' ? 'active' : '' ?>">
-                <a class="nav-link" href="<?=base_url('publisher')?>">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <span>Penerbit</span></a>
-            </li>
-
-             <!-- Nav Item - Kategori -->
-            <li class="nav-item <?=$this->uri('kategori') == 'kategori' ? 'active' : '' ?>">
-                <a class="nav-link" href="<?=base_url('kategori')?>">
-                    <i class="fas fa-tags"></i>
-                    <span>Kategori</span></a>
             </li>
 
             <!-- Nav Item - Users -->
