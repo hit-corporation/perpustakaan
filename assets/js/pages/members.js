@@ -29,7 +29,7 @@ const getAll = async () => {
         ajax: {
             url: BASE_URL + '/member/get_all_paginated'
         },
-        pageLength: 7,
+        pageLength: 10,
         columns: [
             {
                 data: 'id',
@@ -95,8 +95,8 @@ const getAll = async () => {
     formSearch.addEventListener('submit', e => {
         e.preventDefault();
 
-        if(formSearch['s_user_name'].value) 
-			tableMain.columns(1).search(formSearch['s_user_name'].value).draw();
+        if(formSearch['s_member_name'].value) 
+			tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
         
     });
 
