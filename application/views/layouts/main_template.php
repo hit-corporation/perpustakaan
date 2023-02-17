@@ -131,7 +131,14 @@
                 </div>
             </li> -->
 
-             <!-- Nav Item - Publisher -->
+			<!-- Nav Item - Member -->
+            <li class="nav-item <?=$this->uri('member') == 'member' ? 'active' : '' ?>">
+                <a class="nav-link" href="<?=base_url('member')?>">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <span>Member</span></a>
+            </li>
+
+            <!-- Nav Item - Publisher -->
             <li class="nav-item <?=$this->uri('publisher') == 'publisher' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('publisher')?>">
                     <i class="fa fa-user" aria-hidden="true"></i>
@@ -313,7 +320,7 @@
             e.preventDefault();
             setTimeout(() => {
                 document.querySelector('#welcome-loader').classList.add('hide');
-            }, 2000);
+            }, 300);
         });
     </script>
 
