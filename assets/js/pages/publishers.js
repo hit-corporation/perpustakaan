@@ -29,7 +29,7 @@ const getAll = async () => {
         ajax: {
             url: BASE_URL + '/publisher/get_all_paginated'
         },
-        pageLength: 7,
+        pageLength: 10,
         columns: [
             {
                 data: 'id',
@@ -40,17 +40,14 @@ const getAll = async () => {
                 className: 'align-middle pl-2'
             },
             {
-                data: 'no_induk'
+                data: 'address',
+                className: 'align-middle pl-2'
             },
             {
-                data: 'email'
+                data: 'created_at',
+                className: 'align-middle pl-2'
             },
-            {
-                data: 'address'
-            },
-            {
-                data: 'phone'
-            },
+
             {
                 data: null,
                 render(data, type, row, _meta)
@@ -65,7 +62,43 @@ const getAll = async () => {
             }
        ]
     });
-    
+
+	// update
+    $('#table-main').on('click', 'button.edit_data', e => {
+        let row = tableMain.row($(e.target).parents('tr')[0]).data();
+        
+        form.reset();
+        form['publisher_id'].value = row.id;
+        form['publisher_name'].value = row.publisher_name;
+        form['address'].value = row.address;
+
+        form.action = BASE_URL + 'publisher/edit';
+
+        $('#modal-input').modal('show');
+    });
+
+    // delete
+    $('#table-main').on('click', 'button.delete_data', e => {
+
+        Swal.fire({
+            icon: 'warning',
+            title: '<h4 class="text-warning">Apakah anda yakin !?</h4>',
+            html: '<h5 class="text-warning">Data yang di hapus tidak dapat di kembalikan.</h5>',
+            showConfirmButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        })
+        .then(t => {
+          
+            if(!t.value) 
+                return;
+
+            let row = tableMain.row($(e.target).parents('tr')[0]).data();
+            loading();
+            window.location.href = BASE_URL + 'publisher/erase/' + row.id;
+        });
+    });
 
     // store
     document.getElementById('btn-add').addEventListener('click', e => {
