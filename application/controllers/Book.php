@@ -12,17 +12,32 @@ class Book extends MY_Controller
 
 	}
 
+	/**
+	 * View
+	 *
+	 * @return void
+	 */
 	public function index()
 	{
 		echo $this->template->render('index');
 	}
 
-	public function get_all_paginated()
+	/**
+	 * Get All Data with Pagination
+	 *
+	 * @return void
+	 */
+	public function get_all_paginated(): void
 	{
 		
 	}
 
-	public function store()
+	/**
+	 * Store new data to database
+	 *
+	 * @return void
+	 */
+	public function store(): void
 	{
 
 	}

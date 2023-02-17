@@ -5,6 +5,7 @@
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
+
 <style>
 #tree-container {
     height: 240px;
@@ -81,7 +82,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title">Modal Title</h5>
+                <h5 class="modal-title">Input Kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
