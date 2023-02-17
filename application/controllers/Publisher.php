@@ -119,7 +119,7 @@ class Publisher extends MY_Controller{
        redirect($_SERVER['HTTP_REFERER']);
     }
 
-	    /**
+	/**
      * Delete data in db
      *
      * @return void
