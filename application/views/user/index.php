@@ -3,7 +3,7 @@
 <!-- SECTION CONTENT -->
 <?php $this->start('contents') ?>
 
-<script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
+<!-- <script src="<? // =base_url('assets/vendor/jquery/jquery.min.js')?>"></script> -->
 
 
 	<!-- Begin Page Content -->
@@ -21,8 +21,30 @@
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-primary">List Data User</h6>
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6">
+							<h6 class="m-0 font-weight-bold text-primary">List Data User</h6>
+
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6">
+							<form name="form-search">
+								<div class="row">
+									<div class="col-10">
+										<input type="text" class="form-control form-control-sm" name="s_user_name" placeholder="Nama User">
+									</div>
+									<div class="col-2">
+										<div class="btn-group btn-group-sm">
+											<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+											<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
 				</div>
+
+
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
