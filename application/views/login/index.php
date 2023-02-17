@@ -13,9 +13,8 @@
 
     <!-- Custom fonts for this template-->
     <link href="<?=base_url('assets/vendor/fontawesome-free/css/all.min.css')?>" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link rel="stylesheet" href="<?=base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css')?>">
+
 
     <!-- Custom styles for this template-->
     <link href="<?=base_url('assets/css/sb-admin-2.min.css')?>" rel="stylesheet">
@@ -43,14 +42,19 @@
                                     </div>
                                     <form class="user" method="POST" action="<?=base_url('login')?>">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="userName" name="userName"
+                                            <input type="text" class="form-control form-control-user <?php if(isset($_SESSION['error']['errors']['userName'])): ?> is-invalid <?php endif ?>"
+                                                id="userName" name="userName" value="<?=$_SESSION['error']['old']['userName'] ?? '' ?>"
                                                 placeholder="Enter Username...">
-
+                                                <?php if(isset($_SESSION['error']['errors']['userName'])): ?>
+                                                <small class="text-danger"><?=$_SESSION['error']['errors']['userName']?></small>
+                                                <?php endif ?>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" class="form-control form-control-user <?php if(isset($_SESSION['error']['errors']['password'])): ?> is-invalid <?php endif ?>"
                                                 id="password" name="password" placeholder="Password">
+                                            <?php if(isset($_SESSION['error']['errors']['password'])): ?>
+                                                <small class="text-danger"><?=$_SESSION['error']['errors']['password']?></small>
+                                            <?php endif ?>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -87,12 +91,23 @@
     <!-- Bootstrap core JavaScript-->
     <script src="<?=base_url('assets/vendor/jquery/jquery.min.js')?>"></script>
     <script src="<?=base_url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
-
+    <script src="<?=base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js')?>"></script>
     <!-- Core plugin JavaScript-->
     <script src="<?=base_url('assets/vendor/jquery-easing/jquery.easing.min.js')?>"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="<?=base_url('assets/js/sb-admin-2.min.js')?>"></script>
+
+    <?php if(isset($_SESSION['error']['message'])): ?>
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: '<h4 class="text-danger">ERROR</h4>',
+                html: '<h5 class="text-dange"><?=$_SESSION['error']['message']?></h5>',
+                timer: 1500
+            });
+        </script>
+    <?php endif ?>
 
 </body>
 

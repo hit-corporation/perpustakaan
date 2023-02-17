@@ -6,30 +6,40 @@ class Login extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('User_model');
+		$this->load->model('user_model');
 	}
 
 	public function index(){
 		$post = $this->input->post();
 
-		if(isset($post['submit'])){
+		if(isset($post['submit'])) {
 			$data = [
-				'user_name' => $post['userName'],
-				'user_pass' => password_verify($post['password'], PASSWORD_DEFAULT)
+				'user_name' => $post['userName']
 			];
 
+			$this->form_validation->set_rules('userName', 'Username', 'required|callback_is_exists', [
+				'is_exists' => 'Username tidak di kenali !!!'
+			]);
+			$this->form_validation->set_rules('password', 'Password', 'required');
 
-			$user = $this->User_model->login($data);
 
-			if (password_verify($post['password'], $user['user_pass'])) {
-				$this->session->set_userdata('user', $user);
-
-
-				redirect(base_url('dashboard'));
-			} else {
-				$this->session->set_flashdata('error', 'Username or password is incorrect');
+			if(!$this->form_validation->run()) 
+			{
+				$this->session->set_flashdata('error', ['errors' => $this->form_validation->error_array(),'old' => $_POST]);
+				redirect('login');
 			}
 
+			$user = $this->user_model->login($data);
+
+			if(!password_verify($post['password'], $user['user_pass']))
+			{
+				$this->session->set_flashdata('error', ['message' => 'Username atau password tidak valid','old' => $_POST]);
+				redirect('login');
+			}
+
+			unset($user['user_pass']);
+			$this->session->set_userdata('user', $user);
+			redirect('dashboard');
 		}
 
 		$this->load->view('login/index');
@@ -70,4 +80,24 @@ class Login extends CI_Controller {
 		$this->session->unset_userdata('user');
 		redirect(base_url('login'));
 	}
+
+	/*
+	*************************************************
+	*			VALIDATION CALLBACK
+	*************************************************
+	*/
+
+	/**
+	 * Check if username is exists callback
+	 *
+	 * @param [type] $str
+	 * @return boolean
+	 */
+	public function is_exists($str): bool {
+		if($this->db->get_where('users', ['user_name' => $str])->num_rows() == 0)
+			return false;
+		return true;
+	}
+
+
 }
