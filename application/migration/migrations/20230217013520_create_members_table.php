@@ -28,7 +28,7 @@ final class CreateMembersTable extends AbstractMigration
 			  ->addColumn('updated_at', 'datetime', ['null' => true])
 			  ->addColumn('deleted_at', 'datetime', ['null' => true])
 
-			  ->addIndex('no_induk', ['unique' => true])
+			  ->addIndex(['no_induk', 'deleted_at'], ['unique' => true])
 			  ->create();
     }
 }

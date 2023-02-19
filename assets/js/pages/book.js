@@ -57,7 +57,7 @@ const getPublisher = async () => {
         form["book-category_text"].value = '';
     })
     .bind('loaded.jstree', (e, data) => {
-        if(form["book-category"].value.value)
+        if(form["book-category"].value)
             $('#category-tree').jstree(true).select_node(form["book-category"].value);
     });
 
@@ -68,10 +68,10 @@ const getPublisher = async () => {
     // penerbit
     const publisher = [...(await getPublisher())].map(x => ({'id': x.id, 'text': x.publisher_name}));
 
-    $('select[name="book-publisher"]').select2({
-        data: publisher,
-        placeholder: '-- Pilih Penerbit --',
-        allowClear: true
+    $('select[name="book-publisher"]').selectize({
+        valueField: 'id',
+        labelField: 'text',
+        options: publisher
     });
 
     // file upload
@@ -81,9 +81,11 @@ const getPublisher = async () => {
     fileInput.addEventListener('change', e => {
         if(e.target.files && e.target.files[0]) {
             const fReader = new FileReader();
+            const file = e.target.files;
 
             fReader.addEventListener('load', e => {
                 imgCover.src = e.target.result;
+                console.log(file);
             });
 
             fReader.readAsDataURL(e.target.files[0]);

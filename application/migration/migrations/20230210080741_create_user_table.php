@@ -31,7 +31,7 @@ final class CreateUserTable extends AbstractMigration
         $table->addTimestamps();
         $table->addForeignKey('role_id', 'userrole', ['id'], ['delete' => 'NO ACTION', 'update' => 'CASCADE']);
 
-        $table->addIndex('user_name', ['unique' => true]);
+        $table->addIndex(['user_name', 'deleted_at'], ['unique' => true]);
         $table->create();
     }
 }

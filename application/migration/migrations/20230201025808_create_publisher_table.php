@@ -26,7 +26,7 @@ final class CreatePublisherTable extends AbstractMigration
 			  ->addColumn('updated_at', 'datetime', ['null' => true])
 			  ->addColumn('deleted_at', 'datetime', ['null' => true])
 
-			  ->addIndex('publisher_name', ['unique' => true])
+			  ->addIndex(['publisher_name', 'deleted_at'], ['unique' => true])
 			  ->create();
     }
 }

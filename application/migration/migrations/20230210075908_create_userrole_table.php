@@ -24,7 +24,7 @@ final class CreateUserroleTable extends AbstractMigration
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
         $table->addTimestamps();
-        $table->addIndex('rolename', ['unique' => true]);
+        $table->addIndex(['rolename', 'deleted_at'], ['unique' => true]);
         $table->create();
     }
 }

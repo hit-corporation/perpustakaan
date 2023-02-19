@@ -25,7 +25,7 @@ final class CreateCategoryTable extends AbstractMigration
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 
         $table->addTimestamps();
-        $table->addIndex(['category_name', 'parent_category'], ['unique' => true]);
+        $table->addIndex(['category_name', 'parent_category', 'deleted_at'], ['unique' => true]);
         $table->addForeignKey('parent_category', 'categories', ['id'], ['update' => 'CASCADE', 'delete' => 'CASCADE']);
         $table->create();
     }

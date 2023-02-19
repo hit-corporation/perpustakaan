@@ -2,7 +2,7 @@
 
 <!-- SECTION CSS -->
 <?php $this->start('css') ?>
-<link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/select2/dist/css/select2.min.css'))?>">
+<link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/css/selectize.bootstrap4.css'))?>">
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
@@ -34,13 +34,16 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="table-reponsive">
-                    <table class="table table-sm">
-                        <thead class="bg-primary text-white">
 
-                        </thead>
-                    </table>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <ul class="row">
+
+                        </ul>
+                    </div>
                 </div>
+                   
             </div>
         </div>
 
@@ -57,65 +60,81 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form name="form-input" class="modal-body">
+            <form name="form-input" action="<?=$this->e(base_url('book/store'))?>" class="modal-body" method="POST" enctype="multipart/form-data">
                 <fieldset class="row">
                     <div class="col-12 col-lg-8">
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Judul Buku <span class="text-danger">*</span></label>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm" name="book-title">
+                                <input type="text" class="form-control <?=empty($_SESSION['error']['errors']['book-title']) ?: 'is-invalid' ?>" name="book-title" value="<?=$_SESSION['error']['old']['book-title'] ?? NULL ?>">
+                                <?php if(!empty($_SESSION['error']['errors']['book-title'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-title']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Kategori Buku <span class="text-danger">*</span></label>
                             <div class="col-8">
-                                <input type="text" class="d-none" name="book-category">
-                                <input type="text" class="form-control  form-control-sm dropdown-toggle cursor-pointer" name="book-category_text" id="book-category_text" data-toggle="dropdown" readonly>
+                                <input type="text" class="d-none" name="book-category" value="<?=$_SESSION['error']['old']['book-category'] ?? NULL ?>">
+                                <input type="text" class="form-control dropdown-toggle cursor-pointer <?=empty($_SESSION['error']['errors']['book-category']) ?: 'is-invalid' ?>" 
+                                    name="book-category_text" 
+                                    id="book-category_text" 
+                                    data-toggle="dropdown" 
+                                    readonly>
+
                                 <div id="category-tree" class="dropdown-menu">
                                     <div class="overflow-auto">
 
                                     </div>
                                 </div>
+                                <?php if(!empty($_SESSION['error']['errors']['book-category'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-category']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Penulis <span class="text-danger">*</span></label>
                             <div class="col-8">
-                                <input type="text" class="form-control form-control-sm" name="book-author">
+                                <input type="text" class="form-control <?=empty($_SESSION['error']['errors']['book-author']) ?: 'is-invalid' ?>" 
+                                       name="book-author" value="<?=$_SESSION['error']['old']['book-author'] ?? NULL ?>">
+                                <?php if(!empty($_SESSION['error']['errors']['book-author'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-author']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Penerbit <span class="text-danger">*</span></label>
                             <div class="col-8">
-                                <select class="form-control " name="book-publisher">
+                                <select class="form-control <?=empty($_SESSION['error']['errors']['book-publisher']) ?: 'is-invalid' ?>" 
+                                        name="book-publisher" value="<?=$_SESSION['error']['old']['book-publisher'] ?? NULL ?>">
                                     <option></option>
                                 </select>
+                                <?php if(!empty($_SESSION['error']['errors']['book-publisher'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-publisher']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label class="col-sm-4 col-form-label">ISBN <span class="text-danger">*</span></label>
+                            <label class="col-sm-4 col-form-label">ISBN</label>
                             <div class="col-8">
-                            <input type="text" class="form-control form-control-sm" name="book-isbn">
+                            <input type="text" class="form-control" name="book-isbn">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Deskripsi/Sinopsis</label>
                             <div class="col-8">
-                                <textarea class="form-control  form-control-sm" name="book-description" rows="5"></textarea>
+                                <textarea class="form-control" name="book-description" rows="5"></textarea>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
                         <label>Cover</label>
-                        <figure>
-                            <img id="img-cover" class="d-block mx-auto" src="<?=$this->e(base_url('assets/img/book_placeholder.png'))?>" height="165" width="128">
-                            <figcaption>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="book-image" id="book-image">
-                                    <label class="custom-file-label" for="book-image" aria-describedby="book-image">Pilih Berkas</label>
-                                </div>
-                            </figcaption>
-                        </figure>
+                        <div class="shadow p-1">
+                            <label for="book-image" aria-describedby="book-image">
+                                <img id="img-cover" class="img-fluid d-block mx-auto" src="<?=$this->e(base_url('assets/img/Placeholder_book.svg'))?>" height="265" width="228">
+                            </label>
+                            <input type="file" class="d-none" name="book-image" id="book-image">
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset class="row justify-content-end mt-4 border-top pt-3 px-2">
@@ -131,9 +150,35 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
-<script src="<?=$this->e(base_url('assets/node_modules/select2/dist/js/select2.full.min.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
+
+<?php if(!empty($_SESSION['success'])): ?>
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: '<h4 class="text-success"></h4>',
+        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+        timer: 1400
+    });
+</script>
+<?php endif ?>
+
+<?php if(!empty($_SESSION['error'])):?>
+<script>
+    <?php if(!empty($_SESSION['error']['message'])): ?>
+        Swal.fire({
+            icon: 'error',
+            title: '<h4 class="text-error"></h4>',
+            html: '<h5 class="text-error"><?=$_SESSION['error']['message']?></h5>',
+            timer: 1400
+        });
+    <?php endif ?>
+    $('#modal-input').modal('show');
+</script>
+<?php endif ?>
+
 <script src="<?=$this->e(base_url('assets/js/pages/book.js'))?>"></script>
 
 <?php $this->stop() ?>
