@@ -1,6 +1,7 @@
 'use strict';
 
-const form = document.forms['form-input'];
+const form = document.forms['form-input'],
+      display = document.querySelector('#ul-display');
 
 // get all Categories
 const getCategories = async () => {
@@ -30,6 +31,21 @@ const getPublisher = async () => {
     {
         console.log(err);
     }  
+}
+
+const getBooks = async () => {
+
+    try
+    {
+        const f = await fetch(`${BASE_URL}book/get_all`);
+        const j = await f.json();
+
+        return j;
+    }
+    catch(err)
+    {
+
+    }
 }
 
 (async $ => {
@@ -91,4 +107,42 @@ const getPublisher = async () => {
             fReader.readAsDataURL(e.target.files[0]);
         }
     });
+
+    // set grid display
+    await setGridDisplay(await getBooks());
 })(jQuery);
+
+const setGridDisplay = async data => {
+    display.innerHTML = null;
+
+    Array.from(data, item => {
+        const figure = document.createElement('figure');
+        figure.classList.add('figure', 'col-12', 'col-md-4', 'col-lg-2', 'rounded-sm', 'shadow-sm', 'bg-white', 'py-2', 'mx-2');
+
+        const img = document.createElement('img');
+        img.classList.add('img-fluid', 'img-figure');
+        img.src = 'assets/img/books/'+item.cover_img;
+        img.height = 165;
+        img.width = 128;
+        figure.appendChild(img);
+
+        const figcaption = document.createElement('figcaption');
+        figcaption.classList.add('w-100', 'd-flex', 'flex-column', 'align-items-center');
+        figure.appendChild(figcaption);
+
+        const p = document.createElement('p');
+        p.innerHTML = item.title;
+        p.style.fontSize = '14px';
+        p.classList.add('text-center');
+        figcaption.appendChild(p);
+
+        const btnDetails = document.createElement('a');
+        btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mt-3');
+        btnDetails.innerHTML = 'Details';
+        btnDetails.href = BASE_URL + 'book/show/' + item.id;
+        figcaption.appendChild(btnDetails);
+
+        display.appendChild(figure);
+    });
+
+}

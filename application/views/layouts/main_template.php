@@ -312,7 +312,7 @@
             e.preventDefault();
             setTimeout(() => {
                 document.querySelector('#welcome-loader').classList.add('hide');
-            }, 300);
+            }, 1300);
         });
     </script>
 

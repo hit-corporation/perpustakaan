@@ -32,21 +32,15 @@
             </button>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-
-                <div class="row">
-                    <div class="col-4"></div>
-                    <div class="col-8">
-                        <ul class="row">
-
-                        </ul>
-                    </div>
+        <div class="row">
+            <div class="col-4"></div>
+            <div class="col-8">
+                <div class="row" id="ul-display">
+                    
                 </div>
-                   
             </div>
         </div>
-
+     
     </div>
 </div>
 
@@ -117,20 +111,22 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">ISBN</label>
                             <div class="col-8">
-                            <input type="text" class="form-control" name="book-isbn">
+                            <input type="text" class="form-control" name="book-isbn" value="<?=$_SESSION['error']['old']['book-isbn'] ?? NULL ?>">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Deskripsi/Sinopsis</label>
                             <div class="col-8">
-                                <textarea class="form-control" name="book-description" rows="5"></textarea>
+                                <textarea class="form-control" name="book-description" rows="5">
+                                    <?=$_SESSION['error']['old']['book-description'] ?? NULL ?>
+                                </textarea>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-4">
                         <label>Cover</label>
                         <div class="shadow p-1">
-                            <label for="book-image" aria-describedby="book-image">
+                            <label for="book-image" aria-describedby="book-image" class="m-0 p-0">
                                 <img id="img-cover" class="img-fluid d-block mx-auto" src="<?=$this->e(base_url('assets/img/Placeholder_book.svg'))?>" height="265" width="228">
                             </label>
                             <input type="file" class="d-none" name="book-image" id="book-image">

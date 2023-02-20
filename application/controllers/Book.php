@@ -21,9 +21,21 @@ class Book extends MY_Controller
 	{
 		echo $this->template->render('index');
 	}
+	
+	/**
+	 * Get details of an item
+	 *
+	 * @param int $id
+	 * @return void
+	 */
+	public function show($id): void
+	{
+		$data['book'] = $this->book_model->get_one($id);
+		echo $this->template->render('show', $data);
+	}
 
 	/**
-	 * Get All Data with Pagination
+	 * Get All Data
 	 *
 	 * @return void
 	 */
@@ -95,7 +107,7 @@ class Book extends MY_Controller
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 
-			$filename = $img_conf['file_name'];
+			$filename = $img_conf['file_name'].$this->upload->data('file_ext');
 		}
 
 		$data = [
