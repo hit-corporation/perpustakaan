@@ -11,8 +11,11 @@
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">Users</h1>
-			<button href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#tambahModal"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</button>
+			<h1 class="h3 mb-0 text-gray-800">Member</h1>
+			<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modal-input" >
+				<i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
+			</button>
+			
 		</div>
 
 		<!-- Content Row -->
@@ -47,124 +50,20 @@
 
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<table class="table table-bordered" id="table-main" width="100%" cellspacing="0">
 							<thead>
 								<tr>
+									<th>ID</th>
 									<th>Username</th>
 									<th>Full Name</th>
 									<th>Email</th>
+									<th>User Pass</th>
 									<th>Role</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							
-							<tbody>
-								<?php $i=1; foreach ($users as $key => $value) { ?>
-
-								<tr>
-									<td><?=$value['user_name']?></td>
-									<td><?=$value['full_name']?></td>
-									<td><?=$value['email']?></td>
-									<td><?=$value['rolename']?></td>
-									<td><?=$value['status']?></td>
-									<td>
-										<button type="button" href="<?=base_url('user/edit/'.$value['id'])?>" class="btn btn-primary btn-circle btn-sm" data-toggle="modal" data-target="#editModal<?=$i?>">
-											<i class="fas fa-edit"></i>
-										</button>
-
-										<!-- Modal Edit -->
-										<div class="modal fade" id="editModal<?=$i?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-											<div class="modal-dialog" role="document">
-												<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
-													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-													</button>
-												</div>
-												<div class="modal-body">
-													<form method="post" action="<?=base_url('user')?>">
-														<div class="form-group">
-															<label for="user_name">User Name</label>
-															<input type="hidden" id="id" name="id" value="<?=$value['id']?>">
-															<input type="text" class="form-control" id="user_name" name="user_name" value="<?=$value['user_name']?>" placeholder="Enter Username">
-														</div>
-														<div class="form-group">
-															<label for="full_name">Full Name</label>
-															<input type="text" class="form-control" id="full_name" name="full_name" value="<?=$value['full_name']?>" placeholder="Enter Full Name">
-														</div>
-														<div class="form-group">
-															<label for="email">Email</label>
-															<input type="email" class="form-control" id="email" name="email" value="<?=$value['email']?>" placeholder="Enter Your Email">
-														</div>
-														<div class="form-group">
-															<label for="user_role">Role</label>
-															<select class="form-control" name="user_role" id="user_role">
-																<?php foreach ($user_role as $key => $user) { ?>
-																	<option value="<?=$user['id']?>" <?=($value['role_id'] == $user['id']) ? 'selected' : '' ?>><?=$user['rolename']?></option>
-																<?php } ?>
-															</select>
-														</div>
-														<div class="form-group">
-															<label for="status">Status</label>
-															<select class="form-control" name="status" id="status">
-																<option value="active" <?=($value['status'] == 'active') ? 'selected' : '' ?>>Active</option>
-																<option value="inactive" <?=($value['status'] == 'inactive') ? 'selected' : '' ?>>Inactive</option>
-															</select>
-														</div>
-														<div class="form-group">
-															<label for="password">Password</label>
-															<input type="password" class="form-control" id="password<?=$i?>" name="password" value="<?=$value['user_pass']?>" placeholder="Password" readonly>
-														</div>
-														<div class="form-check">
-															<input type="checkbox" class="form-check-input" id="changePassword<?=$i?>" name="changePassword">
-															<label class="form-check-label" for="changePassword">Change Password</label>
-															<script>
-																$('#changePassword<?=$i?>').click(function() {
-																	if ($(this).is(':checked')) {
-																		$('#password<?=$i?>').removeAttr('readonly');
-																	} else {
-																		$('#password<?=$i?>').attr('readonly', 'readonly');
-																	}
-																});
-															</script>
-														</div>
-														<!-- <button type="submit" class="btn btn-primary" name="submit">Submit</button> -->
-													
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-													<button type="submit" class="btn btn-primary" name="update">Save changes</button>
-												</div>
-												</form>
-												</div>
-											</div>
-										</div>
-
-										<a href="<?=base_url('user/delete/'.$value['id'])?>" class="btn btn-danger btn-circle btn-sm" id="delete<?=$i?>">
-											<i class="fas fa-trash"></i>
-										</a>
-										<script>
-											$('#delete<?=$i?>').click(function() {
-												var data = confirm('Are you sure?');
-												console.log(data);
-												if (data == true) {
-													var url = $(this).attr('href');
-													$('#content').load(url);
-												}
-												// if (confirm('Are you sure?')) {
-												// 	var url = $(this).attr('href');
-												// 	$('#content').load(url);
-												// }
-											});
-										</script>
-									</td>
-								</tr>
-									
-								<?php $i++; } ?>
-								
-							</tbody>
 						</table>
 					</div>
 				</div>
@@ -181,61 +80,122 @@
 	</div>
 	<!-- /.container-fluid -->
 
-	<!-- Modal tambah -->
-	<div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+	<div id="modal-input" class="modal fade" tabindex="-1">
+		<div class="modal-dialog">
 			<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form method="post" action="<?=base_url('user')?>">
-					<div class="form-group">
-						<label for="user_name">Nama User</label>
-						<input type="text" class="form-control" id="user_name" name="user_name" placeholder="Masukan Nama Pengguna">
-					</div>
-					<div class="form-group">
-						<label for="full_name">Nama Lengkap</label>
-						<input type="text" class="form-control" id="full_name" name="full_name" placeholder="Masukan Nama Lengkap">
-					</div>
-					<div class="form-group">
-						<label for="email">Email</label>
-						<input type="email" class="form-control" id="email" name="email" placeholder="Masukan Email Pengguna">
-					</div>
-					<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" name="password" placeholder="Masukan Password Pengguna">
-					</div>
-					<div class="form-group">
-						<label for="status">Status</label>
-						<select class="form-control" name="status" id="status">
-							<option value="active">Active</option>
-							<option value="inactive">Inactive</option>
-						</select>
-					</div>
+				<div class="modal-header bg-primary text-white">
+					<h5 class="modal-title">Add / Edit Data</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="form-input" name="form-input" method="POST" action="<?=base_url('user/store')?>">
+						<input type="text" class="d-none" name="user_id">
+						<div class="form-group">
+							<label>User Name <span class="text-danger">*</span></label>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['user_name'])):?> is-invalid <?php endif ?>" 
+								name="user_name" value="<?=$_SESSION['error']['old']['user_name'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['user_name'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['user_name']?></small>
+							<?php endif ?>
+						</div>
+						
+						<div class="form-group">
+							<label>Full Name <span class="text-danger">*</span></label>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['full_name'])):?> is-invalid <?php endif ?>" 
+								name="full_name" value="<?=$_SESSION['error']['old']['full_name'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['full_name'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['full_name']?></small>
+							<?php endif ?>
+						</div>
 
-					<div class="form-group">
-						<label for="user_role">User Role</label>
-						<select class="form-control" name="user_role" id="user_role">
-							<?php foreach ($user_role as $key => $role) { ?>
-								<option value="<?=$role['id']?>"><?=$role['rolename']?></option>
-							<?php } ?>
-						</select>
-					</div>
-					
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" name="save">Save changes</button>
-			</div>
-			</form>
+						<div class="form-group">
+							<label>Email </label>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['email'])):?> is-invalid <?php endif ?>" 
+								name="email" value="<?=$_SESSION['error']['old']['email'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['email'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
+							<?php endif ?>
+						</div>
+
+						<div class="form-group">
+							<label>Password </label>
+							<input type="password" class="form-control <?php if(!empty($_SESSION['error']['errors']['user_pass'])):?> is-invalid <?php endif ?>" 
+								name="user_pass" value="<?=$_SESSION['error']['old']['user_pass'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['user_pass'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['user_pass']?></small>
+							<?php endif ?>
+						</div>
+						
+						<div class="form-group">
+							<label>Role </label>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['rolename'])):?> is-invalid <?php endif ?>" 
+								name="rolename" value="<?=$_SESSION['error']['old']['rolename'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['rolename'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['rolename']?></small>
+							<?php endif ?>
+						</div>
+
+						<div class="form-group">
+							<label>Status </label>
+							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['status'])):?> is-invalid <?php endif ?>" 
+								name="status" value="<?=$_SESSION['error']['old']['status'] ?? ''?>" required>
+							
+							<?php if(!empty($_SESSION['error']['errors']['status'])): ?>
+								<small class="text-danger"><?=$_SESSION['error']['errors']['status']?></small>
+							<?php endif ?>
+						</div>
+
+						<div class="row justify-content-end mt-4 border-top pt-3 px-2">
+							<button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
+							<button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
+						</div>
+
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
+<?php $this->stop() ?>
 
-	<?php $this->stop() ?>
+<!-- SECTION JS -->
+<?php $this->start('js') ?>
+<!-- <script src="<? // =$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script> -->
+<script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
+
+<?php if(isset($_SESSION['error'])): ?>
+<script>
+   $('#modal-input').modal('show');
+</script>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['success'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'success',
+        title: '<h4 class="text-success">SUKSES</h4>',
+        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
+<script src="<?=$this->e(base_url('assets/js/pages/users.js'))?>"></script>
+
+
+
+
+
+
+
+<?php $this->stop() ?>
