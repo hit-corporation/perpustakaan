@@ -58,7 +58,8 @@
 									<th>Full Name</th>
 									<th>Email</th>
 									<th>User Pass</th>
-									<th>Role</th>
+									<th>Role Name</th>
+									<th>Role Name</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -115,7 +116,7 @@
 						<div class="form-group">
 							<label>Email </label>
 							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['email'])):?> is-invalid <?php endif ?>" 
-								name="email" value="<?=$_SESSION['error']['old']['email'] ?? ''?>" required>
+								name="email" value="<?=$_SESSION['error']['old']['email'] ?? ''?>">
 							
 							<?php if(!empty($_SESSION['error']['errors']['email'])): ?>
 								<small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
@@ -131,25 +132,19 @@
 								<small class="text-danger"><?=$_SESSION['error']['errors']['user_pass']?></small>
 							<?php endif ?>
 						</div>
-						
+
 						<div class="form-group">
-							<label>Role </label>
-							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['rolename'])):?> is-invalid <?php endif ?>" 
-								name="rolename" value="<?=$_SESSION['error']['old']['rolename'] ?? ''?>" required>
-							
-							<?php if(!empty($_SESSION['error']['errors']['rolename'])): ?>
-								<small class="text-danger"><?=$_SESSION['error']['errors']['rolename']?></small>
-							<?php endif ?>
+							<label for="role_id">Role Name</label>
+							<select class="form-control" id="role_id" name="role_id">
+							</select>
 						</div>
 
 						<div class="form-group">
-							<label>Status </label>
-							<input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['status'])):?> is-invalid <?php endif ?>" 
-								name="status" value="<?=$_SESSION['error']['old']['status'] ?? ''?>" required>
-							
-							<?php if(!empty($_SESSION['error']['errors']['status'])): ?>
-								<small class="text-danger"><?=$_SESSION['error']['errors']['status']?></small>
-							<?php endif ?>
+							<label for="status">Status</label>
+							<select class="form-control" id="status" name="status">
+								<option value="active">active</option>
+								<option value="inactive">inactive</option>
+							</select>
 						</div>
 
 						<div class="row justify-content-end mt-4 border-top pt-3 px-2">
