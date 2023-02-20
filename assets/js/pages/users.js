@@ -146,7 +146,6 @@ const getAll = async () => {
     });
 
 	// delete
-	// delete
     $('#table-main').on('click', 'button.delete_data', e => {
 
         Swal.fire({
