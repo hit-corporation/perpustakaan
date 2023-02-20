@@ -63,6 +63,13 @@ const getAll = async () => {
        ]
     });
 
+	// store
+    document.getElementById('btn-add').addEventListener('click', e => {
+        form.reset();
+        form.action = BASE_URL + 'publisher/store';
+
+    });
+
 	// update
     $('#table-main').on('click', 'button.edit_data', e => {
         let row = tableMain.row($(e.target).parents('tr')[0]).data();
@@ -76,8 +83,8 @@ const getAll = async () => {
 
         $('#modal-input').modal('show');
     });
-
-    // delete
+	
+ 	// delete
     $('#table-main').on('click', 'button.delete_data', e => {
 
         Swal.fire({
@@ -99,31 +106,6 @@ const getAll = async () => {
             window.location.href = BASE_URL + 'publisher/erase/' + row.id;
         });
     });
-
-    // store
-    document.getElementById('btn-add').addEventListener('click', e => {
-        form.reset();
-        form.action = BASE_URL + 'publisher/store';
-
-    });
-
-    // update
-    $('#table-main').on('click', 'button.edit_data', e => {
-        let row = tableMain.row($(e.target).parents('tr')[0]).data();
-        
-        form.reset();
-        form['publisher_id'].value = row.id;
-        form['publisher_name'].value = row.publisher_name;
-        form['no_induk'].value = row.no_induk;
-        form['email'].value = row.email;
-        form['address'].value = row.address;
-        form['phone'].value = row.phone;
-
-        form.action = BASE_URL + 'publisher/edit';
-
-        $('#modal-input').modal('show');
-    });
-
 	// Search submit
     formSearch.addEventListener('submit', e => {
         e.preventDefault();

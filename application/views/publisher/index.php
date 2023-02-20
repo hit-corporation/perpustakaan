@@ -64,7 +64,7 @@
 									<tr>
 										<th>ID</th>
 										<th>Nama Penerbit</th>
-										<th>Full Name</th>
+										<th>Alamat</th>
 										<th>Tanggal Dibuat</th>
 										<th>Action</th>
 									</tr>
@@ -91,6 +91,7 @@
             <div class="modal-body">
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('publisher/store')?>">
                     <input type="text" class="d-none" name="publisher_id">
+
                     <div class="form-group">
                         <label>Nama Penerbit <span class="text-danger">*</span></label>
                         <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['publisher_name'])):?> is-invalid <?php endif ?>" 
@@ -100,10 +101,11 @@
                             <small class="text-danger"><?=$_SESSION['error']['errors']['publisher_name']?></small>
                         <?php endif ?>
                     </div>
+
                     <div class="form-group">
                         <label>Alamat </label>
                         <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['address'])):?> is-invalid <?php endif ?>" 
-                              name="address" value="<?=$_SESSION['error']['old']['address'] ?? ''?>" required>
+                              name="address" value="<?=$_SESSION['error']['old']['address'] ?? ''?>">
                         
                         <?php if(!empty($_SESSION['error']['errors']['address'])): ?>
                             <small class="text-danger"><?=$_SESSION['error']['errors']['address']?></small>
