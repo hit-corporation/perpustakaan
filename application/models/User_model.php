@@ -4,6 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_model extends CI_Model {
 
+	public function get_all(?array $filter = NULL, ?int $limit=NULL, ?int $offset=NULL): array {
+        
+		if(!empty($filter[1]['search']['value']))
+		$this->db->where('LOWER(users.user_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+	
+		if(!empty($limit) && !is_null($offset))
+		$this->db->limit($limit, $offset);
+        
+		$this->db->select('users.*, userrole.rolename');
+		$this->db->where('users.deleted_at IS NULL');
+        $this->db->join('userrole', 'userrole.id = users.role_id');
+        $query = $this->db->get('users');
+        return $query->result_array();
+    }
+
+	public function count_all(?array $filter = NULL){
+        $query = $this->db->get('users');
+        return $query->num_rows();
+    }
+
 	public function insert($data){
 		$this->db->insert('users', $data);
 	}
