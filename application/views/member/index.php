@@ -162,7 +162,7 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
-<script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
+<!-- <script src="<? // =$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script> -->
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
 <?php if(isset($_SESSION['error'])): ?>
