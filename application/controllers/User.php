@@ -66,7 +66,6 @@ class User extends MY_Controller {
 		$this->form_validation->set_rules('full_name', 'Nama Lengkap', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required');
 		$this->form_validation->set_rules('user_pass', 'Password', 'required');
-		$this->form_validation->set_rules('status', 'Status', 'required');
 		$this->form_validation->set_rules('role_id', 'Role', 'required');
 
         if(!$this->form_validation->run())
@@ -75,6 +74,12 @@ class User extends MY_Controller {
             $this->session->set_flashdata('error', $return);
             redirect($_SERVER['HTTP_REFERER']);
         }
+
+		// CHECK OLD PASSWORD
+		$old_pass = $this->db->get_where('users', ['id' => $id])->row()->user_pass;
+		if($user_pass != $old_pass){
+			$user_pass = password_hash($user_pass, PASSWORD_DEFAULT);
+		}
 
         $data = [
             'user_name' => $user_name,
@@ -97,61 +102,55 @@ class User extends MY_Controller {
        redirect($_SERVER['HTTP_REFERER']);
     }
 
-	// public function index(){
-	// 	$post = $this->input->post();
+	public function get_role(): void {
+		$data = $this->user_model->get_user_role();
+		echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+	}
 
-	// 	if(isset($post['save'])){
-	// 		$data = [
-	// 			'user_name' => $post['user_name'],
-	// 			'full_name' => $post['full_name'],
-	// 			'email' => $post['email'],
-	// 			'user_pass' => $post['password'],
-	// 			'role_id' => $post['user_role'],
-	// 			'status' => $post['status']
-	// 		];
-	// 		$res = $this->User_model->insert($data);
-	// 		if($res){
-	// 			$this->session->set_flashdata('success', 'User added successfully');
-	// 		}else{
-	// 			$this->session->set_flashdata('error', 'Something went wrong');
-	// 		}
-	// 	}
+		/**
+     * Storing submitted Data to database
+     *
+     * @return void
+     */
+    public function store(): void
+    {
+        $user_name   	= $this->input->post('user_name');
+		$full_name   	= $this->input->post('full_name');
+		$email   		= $this->input->post('email');
+		$user_pass   	= $this->input->post('user_pass');
+		$status   		= $this->input->post('status');
+		$role_id  		= $this->input->post('role_id');
 
-	// 	if(isset($post['update'])){
-	// 		$data = [
-	// 			'user_name' => $post['user_name'],
-	// 			'full_name' => $post['full_name'],
-	// 			'email' => $post['email'],
-	// 			'user_pass' => isset($post['changePassword']) ? password_hash($post['password'], PASSWORD_DEFAULT) : $post['password'], // if changePassword is set, then change password, else keep the old password (password_hash() is used to encrypt the password
-	// 			'role_id' => $post['user_role'],
-	// 			'status' => $post['status']
-	// 		];
-	// 		$res = $this->User_model->update($post['id'], $data);
-	// 		if($res){
-	// 			$this->session->set_flashdata('success', 'User updated successfully');
-	// 		}else{
-	// 			$this->session->set_flashdata('error', 'Something went wrong');
-	// 		}
-	// 	}
+        $this->form_validation->set_rules('user_name', 'User Name', 'required');
+		$this->form_validation->set_rules('full_name', 'Full Name', 'required');
+		$this->form_validation->set_rules('user_pass', 'Password', 'required');
 
-	// 	if(isset($post['delete'])){
-	// 		$res = $this->User_model->delete($post['id']);
-	// 		if($res){
-	// 			$this->session->set_flashdata('success', 'User deleted successfully');
-	// 		}else{
-	// 			$this->session->set_flashdata('error', 'Something went wrong');
-	// 		}
-	// 	}
 
-	// 	$data['users'] = $this->User_model->get_all_users();
-	// 	$data['user_role'] = $this->User_model->get_user_role();
+        if(!$this->form_validation->run())
+        {
+            $return = ['success' => false, 'errors' => $this->form_validation->error_array(), 'old' => $_POST];
+            $this->session->set_flashdata('error', $return);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
 
-	// 	echo $this->template->render('index', $data);
-	// }
+        $data = [
+            'user_name' => $user_name,
+			'full_name' => $full_name,
+			'email' => $email,
+			'user_pass' => password_hash($user_pass, PASSWORD_DEFAULT),
+			'status' => $status,
+			'role_id' => $role_id
+        ];
 
-	// public function delete(){
-	// 	$id = $this->uri->segment(3);
-	// 	$this->User_model->delete($id);
-	// 	redirect(base_url('user'));
-	// }
+        if(!$this->db->insert('users', $data))
+        {
+            $return = ['success' => false, 'message' =>  'Data Gagal Di Simpan', 'old' => $_POST];
+            $this->session->set_flashdata('error', $return);
+            redirect($_SERVER['HTTP_REFERER']);
+        }
+       
+       $return = ['success' => true, 'message' =>  'Data Berhasil Di Simpan'];
+       $this->session->set_flashdata('success', $return);
+       redirect($_SERVER['HTTP_REFERER']);
+    }
 }
