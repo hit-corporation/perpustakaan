@@ -49,12 +49,16 @@ const getAll = async () => {
                 data: 'user_pass',
 				visible: false
             },
+			{
+				data: 'rolename'
+			},
             {
-                data: 'status'
+				data: 'role_id',
+				visible: false
             },
-            {
-                data: 'rolename'
-            },
+			{
+				data: 'status'
+			},
             {
                 data: null,
                 render(data, type, row, _meta)
@@ -76,10 +80,33 @@ const getAll = async () => {
         form.reset();
         form.action = BASE_URL + 'user/store';
 
+		// CREATE OPTION USER ROLE
+		$.ajax({
+			type: "GET",
+			url: BASE_URL + "user/get_role",
+			dataType: "JSON",
+			success: function (response) {
+				// CLEAR OPTION
+				$('#role_id').empty();
+
+				$.each(response, function (indexInArray, valueOfElement) { 
+					let option = document.createElement('option');
+					option.value = valueOfElement.id;
+					option.text = valueOfElement.rolename;
+					form['role_id'].appendChild(option);
+				});
+			}
+		});
+
+
+
     });
 
     // update
     $('#table-main').on('click', 'button.edit_data', e => {
+		// CLEAR OPTION
+		$('#role_id').empty();
+
         let row = tableMain.row($(e.target).parents('tr')[0]).data();
         
         form.reset();
@@ -89,7 +116,29 @@ const getAll = async () => {
         form['email'].value = row.email;
         form['user_pass'].value = row.user_pass;
         form['status'].value = row.status;
-        form['rolename'].value = row.rolename;
+
+		document.getElementsByName('status').forEach(el => {
+			if(el.value == row.status) el.checked = true;
+		});
+
+		// CREATE OPTION USER ROLE
+		$.ajax({
+			type: "GET",
+			url: BASE_URL + "user/get_role",
+			dataType: "JSON",
+			success: function (response) {
+				$.each(response, function (i, val) {
+					let option = document.createElement('option');
+					option.value = val.id;
+					option.text = val.rolename;
+					form['role_id'].appendChild(option);
+				});
+
+				// SELECTED OPTION
+				$('#role_id').val(row.role_id);
+			}
+		});
+
 
         form.action = BASE_URL + 'user/edit';
 
