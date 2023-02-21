@@ -94,7 +94,8 @@ class Book extends MY_Controller
 			
 			$img_conf = [
 				'upload_path'	=> 'assets/img/books/',
-				'file_name'		=> str_replace(' ', '_', $title).'_'.$category,
+				'allowed_types'	=> 'jpg|png|jpeg',
+				'file_name'		=> str_replace(' ', '_', $title).'_'.$category.'.jpg',
 				'file_ext_tolower'	=> true
 			];
 
@@ -106,7 +107,7 @@ class Book extends MY_Controller
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 
-			$filename = $img_conf['file_name'].$this->upload->data('file_ext');
+			$filename = $img_conf['file_name'];
 		}
 
 		$data = [
