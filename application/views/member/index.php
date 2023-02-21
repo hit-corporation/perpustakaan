@@ -54,16 +54,6 @@
 			</div>
 
             <div class="card-body">
-                <div class="row mb-3">
-                    <div class="col-12">
-                        <div class="btn-group">
-                            <button id="btn-add" class="btn btn-primary" data-target="#modal-input" data-toggle="modal">
-                                <i class="fas fa-plus-circle"></i>
-                                <span>Tambah</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
                 <div class="table-reponsive">
                     <table id="table-main" class="table table-sm table-striped">
                         <thead class="bg-primary text-white">
