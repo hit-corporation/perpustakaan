@@ -33,8 +33,8 @@
         </div>
 
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-8">
+            <div class="col-3"></div>
+            <div class="col-9">
                 <div class="row" id="ul-display">
                     
                 </div>
@@ -129,7 +129,8 @@
                             <label for="book-image" aria-describedby="book-image" class="m-0 p-0">
                                 <img id="img-cover" class="img-fluid d-block mx-auto" src="<?=$this->e(base_url('assets/img/Placeholder_book.svg'))?>" height="265" width="228">
                             </label>
-                            <input type="file" class="d-none" name="book-image" id="book-image">
+                            <input type="file" class="d-none" name="book-image" id="book-image" 
+                                accept="image/png, image/jpeg, image/jpg, image/gif">
                         </div>
                     </div>
                 </fieldset>
@@ -156,7 +157,7 @@
         icon: 'success',
         title: '<h4 class="text-success"></h4>',
         html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
-        timer: 1400
+        timer: 2000
     });
 </script>
 <?php endif ?>
@@ -166,9 +167,9 @@
     <?php if(!empty($_SESSION['error']['message'])): ?>
         Swal.fire({
             icon: 'error',
-            title: '<h4 class="text-error"></h4>',
-            html: '<h5 class="text-error"><?=$_SESSION['error']['message']?></h5>',
-            timer: 1400
+            title: '<h4 class="text-danger">ERROR</h4>',
+            html: '<h5 class="text-danger"><?=$_SESSION['error']['message']?></h5>',
+            timer: 2000
         });
     <?php endif ?>
     $('#modal-input').modal('show');

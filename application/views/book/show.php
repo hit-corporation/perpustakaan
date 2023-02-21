@@ -6,7 +6,6 @@
 <?php $this->start('contents') ?>
 <div class="row">
     <div class="col-12">
-        <?=print_r($book);?>
         <div class="card">
             <div class="card-body">
                 <div class="row">

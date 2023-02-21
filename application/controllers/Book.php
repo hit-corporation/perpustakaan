@@ -67,7 +67,7 @@ class Book extends MY_Controller
 		$author	  = $this->input->post('book-author', TRUE);
 		$publisher = $this->input->post('book-publisher', TRUE);
 		$isbn = $this->input->post('book-isbn', TRUE) ?? NULL;
-		$description = $this->input->post('bok-description', TRUE);
+		$description = $this->input->post('book-description', TRUE);
 		$img = $_FILES['book-image'];
 
 		$category_data = $this->kategori_model->get_all();
@@ -94,7 +94,6 @@ class Book extends MY_Controller
 			
 			$img_conf = [
 				'upload_path'	=> 'assets/img/books/',
-				'allowed_types'	=> 'jpeg|jpg|png|svg|gif',
 				'file_name'		=> str_replace(' ', '_', $title).'_'.$category,
 				'file_ext_tolower'	=> true
 			];

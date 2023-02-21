@@ -83,13 +83,16 @@ const getBooks = async () => {
 
     // penerbit
     const publisher = [...(await getPublisher())].map(x => ({'id': x.id, 'text': x.publisher_name}));
-
-    $('select[name="book-publisher"]').selectize({
+    var $_selectize = $('select[name="book-publisher"]').selectize({
         valueField: 'id',
         labelField: 'text',
         options: publisher
     });
 
+    var _publisher = $_selectize[0].selectize;
+
+    if(form['book-publisher'].value)
+        _publisher.setValue(form['book-publisher'].value);
     // file upload
     const imgCover = document.querySelector('#img-cover'),
           fileInput = document.getElementById('book-image');
@@ -116,33 +119,48 @@ const setGridDisplay = async data => {
     display.innerHTML = null;
 
     Array.from(data, item => {
-        const figure = document.createElement('figure');
-        figure.classList.add('figure', 'col-12', 'col-md-4', 'col-lg-2', 'rounded-sm', 'shadow-sm', 'bg-white', 'py-2', 'mx-2');
+        const col = document.createElement('div');
+        col.classList.add('col-12', 'col-md-4', 'col-lg-2');
+
+        const card = document.createElement('div');
+        card.classList.add('card');
+        card.style.height = "300px";
+        col.appendChild(card);
+
+        const body = document.createElement('div');
+        body.classList.add('card-body', 'px-2', 'pt-2', 'justify-content-center');
+        card.appendChild(body);
+
+        let cover = BASE_URL + 'assets/img/Placeholder_book.svg';
+
+        if(item.cover_img)
+            cover = BASE_URL + 'assets/img/books/'+item.cover_img;
 
         const img = document.createElement('img');
-        img.classList.add('img-fluid', 'img-figure');
-        img.src = 'assets/img/books/'+item.cover_img;
-        img.height = 165;
-        img.width = 128;
-        figure.appendChild(img);
-
-        const figcaption = document.createElement('figcaption');
-        figcaption.classList.add('w-100', 'd-flex', 'flex-column', 'align-items-center');
-        figure.appendChild(figcaption);
+        img.classList.add('w-100', 'mx-auto');
+        img.src = cover;
+        img.setAttribute('style', 'height: 165px !important');
+        body.appendChild(img);
 
         const p = document.createElement('p');
         p.innerHTML = item.title;
         p.style.fontSize = '14px';
         p.classList.add('text-center');
-        figcaption.appendChild(p);
+        body.appendChild(p);
+
+        const btnContainer = document.createElement('div');
+        btnContainer.classList.add('card-footer', 'bg-white', 'd-flex', 'justify-content-center');
+        btnContainer.style.bottom = 0;
+        btnContainer.style.left = 0;
+        card.appendChild(btnContainer);
 
         const btnDetails = document.createElement('a');
-        btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mt-3');
+        btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mx-auto');
         btnDetails.innerHTML = 'Details';
         btnDetails.href = BASE_URL + 'book/show/' + item.id;
-        figcaption.appendChild(btnDetails);
+        btnContainer.appendChild(btnDetails);
 
-        display.appendChild(figure);
+        display.appendChild(col);
     });
 
 }
