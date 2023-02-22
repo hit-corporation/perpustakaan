@@ -62,13 +62,14 @@ class Book extends MY_Controller
 	 */
 	public function store(): void
 	{
-		$title 	  = $this->input->post('book-title', TRUE);
-		$category = $this->input->post('book-category', TRUE);
-		$author	  = $this->input->post('book-author', TRUE);
-		$publisher = $this->input->post('book-publisher', TRUE);
-		$isbn = $this->input->post('book-isbn', TRUE) ?? NULL;
+		$title 	   	= $this->input->post('book-title', TRUE);
+		$category  	= $this->input->post('book-category', TRUE);
+		$author	   	= $this->input->post('book-author', TRUE);
+		$publisher 	= $this->input->post('book-publisher', TRUE);
+		$year	   	= $this->input->post('book-year', TRUE) ?? NULL;
+		$isbn 	   	= $this->input->post('book-isbn', TRUE) ?? NULL;
 		$description = $this->input->post('book-description', TRUE);
-		$img = $_FILES['book-image'];
+		$img 	   	= $_FILES['book-image'];
 
 		$category_data = $this->kategori_model->get_all();
 		$publisher_data = $this->publisher_model->get_all();
@@ -78,6 +79,7 @@ class Book extends MY_Controller
 		$this->form_validation->set_rules('book-category', 'Kategori', 'required|integer|in_list['.implode(',', array_column($category_data, 'id')).']');
 		$this->form_validation->set_rules('book-author', 'Penulis', 'required');
 		$this->form_validation->set_rules('book-publisher', 'Penerbit', 'required|integer|in_list['.implode(',', array_column($publisher_data, 'id')).']');
+		$this->form_validation->set_rules('book-year', 'Tahun Terbit', 'numeric');
 		$this->form_validation->set_rules('book-isbn', 'ISBN');
 		$this->form_validation->set_rules('book-description', 'Uraian');
 
@@ -114,6 +116,7 @@ class Book extends MY_Controller
 			'title'			=> $title,
 			'author'		=> $author,
 			'isbn'			=> $isbn,
+			'publish_year'	=> $year,
 			'category_id'	=> $category,
 			'publisher_id'	=> $publisher,
 			'description'	=> $description,

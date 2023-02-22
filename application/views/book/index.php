@@ -110,8 +110,23 @@
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">ISBN</label>
                             <div class="col-8">
-                            <input type="text" class="form-control" name="book-isbn" value="<?=$_SESSION['error']['old']['book-isbn'] ?? NULL ?>">
+                                <input type="text" class="form-control" name="book-isbn" value="<?=$_SESSION['error']['old']['book-isbn'] ?? NULL ?>">
                             </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="book-year" class="col-sm-4 col-form-label">Tahun Terbit</label>
+                            <div class="col-8">
+                                <input type="number" min="1923" class="form-control" name="book-year" id="book-year" value="<?=$_SESSION['error']['old']['book-year'] ?? NULL ?>">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="book-qty" class="col-sm-4 col-form-label">Stok</label>
+                            <div class="col-8">
+                                <input type="number" min="0" class="form-control <?=empty($_SESSION['error']['errors']['book-qty']) ?: 'is-invalid' ?>" name="book-qty" id="book-qty" value="<?=$_SESSION['error']['old']['book-qty'] ?? NULL ?>">
+                            </div>
+                            <?php if(!empty($_SESSION['error']['errors']['book-qty'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-qty']?></small>
+                            <?php endif ?>
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-4 col-form-label">Deskripsi/Sinopsis</label>

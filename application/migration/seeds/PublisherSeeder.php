@@ -17,10 +17,25 @@ class PublisherSeeder extends AbstractSeed
     {
         $data = [
             [
-				'publisher_name' => 'Airlangga',
-				'address' => 'Jl. Airlangga No. 1, Surabaya',
-				'created_at' => date('Y-m-d H:i:s'),
+				'publisher_name' => 'Erlangga',
+				'address'        => 'Jl. H. Baping Raya No. 100 Ciracas Jakarta 13740',
 			],
+            [
+				'publisher_name' => 'Yudhistira',
+				'address'        => 'Jl. Jend Sudirman Kav 59 Gelora Tanah Abang Jakarta Pusat DKI Jakarta',
+			],
+            [
+                'publisher_name' => 'PT Elex Media Komputindo',
+                'address'        => 'Jl. Palmerah Barat 29-31'
+            ],
+            [
+                'publisher_name' => 'Tiga Serangkai',
+                'address'        => 'Jl. Otista 3 No.42, RT.1/RW.8, Cipinang Cempedak, Kecamatan Jatinegara'
+            ],
+            [
+                'publisher_name' => 'Ganeca Exact',
+                'address'        => 'JL. P. Selayar Kav. A5, Kawasan Industri MM 2100, Bekasi'
+            ]
         ];
 
         $table = $this->table('publishers');

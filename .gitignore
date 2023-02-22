@@ -34,4 +34,4 @@ application/session/
 application/config/database.php
 assets/node_modules
 assets/img/books
-phinx.php
+./phinx.php

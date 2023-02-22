@@ -114,6 +114,13 @@ const getBooks = async () => {
         }
     });
 
+    // yearpicker
+    const thisYear =  (new Date()).getFullYear();
+    form['book-year'].max = thisYear;
+    if(!form['book-year'].getAttribute('value'))
+        form['book-year'].value = thisYear;
+    
+
     // set grid display
     await setGridDisplay(await getBooks());
 })(jQuery);
