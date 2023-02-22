@@ -188,28 +188,28 @@
                     <aside class="col-12 col-lg-9">
                         <h3 class="mb-4" data-item="title"></h3>
                         <dl class="row">
-                            <dt class="col-2">
+                            <dt class="col-4">
                                 Penulis
                             </dt>
-                            <dd class="col-10 mb-1">
+                             <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="author"></span>
                             </dd>
-                            <dt class="col-2">
+                            <dt class="col-4">
                                 Penerbit
                             </dt>
-                            <dd class="col-10 mb-1">
+                             <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="publisher_name"></span>
                             </dd>
-                            <dt class="col-2">
+                            <dt class="col-4">
                                 Tahun Terbit
                             </dt>
-                            <dd class="col-10 mb-1">
+                             <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="publish_year"></span>
                             </dd>
-                            <dt class="col-2">
+                            <dt class="col-4">
                                 ISBN
                             </dt>
-                            <dd class="col-10 mb-1">
+                             <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="isbn"></span>
                             </dd>
                         </dl>
