@@ -89,7 +89,7 @@ class Book extends MY_Controller
 		$publisher_data = $this->publisher_model->get_all();
 
 		// Validation
-		$this->form_validation->set_rules('book-title', 'Judul', 'required|');
+		$this->form_validation->set_rules('book-title', 'Judul', 'required');
 		$this->form_validation->set_rules('book-category', 'Kategori', 'required|integer|in_list['.implode(',', array_column($category_data, 'id')).']');
 		$this->form_validation->set_rules('book-author', 'Penulis', 'required');
 		$this->form_validation->set_rules('book-publisher', 'Penerbit', 'required|integer|in_list['.implode(',', array_column($publisher_data, 'id')).']');
