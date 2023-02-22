@@ -19,11 +19,34 @@ class Book_model extends CI_Model {
 	 */
 	public function get_all(?array $filter=NULL, ?int $limit=NULL, int $offset=NULL): array 
 	{
+
+		$this->db->join('categories', 'books.category_id=categories.id');
+		$this->db->join('publishers', 'books.publisher_id=publishers.id');
+
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
 		
 		$query = $this->db->get('books');
 		return $query->result_array();
+	}
+
+	/**
+	 * Count All Results With Filters
+	 *
+	 * @param array|null $filter
+	 * @return integer
+	 */
+	public function count_all(?array $filter=NULLL): int 
+	{
+		$this->db->join('categories', 'books.category_id=categories.id');
+		$this->db->join('publishers', 'books.publisher_id=publishers.id');
+
+		if(!empty($filters))
+		{
+
+		}
+		$query = $this->db->get('books');
+		return $query->num_rows();
 	}
 
 	/**
@@ -38,5 +61,4 @@ class Book_model extends CI_Model {
 		$this->db->join('publishers', 'books.publisher_id=publishers.id');
 		return $this->db->get_where('books', ['books.id' => $id, 'books.deleted_at' => NULL])->row_array();
 	}
-
 }

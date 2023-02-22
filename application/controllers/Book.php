@@ -52,7 +52,20 @@ class Book extends MY_Controller
 	 */
 	public function get_all_paginated(): void
 	{
-		
+		$draw = $this->input->get('draw');
+		$limit = $this->input->get('length');
+		$offset = $this->input->get('start');
+		$filters = $this->input->get('columns');
+		$data = $this->book_model->get_all($filters, $limit, $offset);
+
+		$response = [
+			'draw' => $draw,
+			'data' => $data,
+			'recordsTotal' => $this->db->count_all_results('books'),
+			'recordsFiltered' => $this->book_model->count_all($filters)
+		];
+
+		echo json_encode($response, JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_TAG);
 	}
 
 	/**
@@ -69,6 +82,7 @@ class Book extends MY_Controller
 		$year	   	= $this->input->post('book-year', TRUE) ?? NULL;
 		$isbn 	   	= $this->input->post('book-isbn', TRUE) ?? NULL;
 		$description = $this->input->post('book-description', TRUE);
+		$qty		= $this->input->post('book-qty', TRUE) ?? 0;
 		$img 	   	= $_FILES['book-image'];
 
 		$category_data = $this->kategori_model->get_all();
@@ -79,7 +93,8 @@ class Book extends MY_Controller
 		$this->form_validation->set_rules('book-category', 'Kategori', 'required|integer|in_list['.implode(',', array_column($category_data, 'id')).']');
 		$this->form_validation->set_rules('book-author', 'Penulis', 'required');
 		$this->form_validation->set_rules('book-publisher', 'Penerbit', 'required|integer|in_list['.implode(',', array_column($publisher_data, 'id')).']');
-		$this->form_validation->set_rules('book-year', 'Tahun Terbit', 'numeric');
+		$this->form_validation->set_rules('book-year', 'Tahun Terbit', 'integer|exact_length[4]|greater_than[1922]');
+		$this->form_validation->set_rules('book-qty', 'Stok', 'integer|greater_than_equal_to[0]');
 		$this->form_validation->set_rules('book-isbn', 'ISBN');
 		$this->form_validation->set_rules('book-description', 'Uraian');
 
@@ -120,7 +135,8 @@ class Book extends MY_Controller
 			'category_id'	=> $category,
 			'publisher_id'	=> $publisher,
 			'description'	=> $description,
-			'cover_img'		=> $filename
+			'cover_img'		=> $filename,
+			'qty'			=> $qty
 		];
 
 		if(!$this->db->insert('books', $data))

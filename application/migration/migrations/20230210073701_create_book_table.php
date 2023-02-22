@@ -28,7 +28,7 @@ final class CreateBookTable extends AbstractMigration
         $table->addColumn('cover_img', 'text');
         $table->addColumn('author', 'string', ['limit' => 229]);
         $table->addColumn('isbn', 'string', ['limit' => 229]);
-        $table->addColumn('publish_year', 'date');
+        $table->addColumn('publish_year', 'smallinteger', ['limit' => 4]);
         $table->addColumn('category_id', 'integer');
         $table->addColumn('publisher_id', 'integer', ['null' => true]);
         $table->addColumn('description', 'text', ['null' => true]);

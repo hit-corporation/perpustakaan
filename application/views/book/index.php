@@ -31,15 +31,28 @@
                 Tambah Data
             </button>
         </div>
-
-        <div class="row">
-            <div class="col-3"></div>
-            <div class="col-9">
-                <div class="row" id="ul-display">
-                    
-                </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="table-main" class="table table-sm">
+                    <thead class="bg-primary text-white">
+                        <tr>
+                            <th>ID</th>
+                            <th>Gambar</th>
+                            <th>Judul</th>
+                            <th>Kategori ID</th>
+                            <th>Kategori</th>
+                            <th>Penerbit ID</th>
+                            <th>Penerbit</th>
+                            <th>ISBN</th>
+                            <th>Operation</th>
+                        </tr>
+                    </thead>
+                </table>
             </div>
         </div>
+    </div>
+    
      
     </div>
 </div>

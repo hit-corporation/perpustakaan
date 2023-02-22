@@ -121,56 +121,114 @@ const getBooks = async () => {
         form['book-year'].value = thisYear;
     
 
-    // set grid display
-    await setGridDisplay(await getBooks());
+    // Datatable
+    var table = $('#table-main').DataTable({
+        serverSide: true,
+        processing: true,
+        ajax: {
+            url: BASE_URL + 'book/get_all_paginated'
+        },
+        columns: [
+            {
+                data: 'id',
+                visible: false
+            },
+            {
+                data: 'cover_img',
+                render: (data, type, row, _meta) => {
+                    const img = '<img src="'+BASE_URL+'assets/img/books/'+data+'" height="'+(165 - 16)+'" width="'+(128 - 16)+'">';
+                    return img;
+                }
+            },
+            {
+                data: 'title',
+                className:'align-middle'
+            },
+            {
+                data: 'category_id',
+                visible: false
+            },
+            {
+                data: 'category_name',
+                className: 'align-middle'
+            },
+            {
+                data: 'publisher_id',
+                visible: false
+            },
+            {
+                data: 'publisher_name',
+                className: 'align-middle'
+            },
+            {
+                data: 'isbn',
+                className: 'align-middle'
+            },
+            {
+                data: null,
+                className: 'align-middle',
+                render(data, type, row, _meta)
+                {
+                    const btn = '<span class="d-flex flex-nowrap">' +
+                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
+                                '<button role="button" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>' + 
+                                '</span>';
+
+                    return btn;
+                }
+            }
+        ]
+    });
+   // await setGridDisplay(await getBooks());
 })(jQuery);
 
-const setGridDisplay = async data => {
-    display.innerHTML = null;
+// const setGridDisplay = async data => {
+//     display.innerHTML = null;
 
-    Array.from(data, item => {
-        const col = document.createElement('div');
-        col.classList.add('col-12', 'col-md-4', 'col-lg-2');
+//     Array.from(data, item => {
+//         const col = document.createElement('div');
+//         col.classList.add('col-12', 'col-md-4', 'col-lg-2');
 
-        const card = document.createElement('div');
-        card.classList.add('card');
-        card.style.height = "300px";
-        col.appendChild(card);
+//         const card = document.createElement('div');
+//         card.classList.add('card');
+//         card.style.height = "300px";
+//         col.appendChild(card);
 
-        const body = document.createElement('div');
-        body.classList.add('card-body', 'px-2', 'pt-2', 'justify-content-center');
-        card.appendChild(body);
+//         const body = document.createElement('div');
+//         body.classList.add('card-body', 'px-2', 'pt-2', 'justify-content-center');
+//         card.appendChild(body);
 
-        let cover = BASE_URL + 'assets/img/Placeholder_book.svg';
+//         let cover = BASE_URL + 'assets/img/Placeholder_book.svg';
 
-        if(item.cover_img)
-            cover = BASE_URL + 'assets/img/books/'+item.cover_img;
+//         if(item.cover_img)
+//             cover = BASE_URL + 'assets/img/books/'+item.cover_img;
 
-        const img = document.createElement('img');
-        img.classList.add('w-100', 'mx-auto');
-        img.src = cover;
-        img.setAttribute('style', 'height: 165px !important');
-        body.appendChild(img);
+//         const img = document.createElement('img');
+//         img.classList.add('w-100', 'mx-auto');
+//         img.src = cover;
+//         img.loading = "lazy";
+//         img.setAttribute('style', 'height: 165px !important');
+//         body.appendChild(img);
 
-        const p = document.createElement('p');
-        p.innerHTML = item.title;
-        p.style.fontSize = '14px';
-        p.classList.add('text-center');
-        body.appendChild(p);
+//         const p = document.createElement('p');
+//         p.innerHTML = item.title;
+//         p.style.fontSize = '14px';
+//         p.classList.add('text-center');
+//         body.appendChild(p);
 
-        const btnContainer = document.createElement('div');
-        btnContainer.classList.add('card-footer', 'bg-white', 'd-flex', 'justify-content-center');
-        btnContainer.style.bottom = 0;
-        btnContainer.style.left = 0;
-        card.appendChild(btnContainer);
+//         const btnContainer = document.createElement('div');
+//         btnContainer.classList.add('card-footer', 'bg-white', 'd-flex', 'justify-content-center');
+//         btnContainer.style.bottom = 0;
+//         btnContainer.style.left = 0;
+//         card.appendChild(btnContainer);
 
-        const btnDetails = document.createElement('a');
-        btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mx-auto');
-        btnDetails.innerHTML = 'Details';
-        btnDetails.href = BASE_URL + 'book/show/' + item.id;
-        btnContainer.appendChild(btnDetails);
+//         const btnDetails = document.createElement('a');
+//         btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mx-auto');
+//         btnDetails.innerHTML = 'Details';
+//         btnDetails.href = BASE_URL + 'book/show/' + item.id;
+//         btnContainer.appendChild(btnDetails);
 
-        display.appendChild(col);
-    });
+//         display.appendChild(col);
+//     });
 
-}
+// }
