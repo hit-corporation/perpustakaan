@@ -136,8 +136,9 @@ const getBooks = async () => {
             {
                 data: 'cover_img',
                 render: (data, type, row, _meta) => {
-                    const img = '<img src="'+BASE_URL+'assets/img/books/'+data+'" height="'+(165 - 16)+'" width="'+(128 - 16)+'">';
-                    return img;
+                    if(data)
+                        return '<img src="'+BASE_URL+'assets/img/books/'+data+'" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';
+                    return  '<img src="'+BASE_URL+'assets/img/books/Placeholder_book.svg" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';;
                 }
             },
             {
