@@ -83,16 +83,19 @@ const getBooks = async () => {
 
     // penerbit
     const publisher = [...(await getPublisher())].map(x => ({'id': x.id, 'text': x.publisher_name}));
-    var $_selectize = $('select[name="book-publisher"]').selectize({
+    var $select = $('select[name="book-publisher"]').selectize({
+        create: false,
         valueField: 'id',
         labelField: 'text',
         options: publisher
     });
 
-    var _publisher = $_selectize[0].selectize;
-
-    if(form['book-publisher'].value)
-        _publisher.setValue(form['book-publisher'].value);
+    var selectize = $select[0].selectize;
+    selectize.load(e => {
+        if(form['book-publisher'].getAttribute('value'))
+           selectize.setValue(form['book-publisher'].getAttribute('value'));
+    });
+    
     // file upload
     const imgCover = document.querySelector('#img-cover'),
           fileInput = document.getElementById('book-image');

@@ -101,7 +101,6 @@
                             <div class="col-8">
                                 <select class="form-control <?=empty($_SESSION['error']['errors']['book-publisher']) ?: 'is-invalid' ?>" 
                                         name="book-publisher" value="<?=$_SESSION['error']['old']['book-publisher'] ?? NULL ?>">
-                                    <option></option>
                                 </select>
                                 <?php if(!empty($_SESSION['error']['errors']['book-publisher'])): ?>
                                     <small class="text-danger"><?=$_SESSION['error']['errors']['book-publisher']?></small>
