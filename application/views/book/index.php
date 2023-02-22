@@ -62,7 +62,7 @@
         <div class="modal-content">
 
             <div class="modal-header bg-primary text-white">
-            <h5 class="modal-title">Input Buku</h5>
+                <h5 class="modal-title">Input Buku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -135,7 +135,7 @@
                         <div class="form-group row">
                             <label for="book-qty" class="col-sm-4 col-form-label">Stok</label>
                             <div class="col-8">
-                                <input type="number" min="0" class="form-control <?=empty($_SESSION['error']['errors']['book-qty']) ?: 'is-invalid' ?>" name="book-qty" id="book-qty" value="<?=$_SESSION['error']['old']['book-qty'] ?? NULL ?>">
+                                <input type="number" min="0" class="form-control <?=empty($_SESSION['error']['errors']['book-qty']) ?: 'is-invalid' ?>" name="book-qty" id="book-qty" value="<?=$_SESSION['error']['old']['book-qty'] ?? 0 ?>">
                             </div>
                             <?php if(!empty($_SESSION['error']['errors']['book-qty'])): ?>
                                     <small class="text-danger"><?=$_SESSION['error']['errors']['book-qty']?></small>
@@ -167,6 +167,56 @@
                 </fieldset>
             </form>
 
+        </div>
+    </div>
+</div>
+
+<div id="modal-show" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">DETAIL BUKU</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <img data-item="cover_img" class="img-fluid" src="" alt="">
+                    </div>
+                    <aside class="col-12 col-lg-9">
+                        <h3 class="mb-4" data-item="title"></h3>
+                        <dl class="row">
+                            <dt class="col-2">
+                                Penulis
+                            </dt>
+                            <dd class="col-10 mb-1">
+                                :&nbsp;<span data-item="author"></span>
+                            </dd>
+                            <dt class="col-2">
+                                Penerbit
+                            </dt>
+                            <dd class="col-10 mb-1">
+                                :&nbsp;<span data-item="publisher_name"></span>
+                            </dd>
+                            <dt class="col-2">
+                                Tahun Terbit
+                            </dt>
+                            <dd class="col-10 mb-1">
+                                :&nbsp;<span data-item="publish_year"></span>
+                            </dd>
+                            <dt class="col-2">
+                                ISBN
+                            </dt>
+                            <dd class="col-10 mb-1">
+                                :&nbsp;<span data-item="isbn"></span>
+                            </dd>
+                        </dl>
+                        <p data-item="description"></p>
+                    </aside>
+                </div>
+            </div>
         </div>
     </div>
 </div>

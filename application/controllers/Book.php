@@ -125,7 +125,9 @@ class Book extends MY_Controller
 				redirect($_SERVER['HTTP_REFERER']);
 			}
 
-			$filename = $img_conf['file_name'];
+			print_r($this->upload->data());
+
+			$filename = $this->upload->data('file_name');
 		}
 
 		$data = [

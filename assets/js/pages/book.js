@@ -138,7 +138,7 @@ const getBooks = async () => {
                 render: (data, type, row, _meta) => {
                     if(data)
                         return '<img src="'+BASE_URL+'assets/img/books/'+data+'" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';
-                    return  '<img src="'+BASE_URL+'assets/img/books/Placeholder_book.svg" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';;
+                    return  '<img src="'+BASE_URL+'assets/img/Placeholder_book.svg" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';;
                 }
             },
             {
@@ -171,6 +171,7 @@ const getBooks = async () => {
                 render(data, type, row, _meta)
                 {
                     const btn = '<span class="d-flex flex-nowrap">' +
+                                '<button role="button" class="btn-circle btn-info rounded-circle border-0 show_data"><i class="fas fa-eye"></i></button>' + 
                                 '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
                                 '<button role="button" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>' + 
                                 '</span>';
@@ -180,6 +181,28 @@ const getBooks = async () => {
             }
         ]
     });
+
+    // show one
+    $('#table-main tbody').on('click', 'button.show_data', e => {
+        var row = table.row(e.target.parentNode.closest('tr')).data();
+        var sets = document.querySelectorAll('[data-item]');
+
+        for(var set of sets)
+        {
+            if(set.dataset.item === 'cover_img')
+            {
+                if(row[set.dataset.item])
+                    set.src = BASE_URL + 'assets/img/books/' + row[set.dataset.item];
+                else
+                    set.src = BASE_URL + 'assets/img/Placeholder_book.svg'
+            }
+
+            set.innerText = row[set.dataset.item];
+        }
+
+        $('#modal-show').modal('show');
+    });
+
    // await setGridDisplay(await getBooks());
 })(jQuery);
 
