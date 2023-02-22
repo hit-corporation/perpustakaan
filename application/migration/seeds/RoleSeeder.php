@@ -17,6 +17,7 @@ class RoleSeeder extends AbstractSeed
     {
         $data = [
             ['rolename' => 'Admin'],
+			['rolename' => 'User'],
         ];
 
         $table = $this->table('userrole');
