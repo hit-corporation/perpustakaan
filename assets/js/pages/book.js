@@ -173,7 +173,7 @@ const getBooks = async () => {
                     const btn = '<span class="d-flex flex-nowrap">' +
                                 '<button role="button" class="btn-circle btn-info rounded-circle border-0 show_data"><i class="fas fa-eye"></i></button>' + 
                                 '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
-                                '<button role="button" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>' + 
+                                `<a role="button" href="${BASE_URL}book/erase/${row.id}" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></a>` + 
                                 '</span>';
 
                     return btn;
@@ -201,6 +201,51 @@ const getBooks = async () => {
         }
 
         $('#modal-show').modal('show');
+    });
+
+    // add data
+    document.getElementById('btn-add').addEventListener('click', e => {
+         // reset form
+         form.reset();
+         imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
+         selectize.clear();
+         form['book-year'].value = thisYear;
+         $('#category-tree').jstree(true).refresh();
+    });
+
+    // edit data
+    $('#table-main tbody').on('click', 'button.edit_data', e => {
+        var row = table.row(e.target.parentNode.closest('tr')).data(),
+            imgCover = document.getElementById('img-cover');
+
+        // reset form
+        form.reset();
+        imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
+        $('#category-tree').jstree(true).refresh();
+
+        form['book-id'].value = row.id;
+        form['book-title'].value = row.title;
+        form['book-category'].value = row.category_id;
+        form['book-category_text'].value = row.category_name;
+        form['book-publisher'].value = row.publisher_id;
+        form['book-author'].value = row.author;
+        form['book-isbn'].value = row.isbn;
+        form['book-year'].value = row.publish_year;
+        form['book-qty'].value = row.qty;
+        form['book-description'].value = row.description;
+        form['book-img_name'].value = row.cover_img;
+
+        // imagge
+        if(row.cover_img)
+          imgCover.src =  BASE_URL + 'assets/img/books/' + row.cover_img;
+
+        // tree
+        $('#category-tree').jstree(true).select_node(form["book-category"].value);
+
+        // select
+        selectize.setValue(row.publisher_id);
+
+        $('#modal-input').modal('show');
     });
 
    // await setGridDisplay(await getBooks());

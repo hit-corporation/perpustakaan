@@ -35,10 +35,13 @@ final class CreateBookTable extends AbstractMigration
         $table->addColumn('qty', 'integer', ['default' => 0]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
         $table->addTimestamps();
-//$table->addIndex('book_code', ['unique' => true]);
+        //$table->addIndex(['title', 'category_id', 'deleted_at'], ['unique' => true, 'name' => 'title_category_unq']);
 
         $table->addForeignKey('category_id', 'categories', ['id'], ['delete' => 'SET NULL', 'update' => 'CASCADE']);
         $table->addForeignKey('publisher_id', 'publishers', ['id'], ['delete' => 'SET NULL', 'update' => 'CASCADE']);
         $table->create();
+
+        if($this->isMigratingUp())
+            $this->execute("CREATE UNIQUE INDEX \"title_category_unq\" ON books(title, category_id, deleted_at) WHERE books.deleted_at IS NULL ");
     }
 }

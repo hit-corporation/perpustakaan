@@ -23,6 +23,8 @@ class Book_model extends CI_Model {
 		$this->db->join('categories', 'books.category_id=categories.id');
 		$this->db->join('publishers', 'books.publisher_id=publishers.id');
 
+		$this->db->where('books.deleted_at IS NULL');
+
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
 		
@@ -40,6 +42,8 @@ class Book_model extends CI_Model {
 	{
 		$this->db->join('categories', 'books.category_id=categories.id');
 		$this->db->join('publishers', 'books.publisher_id=publishers.id');
+
+		$this->db->where('books.deleted_at IS NULL');
 
 		if(!empty($filters))
 		{

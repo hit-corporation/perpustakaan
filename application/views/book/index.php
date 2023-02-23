@@ -149,10 +149,12 @@
                                 </textarea>
                             </div>
                         </div>
+                        <input type="text" name="book-id" class="d-none">
                     </div>
                     <div class="col-12 col-lg-4">
                         <label>Cover</label>
                         <div class="shadow p-1">
+                            <input type="text" name="book-img_name" class="d-none">
                             <label for="book-image" aria-describedby="book-image" class="m-0 p-0">
                                 <img id="img-cover" class="img-fluid d-block mx-auto" src="<?=$this->e(base_url('assets/img/Placeholder_book.svg'))?>" height="265" width="228">
                             </label>

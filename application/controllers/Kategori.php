@@ -141,6 +141,7 @@ class Kategori extends MY_Controller
      * @return void
      */
     public function erase(int $id): void {
+        
         if(!$this->db->update('categories', ['deleted_at' => date('Y-m-d H:i:s')], ['id' => $id]))
         {
             $return = ['success' => false, 'message' =>  'Data Gagal Di Hapus'];
