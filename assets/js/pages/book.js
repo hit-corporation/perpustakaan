@@ -206,6 +206,7 @@ const getBooks = async () => {
     // add data
     document.getElementById('btn-add').addEventListener('click', e => {
          // reset form
+         form.action = BASE_URL + 'book/store';
          form.reset();
          imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
          selectize.clear();
@@ -219,6 +220,7 @@ const getBooks = async () => {
             imgCover = document.getElementById('img-cover');
 
         // reset form
+        form.action = BASE_URL + 'book/edit';
         form.reset();
         imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
         $('#category-tree').jstree(true).refresh();
