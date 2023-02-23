@@ -297,9 +297,9 @@ class Book extends MY_Controller
 	{
 		$args = explode(',', $args2);
 
-		$this->db->where('id <> '.$args[1], NULL, FALSE);
-		$check = $this->db->get_where('books', ['title' => $str, 'category_id' => $args[0], 'deleted_at' => NULL])->num_rows() > 0 ? FALSE : TRUE;
-		return $check;
+		$this->db->where('books.id != '.$args[1]);
+		$check = $this->db->get_where('books', ['title' => $str, 'category_id' => $args[0], 'deleted_at' => NULL])->num_rows();
+		return $check > 0 ? FALSE : TRUE;
 	}
 
 }

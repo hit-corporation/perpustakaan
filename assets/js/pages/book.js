@@ -143,7 +143,10 @@ const getBooks = async () => {
             },
             {
                 data: 'title',
-                className:'align-middle'
+                className:'align-middle',
+                createdCell: cell => {
+                    cell.classList.add('text-dark');
+                }
             },
             {
                 data: 'category_id',

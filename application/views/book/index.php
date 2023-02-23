@@ -188,35 +188,40 @@
                         <img data-item="cover_img" class="img-fluid" src="" alt="">
                     </div>
                     <aside class="col-12 col-lg-9">
-                        <h3 class="mb-4" data-item="title"></h3>
+                        <h3 class="mb-4 text-dark" data-item="title"></h3>
                         <dl class="row">
-                            <dt class="col-4">
+                            <dt class="col-4 text-primary">
                                 Penulis
                             </dt>
                              <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="author"></span>
                             </dd>
-                            <dt class="col-4">
+                            <dt class="col-4 text-primary">
                                 Penerbit
                             </dt>
                              <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="publisher_name"></span>
                             </dd>
-                            <dt class="col-4">
+                            <dt class="col-4 text-primary">
                                 Tahun Terbit
                             </dt>
                              <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="publish_year"></span>
                             </dd>
-                            <dt class="col-4">
+                            <dt class="col-4 text-primary">
                                 ISBN
                             </dt>
                              <dd class="col-8 mb-1">
                                 :&nbsp;<span data-item="isbn"></span>
                             </dd>
                         </dl>
-                        <p data-item="description"></p>
+                        
                     </aside>
+                    <span class="col-12">
+                        <hr class="my-3" />
+                        <h6 class="font-weight-bold text-primary">Deskripsi</h6>
+                        <p data-item="description" class="text-justify font-weight-light text-dark"></p>
+                    </span>
                 </div>
             </div>
         </div>
