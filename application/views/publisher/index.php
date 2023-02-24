@@ -59,8 +59,8 @@
 
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered" id="table-main" width="100%" cellspacing="0">
-								<thead>
+							<table id="table-main" class="table table-sm table-striped">
+								<thead class="bg-primary text-white">
 									<tr>
 										<th>ID</th>
 										<th>Nama Penerbit</th>

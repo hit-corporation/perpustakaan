@@ -117,9 +117,9 @@ const getAll = async () => {
 	// Search submit
     formSearch.addEventListener('submit', e => {
         e.preventDefault();
-
-        if(formSearch['s_member_name'].value) 
-			tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
+		
+        // if(formSearch['s_member_name'].value)
+		tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
         
     });
 
