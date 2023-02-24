@@ -97,9 +97,6 @@ const getAll = async () => {
 				});
 			}
 		});
-
-
-
     });
 
     // update
@@ -172,7 +169,7 @@ const getAll = async () => {
     formSearch.addEventListener('submit', e => {
         e.preventDefault();
 
-        if(formSearch['s_user_name'].value) 
+        // if(formSearch['s_user_name'].value) 
 			tableMain.columns(1).search(formSearch['s_user_name'].value).draw();
         
     });
