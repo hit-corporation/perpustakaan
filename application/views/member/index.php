@@ -110,7 +110,7 @@
 
 					<div class="form-group">
                         <label>Email </label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['email'])):?> is-invalid <?php endif ?>" 
+                        <input type="email" class="form-control <?php if(!empty($_SESSION['error']['errors']['email'])):?> is-invalid <?php endif ?>" 
                               name="email" value="<?=$_SESSION['error']['old']['email'] ?? ''?>" required>
                         
                         <?php if(!empty($_SESSION['error']['errors']['email'])): ?>
@@ -120,10 +120,9 @@
 					
 					<div class="form-group">
                         <label>Alamat </label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['address'])):?> is-invalid <?php endif ?>" 
-                              name="address" value="<?=$_SESSION['error']['old']['address'] ?? ''?>" required>
-                        
-                        <?php if(!empty($_SESSION['error']['errors']['address'])): ?>
+						<textarea class="form-control <?php if(!empty($_SESSION['error']['errors']['address'])):?> is-invalid <?php endif ?>" name="address" id="" cols="30" rows="3" value="<?=$_SESSION['error']['old']['address'] ?? ''?>"></textarea>
+							
+						<?php if(!empty($_SESSION['error']['errors']['address'])): ?>
                             <small class="text-danger"><?=$_SESSION['error']['errors']['address']?></small>
                         <?php endif ?>
                     </div>
