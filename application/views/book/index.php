@@ -75,7 +75,7 @@
                             <div class="col-8">
                                 <input type="text" class="form-control <?=empty($_SESSION['error']['errors']['book-title']) ?: 'is-invalid' ?>" name="book-title" value="<?=$_SESSION['error']['old']['book-title'] ?? NULL ?>">
                                 <?php if(!empty($_SESSION['error']['errors']['book-title'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-title']?></small>
+                                    <small data-error="book-title" class="text-danger"><?=$_SESSION['error']['errors']['book-title']?></small>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                                 <?php if(!empty($_SESSION['error']['errors']['book-category'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-category']?></small>
+                                    <small data-error="book-category" class="text-danger"><?=$_SESSION['error']['errors']['book-category']?></small>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 <input type="text" class="form-control <?=empty($_SESSION['error']['errors']['book-author']) ?: 'is-invalid' ?>" 
                                        name="book-author" value="<?=$_SESSION['error']['old']['book-author'] ?? NULL ?>">
                                 <?php if(!empty($_SESSION['error']['errors']['book-author'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-author']?></small>
+                                    <small data-error="book-author" class="text-danger"><?=$_SESSION['error']['errors']['book-author']?></small>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                         name="book-publisher" value="<?=$_SESSION['error']['old']['book-publisher'] ?? NULL ?>">
                                 </select>
                                 <?php if(!empty($_SESSION['error']['errors']['book-publisher'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-publisher']?></small>
+                                    <small data-error="book-publisher" class="text-danger"><?=$_SESSION['error']['errors']['book-publisher']?></small>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -124,12 +124,18 @@
                             <label class="col-sm-4 col-form-label">ISBN</label>
                             <div class="col-8">
                                 <input type="text" class="form-control" name="book-isbn" value="<?=$_SESSION['error']['old']['book-isbn'] ?? NULL ?>">
+                                <?php if(!empty($_SESSION['error']['errors']['book-isbn'])): ?>
+                                    <small data-error="book-isbn" class="text-danger"><?=$_SESSION['error']['errors']['book-isbn']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="book-year" class="col-sm-4 col-form-label">Tahun Terbit</label>
                             <div class="col-8">
                                 <input type="number" min="1923" class="form-control" name="book-year" id="book-year" value="<?=$_SESSION['error']['old']['book-year'] ?? NULL ?>">
+                                <?php if(!empty($_SESSION['error']['errors']['book-year'])): ?>
+                                    <small data-error="book-year" class="text-danger"><?=$_SESSION['error']['errors']['book-year']?></small>
+                                <?php endif ?>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -138,7 +144,7 @@
                                 <input type="number" min="0" class="form-control <?=empty($_SESSION['error']['errors']['book-qty']) ?: 'is-invalid' ?>" name="book-qty" id="book-qty" value="<?=$_SESSION['error']['old']['book-qty'] ?? 0 ?>">
                             </div>
                             <?php if(!empty($_SESSION['error']['errors']['book-qty'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['book-qty']?></small>
+                                    <small data-error="book-description" class="text-danger"><?=$_SESSION['error']['errors']['book-qty']?></small>
                             <?php endif ?>
                         </div>
                         <div class="form-group row">
@@ -147,6 +153,9 @@
                                 <textarea class="form-control" name="book-description" rows="5">
                                     <?=$_SESSION['error']['old']['book-description'] ?? NULL ?>
                                 </textarea>
+                                <?php if(!empty($_SESSION['error']['errors']['book-description'])): ?>
+                                    <small data-error="book-description" class="text-danger"><?=$_SESSION['error']['errors']['book-description']?></small>
+                            <?php endif ?>
                             </div>
                         </div>
                         <input type="text" name="book-id" class="d-none">

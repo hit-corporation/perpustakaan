@@ -1,7 +1,8 @@
 'use strict';
 
 const form = document.forms['form-input'],
-      display = document.querySelector('#ul-display');
+      display = document.querySelector('#ul-display'),
+      imgCover = document.getElementById('img-cover');
 
 // get all Categories
 const getCategories = async () => {
@@ -206,27 +207,26 @@ const getBooks = async () => {
         $('#modal-show').modal('show');
     });
 
+    // reset
+    form.addEventListener('reset', e => {
+        e.preventDefault();
+        resetForm();
+    });
+
     // add data
     document.getElementById('btn-add').addEventListener('click', e => {
          // reset form
          form.action = BASE_URL + 'book/store';
-         form.reset();
-         imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
-         selectize.clear();
-         form['book-year'].value = thisYear;
-         $('#category-tree').jstree(true).refresh();
+         resetForm();
     });
 
     // edit data
     $('#table-main tbody').on('click', 'button.edit_data', e => {
-        var row = table.row(e.target.parentNode.closest('tr')).data(),
-            imgCover = document.getElementById('img-cover');
+        var row = table.row(e.target.parentNode.closest('tr')).data();
 
         // reset form
         form.action = BASE_URL + 'book/edit';
-        form.reset();
-        imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
-        $('#category-tree').jstree(true).refresh();
+        resetForm();
 
         form['book-id'].value = row.id;
         form['book-title'].value = row.title;
@@ -253,7 +253,27 @@ const getBooks = async () => {
         $('#modal-input').modal('show');
     });
 
-   // await setGridDisplay(await getBooks());
+     // reset form action
+    function resetForm()
+    {
+        const formData = new FormData(form);
+        const fields = Object.fromEntries(formData.entries());
+        
+        for(const field in fields) 
+        {
+            form[field].value = null;
+            form[field].classList.remove('is-invalid');
+            if(document.querySelector('small[data-error="'+field+'"]'))
+                document.querySelector('small[data-error="'+field+'"]').innerHTML = null;
+        }
+
+        $('#category-tree').jstree(true).refresh();
+        imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
+        selectize.clear();
+        form['book-year'].value = thisYear;
+        
+       
+    }
 })(jQuery);
 
 // const setGridDisplay = async data => {
@@ -306,3 +326,4 @@ const getBooks = async () => {
 //     });
 
 // }
+

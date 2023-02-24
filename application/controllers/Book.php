@@ -163,16 +163,16 @@ class Book extends MY_Controller
 	 * @return void
 	 */
 	public function edit(): void {
-		$id			= $this->input->post('book-id', TRUE);
-		$title 	   	= $this->input->post('book-title', TRUE);
-		$category  	= $this->input->post('book-category', TRUE);
-		$author	   	= $this->input->post('book-author', TRUE);
-		$publisher 	= $this->input->post('book-publisher', TRUE);
-		$year	   	= $this->input->post('book-year', TRUE) ?? NULL;
-		$isbn 	   	= $this->input->post('book-isbn', TRUE) ?? NULL;
-		$description = $this->input->post('book-description', TRUE);
-		$qty		= $this->input->post('book-qty', TRUE) ?? 0;
-		$filename	= $this->input->post('book-img_name', TRUE);
+		$id			= trim($this->input->post('book-id', TRUE));
+		$title 	   	= trim($this->input->post('book-title', TRUE));
+		$category  	= trim($this->input->post('book-category', TRUE));
+		$author	   	= trim($this->input->post('book-author', TRUE));
+		$publisher 	= trim($this->input->post('book-publisher', TRUE));
+		$year	   	= trim($this->input->post('book-year', TRUE)) ?? NULL;
+		$isbn 	   	= trim($this->input->post('book-isbn', TRUE)) ?? NULL;
+		$description = trim($this->input->post('book-description', TRUE));
+		$qty		= trim($this->input->post('book-qty', TRUE)) ?? 0;
+		$filename	= trim($this->input->post('book-img_name', TRUE));
 		$img 	   	= $_FILES['book-image'];
 
 		$category_data = $this->kategori_model->get_all();
@@ -180,7 +180,7 @@ class Book extends MY_Controller
 
 		// Validation
 		$this->form_validation->set_rules('book-id', 'ID', 'required|integer');
-		$this->form_validation->set_rules('book-title', 'Judul', 'required|callback_is_edit_book_unique['.$category.','.$id.']', [
+		$this->form_validation->set_rules('book-title', 'Judul', 'required|callback_is_edit_book_unique['.$category.'.'.$id.']', [
 			'is_edit_book_unique' => '{field} sudah tersedia pada database'
 		]);
 		$this->form_validation->set_rules('book-category', 'Kategori', 'required|integer|in_list['.implode(',', array_column($category_data, 'id')).']');
@@ -282,8 +282,7 @@ class Book extends MY_Controller
 	  */
 	public function is_new_book_unique($str, $args2): bool
 	{
-		$check = $this->db->get_where('books', ['title' => $str, 'category_id' => $args2, 'deleted_at' => NULL])->num_rows() > 0 ? FALSE : TRUE;
-		return $check;
+		return $this->db->get_where('books', ['title' => $str, 'category_id' => $args2, 'deleted_at' => NULL])->num_rows() > 0 ? FALSE : TRUE;
 	}
 
 	/**
@@ -295,11 +294,14 @@ class Book extends MY_Controller
 	 */
 	public function is_edit_book_unique($str, $args2): bool
 	{
-		$args = explode(',', $args2);
+		$args = explode('.', $args2);
 
-		$this->db->where('books.id != '.$args[1]);
-		$check = $this->db->get_where('books', ['title' => $str, 'category_id' => $args[0], 'deleted_at' => NULL])->num_rows();
-		return $check > 0 ? FALSE : TRUE;
+		$this->db->where('books.id <> '.$args[1])
+				 ->where('title', $str)
+				 ->where('category_id', $args[0])
+				 ->where('deleted_at', NULL);
+		$check = $this->db->get('books');
+		return $check->num_rows() > 0 ? FALSE : TRUE;
 	}
 
 }
