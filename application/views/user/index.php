@@ -1,10 +1,17 @@
 <?php $this->layout('layouts::main_template', ['title' => 'Publisher'])?>
 
+<!-- SECTION CSS -->
+<?php $this->start('css') ?>
+
+<link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
+<link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
+
+<?php $this->stop() ?>
+
+
+
 <!-- SECTION CONTENT -->
 <?php $this->start('contents') ?>
-
-<!-- <script src="<? // =base_url('assets/vendor/jquery/jquery.min.js')?>"></script> -->
-
 
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -15,7 +22,6 @@
 			<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modal-input" >
 				<i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data
 			</button>
-			
 		</div>
 
 		<!-- Content Row -->
@@ -50,8 +56,8 @@
 
 				<div class="card-body">
 					<div class="table-responsive">
-						<table class="table table-bordered" id="table-main" width="100%" cellspacing="0">
-							<thead>
+						<table id="table-main" class="table table-sm table-striped">
+							<thead class="bg-primary text-white">
 								<tr>
 									<th>ID</th>
 									<th>Username</th>
@@ -158,7 +164,7 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
-<!-- <script src="<? // =$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script> -->
+
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
 <?php if(isset($_SESSION['error'])): ?>
