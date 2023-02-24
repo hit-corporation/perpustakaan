@@ -63,11 +63,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><input type="text" class="form-control" name="book[0][title]"></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                <tr class="d-flex flex-column d-lg-table-row">
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Judul</label>
+                                        <input type="text" class="form-control" name="book[0][title]">
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Jumlah</label>
+                                        <input type="number" class="form-control" name="book[0][qty]">
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Tgl Pengembalian</label>
+                                        <input type="number" class="form-control" name="book[0][return_date]">
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <a role="button" href="javascript:void(0)" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -87,6 +98,6 @@
 <?php $this->start('js') ?>
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
-<script src="<?=$this->e(base_url('assets/pages/bookOrder.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/js/pages/bookOrder.js'))?>"></script>
 
 <?php $this->stop() ?>
