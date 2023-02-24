@@ -21,41 +21,45 @@
 <!-- SECTION CONTENT -->
 <?php $this->start('contents') ?>
 
-<div class="row">
-    <div class="col-12">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
 
-        <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2">
-            <h1 class="h3 mb-0 text-gray-800"><?=$this->e('Buku')?></h1>
-            <button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  data-target="#modal-input" data-toggle="modal">
-                <i class="fas fa-plus fa-sm text-white-50"></i> 
-                Tambah Data
-            </button>
-        </div>
-    <div class="card">
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="table-main" class="table table-sm">
-                    <thead class="bg-primary text-white">
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Judul</th>
-                            <th>Kategori ID</th>
-                            <th>Kategori</th>
-                            <th>Penerbit ID</th>
-                            <th>Penerbit</th>
-                            <th>ISBN</th>
-                            <th>Operation</th>
-                        </tr>
-                    </thead>
-                </table>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2">
+                <h1 class="h3 mb-0 text-gray-800"><?=$this->e('Buku')?></h1>
+                <button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  data-target="#modal-input" data-toggle="modal">
+                    <i class="fas fa-plus fa-sm text-white-50"></i> 
+                    Tambah Data
+                </button>
+            </div>
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="table-main" class="table table-sm w-100">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>ID</th>
+                                <th>Gambar</th>
+                                <th>Judul</th>
+                                <th>Kategori ID</th>
+                                <th>Kategori</th>
+                                <th>Penerbit ID</th>
+                                <th>Penerbit</th>
+                                <th>ISBN</th>
+                                <th>Operation</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-    
-     
+        
+        
+        </div>
     </div>
 </div>
+
+
 
 <div id="modal-input" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg">
