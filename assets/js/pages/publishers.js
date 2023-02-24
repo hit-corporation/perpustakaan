@@ -110,7 +110,7 @@ const getAll = async () => {
     formSearch.addEventListener('submit', e => {
         e.preventDefault();
 
-        if(formSearch['s_publisher_name'].value) 
+        // if(formSearch['s_publisher_name'].value) 
 			tableMain.columns(1).search(formSearch['s_publisher_name'].value).draw();
         
     });
