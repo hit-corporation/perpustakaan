@@ -130,17 +130,17 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
 
-                        <a class="collapse-item <?=$CI->uri->segment(1) == 'member' ? 'active' : '' ?>" href="<?=base_url('member')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'member' ? 'active bg-info text-light' : '' ?>" href="<?=base_url('member')?>">
 							<i class="fa fa-user" aria-hidden="true"> </i>
 							<span>Member</span>
 						</a>
 
-                        <a class="collapse-item <?=$CI->uri->segment(1) == 'publisher' ? 'active' : '' ?>" href="<?=base_url('publisher')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'publisher' ? 'active bg-info text-light' : '' ?>" href="<?=base_url('publisher')?>">
 							<i class="fa fa-building" aria-hidden="true"></i>
 							<span>Penerbit</span>
 						</a>
 
-						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active' : '' ?>" href="<?=base_url('kategori')?>">
+						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active bg-info text-light' : '' ?>" href="<?=base_url('kategori')?>">
 							<i class="fas fa-tags"></i>
 							<span>Kategori</span>
 						</a>
@@ -148,15 +148,22 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Users -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active' : '' ?>">
+            <!-- Nav Item - Book -->
+            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active bg-info' : '' ?>">
                 <a class="nav-link" href="<?=base_url('book')?>">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Buku</span></a>
             </li>
 
+			 <!-- Nav Item - Peminjaman -->
+			 <li class="nav-item <?=$CI->uri->segment(1) == 'order' ? 'active bg-info' : '' ?>">
+                <a class="nav-link" href="<?=base_url('order')?>">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Peminjaman</span></a>
+            </li>
+
             <!-- Nav Item - Users -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active bg-info' : '' ?>">
                 <a class="nav-link" href="<?=base_url('user')?>">
                     <i class="fas fa-fw fa-user"></i>
                     <span>User</span></a>
@@ -315,7 +322,7 @@
             e.preventDefault();
             setTimeout(() => {
                 document.querySelector('#welcome-loader').classList.add('hide');
-            }, 1300);
+            }, 250);
         });
     </script>
 
