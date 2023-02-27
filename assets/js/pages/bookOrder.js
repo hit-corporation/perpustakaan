@@ -24,7 +24,7 @@ const getMembers = async () => {
 
     try
     {
-        const f = await fetch(`${window.location.origin}/member/get_all`);
+        const f = await fetch(`${BASE_URL}/member/get_all`);
         const j = await f.json();
         
         return j;
