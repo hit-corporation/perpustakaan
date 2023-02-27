@@ -52,7 +52,7 @@
             </div>
 
             <div class="card">
-                <form class="card-body">
+                <form class="card-body" enctype="multipart/form-data">
                     <fieldset class="row justify-content-end w-100">
                         <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
@@ -82,10 +82,10 @@
                         <table id="book-form" class="table table-sm w-100">
                             <thead class="bg-primary text-white d-none d-lg-table-head">
                                 <tr>
-                                    <th style="width: 40%">Judul</th>
-                                    <th>Jumlah</th>
-                                    <th>Tgl Kembali</th>
-                                    <th>Hapus</th>
+                                    <th class="pl-2" style="width: 40%">Judul</th>
+                                    <th class="pl-2">Jumlah</th>
+                                    <th class="pl-2">Tgl Kembali</th>
+                                    <th class="pl-2">Hapus</th>
                                 </tr>
                             </thead>
                             <tbody>

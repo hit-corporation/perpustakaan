@@ -126,7 +126,7 @@ const deleteRow = async e => {
 
         observer.observe(tbody, mConfig);
 
-        setTimeout(() => observer.disconnect(), 1800);
+        setTimeout(() => observer.disconnect(), 3000);
     });
 
   

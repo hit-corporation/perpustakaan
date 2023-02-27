@@ -18,3 +18,8 @@
 @import "login.scss";
 @import "error.scss";
 @import "footer.scss";
+
+.bg-primary-darken {
+    background-color: darken($blue, 15%);
+    color: $white;
+}
