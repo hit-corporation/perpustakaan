@@ -26,7 +26,7 @@
 	<!-- Content Row -->
 	<div class="row">
 
-		<!-- Earnings (Monthly) Card Example -->
+		<!-- Total Member (All) -->
 		<div class="col-xl-3 col-md-6 mb-4">
 			<div class="card border-left-primary shadow h-100 py-2">
 				<div class="card-body">
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 
-		<!-- Earnings (Monthly) Card Example -->
+		<!-- Total Buku (All) -->
 		<div class="col-xl-3 col-md-6 mb-4">
 			<div class="card border-left-success shadow h-100 py-2">
 				<div class="card-body">
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 
-		<!-- Earnings (Monthly) Card Example -->
+		<!-- Total Buku Dipinjam (All) -->
 		<div class="col-xl-3 col-md-6 mb-4">
 			<div class="card border-left-info shadow h-100 py-2">
 				<div class="card-body">
@@ -84,14 +84,14 @@
 			</div>
 		</div>
 
-		<!-- Pending Requests Card Example -->
+		<!-- Total Telat (All) -->
 		<div class="col-xl-3 col-md-6 mb-4">
 			<div class="card border-left-warning shadow h-100 py-2">
 				<div class="card-body">
 					<div class="row no-gutters align-items-center">
 						<div class="col mr-2">
 							<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-								Pending Requests</div>
+								Telat Pengembalian</div>
 							<div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
 						</div>
 						<div class="col-auto">
@@ -176,24 +176,23 @@ var chart = root.container.children.push(
 // Define data
 var data = [{
   date: new Date(2021, 0, 1).getTime(),
-  value: 1,
-  value2: 2.5
-}, {
+  value: 1
+},
+{
   date: new Date(2021, 0, 2).getTime(),
-  value: 3,
-  value2: 2.1
-}, {
+  value: 3
+},
+{
   date: new Date(2021, 0, 3).getTime(),
-  value: 2,
-  value2: 3
-}, {
+  value: 2
+},
+{
   date: new Date(2021, 0, 4).getTime(),
-  value: 1,
-  value2: 2
-}, {
+  value: 1
+},
+{
   date: new Date(2021, 0, 5).getTime(),
-  value: 1.5,
-  value2: 0.5
+  value: 1.5
 }];
 
 // Create Y-axis
@@ -227,7 +226,7 @@ function createSeries(name, field) {
     }) 
   );
   
-  series.strokes.template.set("strokeWidth", 2);
+  series.strokes.template.set("strokeWidth", 3);
   
   series.get("tooltip").label.set("text", "[bold]{name}[/]\n{valueX.formatDate()}: {valueY}")
   series.data.setAll(data);
