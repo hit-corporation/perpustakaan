@@ -78,6 +78,8 @@
 
     <?=$this->section('css')?>
 
+	<?php $CI =& get_instance(); ?>
+
 </head>
 
 <body id="page-top">
@@ -93,6 +95,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
+				
                 <div class="sidebar-brand-text mx-3">Perpustakaan</div>
             </a>
 
@@ -101,7 +104,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li
-                class="nav-item <?=$this->uri('/dashboard') == 'dashboard' || $this->uri('/dashboard') == '' ? 'active' : '' ?>">
+                class="nav-item <?=$CI->uri->segment(1) == 'dashboard' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('dashboard')?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
@@ -116,27 +119,28 @@
             </div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'member' ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooks"
                     aria-expanded="true" aria-controls="collapseBooks">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Masters</span>
                 </a>
-                <div id="collapseBooks" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseBooks" class="collapse <?=($CI->uri->segment(1) == 'member' || $CI->uri->segment(1) == 'publisher' || $CI->uri->segment(1) == 'kategori') ? 'show' : '' ?>" 
+					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
 
-                        <a class="collapse-item" href="<?=base_url('member')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'member' ? 'active' : '' ?>" href="<?=base_url('member')?>">
 							<i class="fa fa-user" aria-hidden="true"> </i>
 							<span>Member</span>
 						</a>
 
-                        <a class="collapse-item" href="<?=base_url('publisher')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'publisher' ? 'active' : '' ?>" href="<?=base_url('publisher')?>">
 							<i class="fa fa-building" aria-hidden="true"></i>
 							<span>Penerbit</span>
 						</a>
 
-						<a class="collapse-item" href="<?=base_url('kategori')?>">
+						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active' : '' ?>" href="<?=base_url('kategori')?>">
 							<i class="fas fa-tags"></i>
 							<span>Kategori</span>
 						</a>
@@ -145,15 +149,14 @@
             </li>
 
             <!-- Nav Item - Users -->
-            <li class="nav-item <?=$this->uri('book') == 'book' ? 'active' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('book')?>">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Buku</span></a>
             </li>
 
-
             <!-- Nav Item - Users -->
-            <li class="nav-item <?=$this->uri('user') == 'user' ? 'active' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active' : '' ?>">
                 <a class="nav-link" href="<?=base_url('user')?>">
                     <i class="fas fa-fw fa-user"></i>
                     <span>User</span></a>
