@@ -53,10 +53,6 @@
 
             <div class="card">
                 <form class="card-body">
-                    <fieldset class="row justify-content-end w-100">
-                        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
-                        <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
-                   </fieldset>
                     <fieldset class="form-row">
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
                             <label for="" class="form-label">Anggota</label>
@@ -108,7 +104,9 @@
                             </tbody>
                         </table>
                    </fieldset>
-                  
+                   <fieldset class="row justify-content-right">
+                        <button ty></button>
+                   </fieldset>
                 </form>
             </div>
 

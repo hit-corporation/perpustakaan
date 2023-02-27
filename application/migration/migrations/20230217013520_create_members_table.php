@@ -21,11 +21,10 @@ final class CreateMembersTable extends AbstractMigration
 		$table = $this->table('members');
 		$table->addColumn('member_name', 'string', ['limit' => 100])
 			  ->addColumn('no_induk', 'string', ['limit' => 100])
-			  ->addColumn('email', 'string', ['limit' => 100])
-			  ->addColumn('address', 'string', ['limit' => 255])
-			  ->addColumn('phone', 'string', ['limit' => 100])
-			  ->addColumn('created_at', 'datetime', ['null' => true])
-			  ->addColumn('updated_at', 'datetime', ['null' => true])
+			  ->addColumn('email', 'string', ['limit' => 100, 'null' => true])
+			  ->addColumn('address', 'text', ['null' => true])
+			  ->addColumn('phone', 'string', ['limit' => 100, 'null' => true])
+        ->addTimestamps()
 			  ->addColumn('deleted_at', 'datetime', ['null' => true])
 
 			  ->addIndex(['no_induk', 'deleted_at'], ['unique' => true])

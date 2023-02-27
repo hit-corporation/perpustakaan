@@ -19,6 +19,22 @@ const getBooks = async () => {
     }
 }
 
+// get all members
+const getMembers = async () => {
+
+    try
+    {
+        const f = await fetch(`${window.location.origin}/member/get_all`);
+        const j = await f.json();
+        
+        return j;
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+}
+
 // add new book row
 const addData = async idx => {
     const tr = tbody.insertRow();
@@ -65,6 +81,14 @@ const deleteRow = async e => {
 
 (async $ => {
 
+    // member select
+    var selectMember = $('select[name="member"]').selectize({
+        valueField: 'id',
+        labelField: 'member_name',
+        searchField: ['member_name'],
+        options: [...await getMembers()]
+    });
+
     // book add
     var $select0 = $('select[name="book[0][title]"]').selectize({
         create: false,
@@ -92,7 +116,7 @@ const deleteRow = async e => {
             
         }
     });
-    observer.observe(tbody, mConfig);
+  
 
 
     // add new book order forms
@@ -100,7 +124,9 @@ const deleteRow = async e => {
         await addData(idx);
         idx++;
 
-        //setTimeout(() => observer.disconnect(), 1800);
+        observer.observe(tbody, mConfig);
+
+        setTimeout(() => observer.disconnect(), 1800);
     });
 
   
