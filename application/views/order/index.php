@@ -8,9 +8,31 @@
 
 <style>
 
+    .table td {
+        border: none;
+    }
+
+    .table tr {
+        border-top: 1px solid #e3e6f0;
+        margin-top: .4rem;
+    }
+
+    .w-max-content {
+       width: max-content; 
+    }
+
     @media (min-width: 992px) {
         .d-lg-table-head {
             display: table-header-group !important;
+        }
+
+        .table td {
+            border-top: 1px solid #e3e6f0;
+        }
+
+        .table tr {
+            border: none;
+            margin: 0px;
         }
     }
 
@@ -48,7 +70,7 @@
                    <fieldset class="w-100 mt-4 ">
                         <div class="d-flex flex-nowrap w-100">
                             <h4>Buku</h4>
-                            <button id="btn-add" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm ml-auto">
+                            <button type="button" id="btn-add-book" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm ml-auto">
                                 <i class="fas fa-plus fa-sm text-white-50"></i> 
                                 Tambah
                             </button>
@@ -70,14 +92,14 @@
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Jumlah</label>
-                                        <input type="number" class="form-control" name="book[0][qty]">
+                                        <input type="number" min="0" class="form-control" name="book[0][qty]">
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Tgl Pengembalian</label>
-                                        <input type="number" class="form-control" name="book[0][return_date]">
+                                        <input type="date" class="form-control" name="book[0][return_date]">
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
-                                        <a role="button" href="javascript:void(0)" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></a>
+                                        <a role="button" href="javascript:void(0)" class="btn-circle btn-danger rounded-circle border-0 delete_data" onclick="deleteRow(event)"><i class="fas fa-trash"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
