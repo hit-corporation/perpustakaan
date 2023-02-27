@@ -8,7 +8,7 @@ const getBooks = async () => {
 
     try 
     {
-        const f = await fetch(`${window.location.origin}/book/get_all`);
+        const f = await fetch(`${BASE_URL}/book/get_all`);
         const j = await f.json();
         
         return j;
