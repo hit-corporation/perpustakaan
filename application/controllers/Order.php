@@ -54,15 +54,29 @@ class Order extends MY_Controller {
                 'field' => 'end-date',
                 'label' => 'Tanggal Pengembalian',
                 'rules' =>  'callback_valid_date'
-            ],
-            [
-                'field' => 'book[]',
-                'label' => 'Buku',
-                'rules' => 'required|is_array'
             ]
         ];
 
-        $this->form_validation->set_message('valid_date', '{field} bukan format tanggal yang valid');
+		foreach($books as $k => $v)
+		{
+			$validation[] = [
+				'field' => 'book['.$k.'][title]',
+                'label' => 'Judul Buku',
+                'rules' => 'required'
+			];
+			$validation[] = [
+				'field' => 'book['.$k.'][qty]',
+                'label' => 'Jumlah Buku',
+                'rules' => 'required|integer'
+			];
+			$validation[] = [
+				'field' => 'book['.$k.'][return_date]',
+                'label' => 'Tanggal Kembali',
+                'rules' => 'valid_date'
+			];
+		}
+
+        $this->form_validation->set_message('valid_date', 'format {field} tidak valid');
         $this->form_validation->set_message('is_array', '{field} harus berupa larik');
 
         $this->form_validation->set_rules($validation);
@@ -75,6 +89,7 @@ class Order extends MY_Controller {
             return;
         }
 
+		// INSERT START
         $this->db->trans_start();
         $trans = [
             'member_id' => $member
@@ -134,7 +149,5 @@ class Order extends MY_Controller {
         
         return TRUE;
      }
-
-     
 
 }

@@ -7,6 +7,13 @@ class Transaction_model extends CI_Model {
         parent::__construct();
     }
 
+	/**
+	 * Insert or update
+	 *
+	 * @param array $data
+	 * @param array $where
+	 * @return void
+	 */
     public function upsert($data, $where) {
 
         if($this->db->get_where('transaction_book', $where)->num_rows() > 0)

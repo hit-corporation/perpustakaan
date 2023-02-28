@@ -46,7 +46,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12">
-
+			
             <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2">
                 <h1 class="h3 mb-0 text-gray-800"><?=$this->e('Formulir Peminjaman Buku')?></h1>
             </div>
@@ -86,8 +86,8 @@
                         <table id="book-form" class="table table-sm w-100">
                             <thead class="bg-primary text-white d-none d-lg-table-head">
                                 <tr>
-                                    <th class="pl-2" style="width: 40%">Judul</th>
-                                    <th class="pl-2">Jumlah</th>
+                                    <th class="pl-2" style="width: 40%">Judul <span class="text-danger">*</span></th>
+                                    <th class="pl-2">Jumlah <span class="text-danger">*</span></th>
                                     <th class="pl-2">Tgl Kembali</th>
                                     <th class="pl-2">Hapus</th>
                                 </tr>
@@ -96,19 +96,65 @@
                                 <tr class="d-flex flex-column d-lg-table-row">
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
-                                        <select class="form-control" name="book[0][title]" value="<?=$_SESSION['error']['old']['book'][0]['title'] ?? NULL ?>"></select>
+                                        <select class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][title]'])):?> is-invalid <?php endif ?>" name="book[0][title]" value="<?=$_SESSION['error']['old']['book'][0]['title'] ?? NULL ?>"></select>
+										<?php if(!empty($_SESSION['error']['errors']['book[0][title]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book[0][title]']?></small>
+										<?php endif ?>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Jumlah</label>
-                                        <input type="number" min="0" class="form-control" name="book[0][qty]" value="<?=$_SESSION['error']['old']['book'][0]['qty'] ?? NULL ?>">
+                                        <input type="number" min="0" class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][qty]'])):?> is-invalid <?php endif ?>" name="book[0][qty]" value="<?=$_SESSION['error']['old']['book'][0]['qty'] ?? NULL ?>">
+										<?php if(!empty($_SESSION['error']['errors']['book[0][qty]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book[0][qty]']?></small>
+										<?php endif ?>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Tgl Pengembalian</label>
-                                        <input type="date" class="form-control" name="book[0][return_date]" value="<?=$_SESSION['error']['old']['book'][0]['return_date'] ?? NULL ?>">
+                                        <input type="date" class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][return_date]'])): ?> is-invalid <?php endif ?>" name="book[0][return_date]" value="<?=$_SESSION['error']['old']['book'][0]['return_date'] ?? NULL ?>">
+										<?php if(!empty($_SESSION['error']['errors']['book[0][return_date]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book[0][return_date]']?></small>
+										<?php endif ?>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                     </td>
                                 </tr>
+								<!-- more errors -->
+								<?php 
+									if(isset($_SESSION['error']['old']['book']) && count($_SESSION['error']['old']['book']) > 1): 
+										foreach($_SESSION['error']['old']['book'] as $key => $value):
+											if($key === 0) continue;
+								?>
+								<tr class="d-flex flex-column d-lg-table-row">
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Judul</label>
+                                        <select class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][title]'])):?> is-invalid <?php endif ?>" name="book[<?=$key?>][title]" value="<?=$_SESSION['error']['old']['book'][$i]['title'] ?? NULL ?>"></select>
+										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][title]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][title]']?></small>
+										<?php endif ?>
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Jumlah</label>
+                                        <input type="number" min="0" class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][qty]'])):?> is-invalid <?php endif ?>" name="book[<?=$key?>][qty]" value="<?=$_SESSION['error']['old']['book'][$key]['qty'] ?? NULL ?>">
+										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][qty]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][qty]']?></small>
+										<?php endif ?>
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Tgl Pengembalian</label>
+                                        <input type="date" class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][return_date]'])): ?> is-invalid <?php endif ?>" name="book[<?=$key?>][return_date]" value="<?=$_SESSION['error']['old']['book'][$key]['return_date'] ?? NULL ?>">
+										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][return_date]'])): ?>
+											<small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][return_date]']?></small>
+										<?php endif ?>
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+										<button class="btn-circle btn-danger rounded-circle border-0 delete_data" type="button" onclick="deleteRow(event)"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+								<?php 
+										endforeach;
+									endif; 
+								?>
+								<!-- end more errors -->
                             </tbody>
                         </table>
                    </fieldset>

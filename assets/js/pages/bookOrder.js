@@ -96,7 +96,7 @@ const deleteRow = async e => {
     });
 
     var sMember = selectMember[0].selectize;
-    sMember.on('load', e => {
+    sMember.load(e => {
         if(form['member'].getAttribute('value'))
             sMember.setValue(form['member'].getAttribute('value'));
     });
@@ -110,6 +110,11 @@ const deleteRow = async e => {
         options: [...await getBooks()]
     });
     var selectize = $select0[0].selectize;
+
+	selectize.load(e => {
+		if(form['book[0][title]'].getAttribute('value'))
+			selectize.setValue(form['book[0][title]'].getAttribute('value'));
+	});
 
       // check changes on book form table
     const books = [...await getBooks()];
@@ -128,6 +133,13 @@ const deleteRow = async e => {
                 searchField: ['title'],
                 options: books
             });
+
+			var sl = $select[0].selectize;
+
+			sl.load(e => {
+				if(form['book['+(n + 1)+'][title]'].getAttribute('value'))
+					sl.setValue(form['book['+(n + 1)+'][title]'].getAttribute('value'));
+			});
         }
        
     });
