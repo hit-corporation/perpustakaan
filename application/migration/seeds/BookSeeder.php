@@ -30,7 +30,8 @@ class BookSeeder extends AbstractSeed
             $data[] = [
                 'title'	 		=> $faker->unique()->name(),
                 'cover_img'    	=> $img[$i],
-                'author'       	=> $faker->randomNumber(9),
+                'author'       	=> $faker->name(),
+				'isbn'			=> $faker->randomNumber(9),
                 'publish_year'	=> $faker->year(),
                 'category_id'	=> $i < 3 ? 6 : 7,
 				'publisher_id'	=> 1,
