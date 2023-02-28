@@ -34,7 +34,7 @@ class BookSeeder extends AbstractSeed
 				'isbn'			=> $faker->randomNumber(9),
                 'publish_year'	=> $faker->year(),
                 'category_id'	=> $i < 3 ? 6 : 7,
-				'publisher_id'	=> 1,
+				'publisher_id'	=> $i+1,
 				'description'	=> $faker->text(),
 				'qty'			=> 5
             ];
