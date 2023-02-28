@@ -1,14 +1,17 @@
 CARA MIGRASI
 vendor/bin/phinx migrate -e development 
 
-MENJALANKAN SEEDER
-vendor/bin/phinx seed:run -e development
-
 ROLEBACK MIGRASI
 vendor/bin/phinx rollback -e development
 
 ROLLBACK ALL
 vendor/bin/phinx rollback -e development -t 0
+
+MENJALANKAN SEEDER
+vendor/bin/phinx seed:run -e development
+
+MENJALANKAN MULTIPLE SEEDER
+vendor/bin/phinx seed:run -s RoleSeeder -s CategorySeeder -s PublisherSeeder -s UserSeeder -s MemberSeeder -s BookSeeder
 
 RUN SERVER
 php -S localhost:8000
