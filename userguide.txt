@@ -1,4 +1,4 @@
-CARA MIGRASI
+JALANKAN MIGRASI
 vendor/bin/phinx migrate -e development 
 
 ROLEBACK MIGRASI
