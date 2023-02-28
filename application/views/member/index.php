@@ -55,7 +55,7 @@
 
             <div class="card-body">
                 <div class="table-reponsive">
-					<table id="table-main" class="table table-sm table-striped">
+					<table id="table-main" class="table table-sm table-striped" width="100%">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
