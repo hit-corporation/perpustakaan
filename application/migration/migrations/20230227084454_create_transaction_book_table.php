@@ -21,14 +21,14 @@ final class CreateTransactionBookTable extends AbstractMigration
         // UUID EXTENSION
         $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
         // TABLE
-        $table = $this->table('transaction_book', ['id' => false, 'primary_key' => 'id']);
-        $table->addColumn('id', 'uuid', ['default' => \Phinx\Util\Literal::from('uuid_generate_v4()')]);
-        $table->addColumn('transaction_id', 'uuid');
+        $table = $this->table('transaction_book');
+        $table->addColumn('transaction_id', 'integer');
         $table->addColumn('book_id', 'integer');
+        $table->addColumn('qty', 'integer');
         $table->addColumn('return_date', 'timestamp', ['null' => true]);
         $table->addTimestamps();
 
-        $table->addForeignKey('transaction_id', 'transactions', 'trans_id', ['update' => 'CASCADE', 'delete' => 'CASCADE']);
+        $table->addForeignKey('transaction_id', 'transactions', 'id', ['update' => 'CASCADE', 'delete' => 'CASCADE']);
         $table->addForeignKey('book_id', 'books', 'id', ['update' => 'CASCADE', 'delete' => 'CASCADE']);
         $table->create();
     }

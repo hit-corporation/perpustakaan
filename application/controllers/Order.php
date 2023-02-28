@@ -6,7 +6,7 @@ class Order extends MY_Controller {
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->helper('form');
-        $this->load->model(['member_model']);
+        $this->load->model(['member_model', 'transaction_model']);
     }
 
     /**
@@ -69,18 +69,35 @@ class Order extends MY_Controller {
 
         if(!$this->form_validation->run())
         {
-            $resp = ['errors' => $this->form_validation->error_array(), 'old' => $this->input->post(NULL)];
+            $resp = ['errors' => $this->form_validation->error_array(), 'old' => $_POST];
             $this->session->set_flashdata('error', $resp);
             redirect('order');
             return;
         }
 
         $this->db->trans_start();
+        $trans = [
+            'member_id' => $member
+        ];
+        $this->db->insert('transactions', $trans);
+        $_id = $this->db->insert_id();
+
+        foreach($books as $book)
+        {
+            $data = [
+                'transaction_id'  => $_id,
+                'book_id'         => $book['title'],
+                'qty'             => $book['qty'],
+            ];
+
+            $this->transaction_model->upsert($data, ['transaction_id' => $_id, 'book_id' => $book['title']]);
+        }
+
         $this->db->trans_complete();
 
         if($this->db->trans_status() === FALSE)
         {
-            $resp = ['message' => 'Data gagal di input !!!', 'old' => $this->input->post(NULL)];
+            $resp = ['message' => 'Data gagal di input !!!', 'old' => $_POST];
             $this->session->set_flashdata('error', $resp);
             redirect('order');
             return;
@@ -117,5 +134,7 @@ class Order extends MY_Controller {
         
         return TRUE;
      }
+
+     
 
 }

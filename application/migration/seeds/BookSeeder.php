@@ -25,7 +25,8 @@ class BookSeeder extends AbstractSeed
 				'12405a0f13ff2a93edf8fc96383dda05.jpg', 
 				'fde0e522fa00da1468dbcc84e89f01e9.jpg', 
 				'8419f965f5089e31e9719cf816840e31.jpg',
-				'5f4c1c8a97fbbf9a6379d2a2d5d14eca.jpg'];
+				'5f4c1c8a97fbbf9a6379d2a2d5d14eca.jpg'
+            ];
 
             $data[] = [
                 'title'	 		=> $faker->unique()->name(),

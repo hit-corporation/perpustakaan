@@ -22,8 +22,7 @@ final class CreateTransactionTable extends AbstractMigration
         // UUID EXTENSION
         $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
         // TABLE
-        $table = $this->table('transactions', ['id' => false, 'primary_key' => 'trans_id']);
-        $table->addColumn('trans_id', 'uuid', ['default' => \Phinx\Util\Literal::from('uuid_generate_v4()')]);
+        $table = $this->table('transactions');
         $table->addColumn('trans_timestamp', 'timestamp', ['default' => 'CURRENT_TIMESTAMP']);
         $table->addColumn('member_id', 'integer', ['null' => true]);
 

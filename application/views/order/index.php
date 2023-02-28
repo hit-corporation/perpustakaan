@@ -53,15 +53,18 @@
 
             <div class="card">
 
-                <form class="card-body" method="POST" action="<?=$this->e(base_url('order/store'))?>">
+                <form name="form-input" class="card-body" method="POST" action="<?=$this->e(base_url('order/store'))?>">
                     <fieldset class="row justify-content-end w-100">
                         <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
                    </fieldset>
                     <fieldset class="form-row">
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
-                            <label for="" class="form-label">Anggota</label>
-                            <select class="form-control" name="member" value="<?=$_SESSION['error']['old']['member'] ?? NULL ?>"></select>
+                            <label for="" class="form-label">Anggota <span class="text-danger">*</span></label>
+                            <select class="form-control <?php if(!empty($_SESSION['error']['errors']['member'])): ?> is-invalid <?php endif ?>" name="member" value="<?=$_SESSION['error']['old']['member'] ?? NULL ?>"></select>
+                            <?php if(!empty($_SESSION['error']['errors']['member'])): ?>
+                                <small class="text-danger"><?=$_SESSION['error']['errors']['member']?></small>
+                            <?php endif ?>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
                             <label for="" class="form-label">Tanggal Peminjaman</label>

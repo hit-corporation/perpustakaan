@@ -1,6 +1,7 @@
 'use strict';
 const tableForm = document.getElementById('book-form');
 const tbody = tableForm.tBodies[0];
+const form = document.forms['form-input'];
 let idx = document.querySelectorAll('.book-row').length;
 
 // get all books
@@ -92,6 +93,12 @@ const deleteRow = async e => {
         labelField: 'member_name',
         searchField: ['member_name'],
         options: [...await getMembers()]
+    });
+
+    var sMember = selectMember[0].selectize;
+    sMember.on('load', e => {
+        if(form['member'].getAttribute('value'))
+            sMember.setValue(form['member'].getAttribute('value'));
     });
 
     // book add
