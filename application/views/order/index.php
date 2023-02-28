@@ -52,7 +52,8 @@
             </div>
 
             <div class="card">
-                <form class="card-body" enctype="multipart/form-data">
+
+                <form class="card-body" method="POST" action="<?=$this->e(base_url('order/store'))?>">
                     <fieldset class="row justify-content-end w-100">
                         <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
@@ -60,15 +61,15 @@
                     <fieldset class="form-row">
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
                             <label for="" class="form-label">Anggota</label>
-                            <select class="form-control" name="member"></select>
+                            <select class="form-control" name="member" value="<?=$_SESSION['error']['old']['member'] ?? NULL ?>"></select>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
                             <label for="" class="form-label">Tanggal Peminjaman</label>
-                            <input type="date" class="form-control" name="start-date">
+                            <input type="date" class="form-control" name="start-date" value="<?=$_SESSION['error']['old']['start-date'] ?? NULL ?>">
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
                             <label for="" class="form-label">Tanggal Pengembalian</label>
-                            <input type="date" class="form-control" name="end-date" value="">
+                            <input type="date" class="form-control" name="end-date" value="<?=$_SESSION['error']['old']['end-date'] ?? NULL ?>">
                         </div>
                     </fieldset>
                    <fieldset class="w-100 mt-4 ">
@@ -76,7 +77,7 @@
                             <h4>Buku</h4>
                             <button type="button" id="btn-add-book" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm ml-auto">
                                 <i class="fas fa-plus fa-sm text-white-50"></i> 
-                                Tambah
+                                Tambah Buku
                             </button>
                         </div>
                         <table id="book-form" class="table table-sm w-100">
@@ -92,15 +93,15 @@
                                 <tr class="d-flex flex-column d-lg-table-row">
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
-                                        <select class="form-control" name="book[0][title]"></select>
+                                        <select class="form-control" name="book[0][title]" value="<?=$_SESSION['error']['old']['book'][0]['title'] ?? NULL ?>"></select>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Jumlah</label>
-                                        <input type="number" min="0" class="form-control" name="book[0][qty]">
+                                        <input type="number" min="0" class="form-control" name="book[0][qty]" value="<?=$_SESSION['error']['old']['book'][0]['qty'] ?? NULL ?>">
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Tgl Pengembalian</label>
-                                        <input type="date" class="form-control" name="book[0][return_date]">
+                                        <input type="date" class="form-control" name="book[0][return_date]" value="<?=$_SESSION['error']['old']['book'][0]['return_date'] ?? NULL ?>">
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                     </td>

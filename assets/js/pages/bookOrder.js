@@ -1,7 +1,7 @@
 'use strict';
 const tableForm = document.getElementById('book-form');
 const tbody = tableForm.tBodies[0];
-let idx = 1;
+let idx = document.querySelectorAll('.book-row').length;
 
 // get all books
 const getBooks = async () => {
@@ -36,9 +36,11 @@ const getMembers = async () => {
 }
 
 // add new book row
-const addData = async idx => {
+const addData = async () => {
+    idx = document.querySelectorAll('.book-row').length + 1;
+
     const tr = tbody.insertRow();
-    tr.classList.add('d-flex', 'flex-column','d-lg-table-row');
+    tr.classList.add('d-flex', 'flex-column','d-lg-table-row', 'book-row');
 
     const cell_0 = tr.insertCell(0);
     const cell_1 = tr.insertCell(1);
@@ -47,15 +49,15 @@ const addData = async idx => {
 
     // cell 0
     cell_0.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
-                       `<select class="form-control" name="book[${idx}][title]"></select>`; 
+                       `<select class="form-control book-title" name="book[${(idx)}][title]"></select>`; 
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
     cell_1.innerHTML = '<label class="d-lg-none mb-0">Jumlah</label>' +
-                        `<input type="number" class="form-control" min="0" name="book[${idx}][qty]">`;
+                        `<input type="number" class="form-control" min="0" name="book[${(idx)}][qty]">`;
     cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 2
     cell_2.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
-                        `<input type="date" class="form-control" name="book[${idx}][return_date]">`;
+                        `<input type="date" class="form-control" name="book[${(idx)}][return_date]">`;
     cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 3
     const btnDelete = document.createElement('button');
@@ -81,6 +83,9 @@ const deleteRow = async e => {
 
 (async $ => {
 
+    // default datetime
+    document.querySelector('input[name="start-date"]').valueAsDate = new Date();
+
     // member select
     var selectMember = $('select[name="member"]').selectize({
         valueField: 'id',
@@ -100,33 +105,33 @@ const deleteRow = async e => {
     var selectize = $select0[0].selectize;
 
       // check changes on book form table
+    const books = [...await getBooks()];
     const mConfig = { childList: true };
     var observer = new MutationObserver(async (mutations, obsrv) => {
         const mut = mutations[0];
 
-        for(var n=1;n<=idx;n++)
+        // console.log(mut.addedNodes);
+       
+        for(var n=0;n<=idx;n++)
         {
-            var $select = $('select[name="book['+n+'][title]"]').selectize({
+            var $select = $('select[name="book['+(n + 1)+'][title]"]').selectize({
                 create: false,
                 valueField: 'id',
                 labelField: 'title',
                 searchField: ['title'],
-                options: [...await getBooks()]
+                options: books
             });
-            
         }
+       
     });
-  
-
+    
+    observer.observe(tbody, mConfig);
 
     // add new book order forms
     document.getElementById('btn-add-book').addEventListener('click', async e => {
-        await addData(idx);
-        idx++;
+        await addData();
 
-        observer.observe(tbody, mConfig);
-
-        setTimeout(() => observer.disconnect(), 3000);
+        //setTimeout(() => observer.disconnect(), 3000);
     });
 
   
