@@ -72,7 +72,7 @@ class Order extends MY_Controller {
 			$validation[] = [
 				'field' => 'book['.$k.'][return_date]',
                 'label' => 'Tanggal Kembali',
-                'rules' => 'valid_date'
+                'rules' => 'callback_valid_date'
 			];
 		}
 

@@ -83,6 +83,7 @@ const deleteRow = async e => {
 
 
 (async $ => {
+	const books = [...await getBooks()];
 
     // default datetime
     document.querySelector('input[name="start-date"]').valueAsDate = new Date();
@@ -107,7 +108,7 @@ const deleteRow = async e => {
         valueField: 'id',
         labelField: 'title',
         searchField: ['title'],
-        options: [...await getBooks()]
+        options: books
     });
     var selectize = $select0[0].selectize;
 
@@ -116,8 +117,34 @@ const deleteRow = async e => {
 			selectize.setValue(form['book[0][title]'].getAttribute('value'));
 	});
 
+	var bookTitles = document.querySelectorAll('.book-title');
+
+	if(bookTitles.length > 0)
+	{
+		Array.from([...bookTitles], item => {
+		
+			var $select = $(item).selectize({
+				create: false,
+				valueField: 'id',
+				labelField: 'title',
+				searchField: ['title'],
+				options: books
+			});
+	
+			var sel = $select[0].selectize;
+
+			console.log(item);
+	
+			sel.load(e => {
+				if(item.getAttribute('value'))
+					sel.setValue(item.getAttribute('value'));
+			})
+	
+		});
+	}
+	
       // check changes on book form table
-    const books = [...await getBooks()];
+    
     const mConfig = { childList: true };
     var observer = new MutationObserver(async (mutations, obsrv) => {
         const mut = mutations[0];
