@@ -119,7 +119,7 @@ const deleteRow = async e => {
 
 	var bookTitles = document.querySelectorAll('.book-title');
 
-	if(bookTitles.length > 0)
+	if(bookTitles && bookTitles.length > 0)
 	{
 		Array.from([...bookTitles], item => {
 		
@@ -132,8 +132,6 @@ const deleteRow = async e => {
 			});
 	
 			var sel = $select[0].selectize;
-
-			console.log(item);
 	
 			sel.load(e => {
 				if(item.getAttribute('value'))
