@@ -138,16 +138,54 @@ class Order extends MY_Controller {
       * @param string $format
       * @return boolean
       */
-     public function valid_date($str, string $format = NULL): bool {
-        if(empty($format))
-            $format = 'Y-m-d';
-        if(!empty($str))
-        {
-            $tgl = DateTime::createFromFormat($format, $str);
-            return $tgl && $tgl->format('Y-m-d') === $str;
-        }
-        
-        return TRUE;
-     }
+	public function valid_date($str, string $format = NULL): bool {
+	if(empty($format))
+		$format = 'Y-m-d';
+	if(!empty($str))
+	{
+		$tgl = DateTime::createFromFormat($format, $str);
+		return $tgl && $tgl->format('Y-m-d') === $str;
+	}
+	
+	return TRUE;
+	}
+
+	/**
+     * Report Order View 
+     *
+     * @return void
+     */
+    public function report_order(): void {
+
+        $this->template->registerFunction('set_value', function($field, $value = NULL) {
+            return set_value($field, $value);
+        });
+        echo $this->template->render('report_order');
+    }
+
+	/**
+     * get all data
+     *
+     * @return void
+     */
+    public function get_all(): void{
+        $data = $this->transaction_model->get_all();
+        echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+    }
+
+	public function get_all_paginated(): void {
+		$limit  = $this->input->get('length');
+		$offset = $this->input->get('start');
+        $filter = $this->input->get('columns');
+
+        $dataTable = [
+            'draw'            => $this->input->get('draw') ?? NULL,
+            'data'            => $this->transaction_model->get_all($filter, $limit, $offset),
+            'recordsTotal'    => $this->db->count_all_results('transactions'),
+            'recordsFiltered' => $this->transaction_model->count_all($filter)
+        ];
+
+        echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
+	}
 
 }
