@@ -12,7 +12,7 @@
                 <div class="form-row">
                     <div class="col-4">
                         <label class="form-label mb-0">Nilai</label>
-                        <select name="value" class="form-control">
+                        <select name="nilai" class="form-control">
                             <option value="1">1</option>
                         </select>
                     </div>
@@ -20,7 +20,9 @@
                     <div class="col-7">
                         <label class="form-label mb-0">Unit</label>
                         <select name="unit" class="form-control">
-                            <option value="week">Minggu</option>
+                            <option value="days">Hari</option>
+                            <option value="weeks">Minggu</option>
+                            <option value="months">Bulan</option>
                         </select>
                     </div>
                 </div>    
