@@ -88,7 +88,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -130,17 +130,17 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
 
-                        <a class="collapse-item <?=$CI->uri->segment(1) == 'member' ? 'active bg-primary-dark text-light' : '' ?>" href="<?=base_url('member')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'member' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('member')?>">
 							<i class="fa fa-user" aria-hidden="true"> </i>
 							<span>Member</span>
 						</a>
 
-                        <a class="collapse-item <?=$CI->uri->segment(1) == 'publisher' ? 'active bg-primary-dark text-light' : '' ?>" href="<?=base_url('publisher')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(1) == 'publisher' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('publisher')?>">
 							<i class="fa fa-building" aria-hidden="true"></i>
 							<span>Penerbit</span>
 						</a>
 
-						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active bg-primary-dark text-light' : '' ?>" href="<?=base_url('kategori')?>">
+						<a class="collapse-item <?=$CI->uri->segment(1) == 'kategori' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('kategori')?>">
 							<i class="fas fa-tags"></i>
 							<span>Kategori</span>
 						</a>
@@ -149,21 +149,21 @@
             </li>
 
             <!-- Nav Item - Book -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active bg-primary-dark' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'book' ? 'active bg-dark-2' : '' ?>">
                 <a class="nav-link" href="<?=base_url('book')?>">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Buku</span></a>
             </li>
 
 			 <!-- Nav Item - Peminjaman -->
-			 <li class="nav-item <?=$CI->uri->segment(1) == 'order' ? 'active bg-primary-dark' : '' ?>">
+			 <li class="nav-item <?=$CI->uri->segment(1) == 'order' ? 'active bg-dark-2' : '' ?>">
                 <a class="nav-link" href="<?=base_url('order')?>">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Peminjaman</span></a>
             </li>
 
             <!-- Nav Item - Users -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active bg-primary-dark' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active bg-dark-2' : '' ?>">
                 <a class="nav-link" href="<?=base_url('user')?>">
                     <i class="fas fa-fw fa-user"></i>
                     <span>User</span></a>
@@ -188,7 +188,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-dark bg-info topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -234,7 +234,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small"><?=$_SESSION['user']['full_name'] ?? NULL?></span>
+                                    class="mr-2 d-none d-lg-inline text-white small"><?=$_SESSION['user']['full_name'] ?? NULL?></span>
                                 <img class="img-profile rounded-circle" src="assets/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->

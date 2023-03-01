@@ -36,7 +36,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="table-main" class="table table-sm w-100">
-                        <thead class="bg-primary text-white">
+                        <thead class="bg-indigo text-white">
                             <tr>
                                 <th>ID</th>
                                 <th>Gambar</th>
@@ -65,7 +65,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
 
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-indigo text-white">
                 <h5 class="modal-title">Input Buku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

@@ -37,3 +37,18 @@
     background-color: darken($blue, 15%);
     color: $white;
 }
+
+.bg-info-dark {
+    background-color: darken($cyan, 15%);
+    color: $white;
+}
+
+.bg-dark-2 {
+    background-color: $gray-900;
+    color: $white;
+}
+
+.bg-indigo {
+    background-color: $indigo !important;
+    color: $white !important;
+}

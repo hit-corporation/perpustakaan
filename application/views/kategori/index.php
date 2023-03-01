@@ -60,7 +60,7 @@
                     </form>
                     <div class="table-reponsive">
                         <table id="table-main" class="table table-sm table-striped" width="100%">
-                            <thead class="bg-primary text-white">
+                            <thead class="bg-indigo text-white">
                                 <tr>
                                     <th>ID</th>
                                     <th>Nama Kategori</th>
@@ -83,7 +83,7 @@
 <div id="modal-input" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
+            <div class="modal-header bg-indigo text-white">
                 <h5 class="modal-title">Input Kategori</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
