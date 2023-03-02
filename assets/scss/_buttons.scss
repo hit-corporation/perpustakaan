@@ -50,3 +50,19 @@
     }
   }
 }
+
+// UDPATE NAQUIB 2023 03 02
+@each $key, $value in $colors {
+
+  .btn-#{$key} {
+    background-color: $value;
+    color: $white;
+
+    &:hover {
+      background-color: darken($value, 5);
+      color: $white;
+    }
+  }
+
+}
+// END UDPATE NAQUIB 2023 03 02
