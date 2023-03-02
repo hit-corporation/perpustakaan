@@ -79,7 +79,7 @@
 </div>
 
 
-<div id="modal-input" class="modal fade" tabindex="-1">
+<div id="modal-update" class="modal fade" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
@@ -90,11 +90,11 @@
             </div>
             <div class="modal-body">
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('member/store')?>">
-                    <input type="text" class="d-none" name="member_id">
+                    <input type="text" class="d-none" name="transaction_book_id">
                     <div class="form-group">
-                        <label>Nama Member <span class="text-danger">*</span></label>
+                        <label>Nama Anggota <span class="text-danger">*</span></label>
                         <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['member_name'])):?> is-invalid <?php endif ?>" 
-                              name="member_name" value="<?=$_SESSION['error']['old']['member_name'] ?? ''?>" required>
+                              name="member_name" value="<?=$_SESSION['error']['old']['member_name'] ?? ''?>" readonly>
                         
                         <?php if(!empty($_SESSION['error']['errors']['member_name'])): ?>
                             <small class="text-danger"><?=$_SESSION['error']['errors']['member_name']?></small>
@@ -102,22 +102,22 @@
                     </div>
                     
 					<div class="form-group">
-                        <label>No Induk <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['no_induk'])):?> is-invalid <?php endif ?>" 
-                              name="no_induk" value="<?=$_SESSION['error']['old']['no_induk'] ?? ''?>" required>
+                        <label>Nama Buku <span class="text-danger">*</span></label>
+                        <input readonly type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['book_title'])):?> is-invalid <?php endif ?>" 
+                              name="book_title" value="<?=$_SESSION['error']['old']['book_title'] ?? ''?>">
                         
-                        <?php if(!empty($_SESSION['error']['errors']['no_induk'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['no_induk']?></small>
+                        <?php if(!empty($_SESSION['error']['errors']['book_title'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['book_title']?></small>
                         <?php endif ?>
                     </div>
 
 					<div class="form-group">
-                        <label>Email </label>
-                        <input type="email" class="form-control <?php if(!empty($_SESSION['error']['errors']['email'])):?> is-invalid <?php endif ?>" 
-                              name="email" value="<?=$_SESSION['error']['old']['email'] ?? ''?>" required>
+                        <label>Hari Terlambat </label>
+                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['jumlah_hari_terlambat'])):?> is-invalid <?php endif ?>" 
+                              name="jumlah_hari_terlambat" value="<?=$_SESSION['error']['old']['jumlah_hari_terlambat'] ?? ''?>" readonly>
                         
-                        <?php if(!empty($_SESSION['error']['errors']['email'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['email']?></small>
+                        <?php if(!empty($_SESSION['error']['errors']['jumlah_hari_terlambat'])): ?>
+                            <small class="text-danger"><?=$_SESSION['error']['errors']['jumlah_hari_terlambat']?></small>
                         <?php endif ?>
                     </div>
 					
