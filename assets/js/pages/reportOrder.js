@@ -247,6 +247,7 @@ const setting = async () => {
 		$('#modal-update input[name="book_title"]').val(book_title);
 		$('#modal-update input[name="jumlah_hari_terlambat"]').val(jumlah_hari_terlambat);
 		$('#modal-update input[name="denda"]').val(denda);
+		$('#modal-update input[name="bayar"]').val(denda);
 
 	
 	});
