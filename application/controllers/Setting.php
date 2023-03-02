@@ -30,15 +30,14 @@ class Setting extends MY_Controller {
      */
     public function loan(): void {
 
-        $data['due_date'] = $this->setting_model->get_by_field('due_date');
-
 		if($_SERVER['REQUEST_METHOD'] === 'POST')
 		{
-			$number = $this->input->post('nilai', TRUE);
-			$unit = $this->input->post('unit', TRUE);
+			$due_date = $this->input->post('due_date', TRUE);
+            $max_book = $this->input->post('max_loan', TRUE);
 
-			$this->form_validation->set_rules('nilai', 'Nilai', 'trim|required|integer');
-			$this->form_validation->set_rules('unit', 'Unit', 'trim|required|alpha_numeric');
+			$this->form_validation->set_rules('due_date[value]', 'Nilai', 'trim|required|integer');
+			$this->form_validation->set_rules('due_date[unit]', 'Unit', 'trim|required|alpha');
+			$this->form_validation->set_rules('max_loan', 'Maximal Buku', 'trim|required|integer');
 
             if(!$this->form_validation->run())
             {
@@ -48,18 +47,20 @@ class Setting extends MY_Controller {
                 return;
             }
 
-            $this->db->trans_start();
-            $this->db->update('settings', ['value' => $number], ['field' => 'due_date', 'key' => 'nilai']);
-            $this->db->update('settings', ['value' => $unit], ['field' => 'due_date', 'key' => 'unit']);
-            $this->db->trans_complete();
+            $data = [
+                'due_date_value' => $due_date['value'],
+                'due_date_unit'  => $due_date['unit'],
+                'max_allowed'    => $max_book,
+                'updated_at'     => (new DateTime())->format('Y-m-d H:i:s.u')
+            ];
 
-            if(!$this->db->trans_status())
+            if(!$this->db->update('settings', $data, ['id' => 1]))
                 $this->session->set_flashdata('error', ['message' => 'Data gagal di simpan']);
             else
                 $this->session->set_flashdata('success', ['message' => 'Data berhasil di simpan']);
 		}
 
         
-        echo $this->template->render('loan', $data);
+        echo $this->template->render('loan');
     }
 }

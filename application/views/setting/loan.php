@@ -9,9 +9,9 @@
             <div class="card-header bg-primary">
                 <h4 class="text-white font-weight-bold text-shadow mb-0">Peminjaman</h4>
             </div>
-            <form name="loan_setting" method="POST" class="card-body">
+            <form name="form-input" method="POST" class="card-body">
                 <div class="form-row align-items-center">
-                    <label class="form-label col-12 col-md-4 col-lg-3">Maximum Peminjaman</label>
+                    <label class="form-label col-12 col-md-4 col-lg-3">Maksimal Buku</label>
                     <div class="col-12 col-md-8 col-lg-9">
                         <input type="number" class="form-control" min="1" max="100" name="max_loan" value="2">
                     </div>
@@ -21,24 +21,24 @@
                     <div class="col-12 col-md-8 col-lg-8">
                         <div class="form-row">
                             <div class="col-4">
-                                <select name="nilai" class="form-control <?=empty($_SESSION['error']['errors']['nilai']) ?: 'is-invalid' ?>">
+                                <select name="due_date[value]" class="form-control <?=empty($_SESSION['error']['errors']['due_date[value]']) ?: 'is-invalid' ?>">
                                     <?php for($i=1;$i<=100;$i++): ?>
                                     <option value="<?=$i?>"><?=$i?></option>
                                     <?php endfor ?>
                                 </select>
-                                <?php if(!empty($_SESSION['error']['errors']['nilai'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['nilai']?></small>
+                                <?php if(!empty($_SESSION['error']['errors']['due_date[value]'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['due_date[value]']?></small>
                                 <?php endif ?>
                             </div>
                             <div class="col-1 d-flex flex-nowrap justify-content-center align-items-center"><span>-</span></div>
                             <div class="col-7">
-                                <select name="unit" class="form-control <?=empty($_SESSION['error']['errors']['unit']) ?: 'is-invalid' ?>">
+                                <select name="due_date[unit]" class="form-control <?=empty($_SESSION['error']['errors']['due_date[unit]']) ?: 'is-invalid' ?>">
                                     <option value="days">Hari</option>
                                     <option value="weeks" selected>Minggu</option>
                                     <option value="months">Bulan</option>
                                 </select>
-                                <?php if(!empty($_SESSION['error']['errors']['unit'])): ?>
-                                    <small class="text-danger"><?=$_SESSION['error']['errors']['unit']?></small>
+                                <?php if(!empty($_SESSION['error']['errors']['due_date[unit]'])): ?>
+                                    <small class="text-danger"><?=$_SESSION['error']['errors']['due_date[unit]']?></small>
                                 <?php endif ?>
                             </div>
                         </div>
@@ -85,8 +85,8 @@ const form = document.forms['form-input'];
 
 (async $ => {
 
-    form['nilai'].value = `<?=$_SESSION['error']['old']['nilai'] ?? $due_date['nilai'] ?>`;
-    form['unit'].value = `<?=$_SESSION['error']['old']['unit'] ?? $due_date['unit'] ?>`;
+    form['due_date[value]'].value = `<?=$_SESSION['error']['old']['due_date[value]'] ?? $settings['due_date_value'] ?>`;
+    form['due_date[unit]'].value = `<?=$_SESSION['error']['old']['due_date[unit]'] ?? $settings['due_date_unit'] ?>`;
 
 })(jQuery)
 
