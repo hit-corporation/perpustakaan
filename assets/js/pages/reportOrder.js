@@ -18,6 +18,22 @@ const getAll = async () => {
     }    
 }
 
+// SETTING
+const setting = async () => {
+	try
+	{
+		const f = await fetch(BASE_URL + '/setting/get_all');
+		const j = await f.json();
+
+		return j;
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+
 // INIT
 (async ($) => {
     const allData = await getAll();
@@ -93,9 +109,9 @@ const getAll = async () => {
 						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
 
 						return diffDays + ' hari';
-					}
-					// JIKA TANGGAL SEKARANG LEBIH BESAR DARI TANGGAL PENGEMBALIAN DAN TANGGAL PENGEMBALIAN SUDAH DIUPDATE 
-					else if(date2 > date1 && row.updated_at != null) {
+						
+						// JIKA TANGGAL SEKARANG LEBIH BESAR DARI TANGGAL PENGEMBALIAN DAN TANGGAL PENGEMBALIAN SUDAH DIUPDATE 
+					}else if(date2 > date1 && row.updated_at != null) {
 						const date3 = new Date(row.updated_at);
 
 						// TANGGAL PENGEMBALIAN YANG DIUPDATE - TANGGAL PENGEMBALIAN = JUMLAH HARI TERLAMBAT
@@ -121,9 +137,15 @@ const getAll = async () => {
 					if(date2 > date1 && row.updated_at == null)
 					{
 						const diffTime = Math.abs(date2 - date1);
-						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+						const denda = diffDays * 500;
 
-						return 'Rp. ' + (diffDays * 500).toLocaleString('id-ID');
+						if(denda > 10000){
+							return 'Rp. 10.000';
+						} else {
+							return 'Rp. ' + denda.toLocaleString('id-ID');
+						}
+
 					} else if (date2 > date1 && row.updated_at != null) {
 						const date3 = new Date(row.updated_at);
 						const diffTime = Math.abs(date3 - date1);
@@ -187,8 +209,34 @@ const getAll = async () => {
 		const id = data.id;
 		const member_name = data.member_name;
 		const book_title = data.title;
-		const jumlah_hari_terlambat = data.jumlah_hari_terlambat;
-		console.log(jumlah_hari_terlambat);
+		const return_date = data.return_date;
+		const diffDays = Math.ceil((Math.abs(new Date(return_date) - new Date())) / (1000 * 60 * 60 * 24));
+		let jumlah_hari_terlambat = 0;
+		let denda = 0;
+		
+		// JUMLAH HARI TERLAMBAT
+		if (new Date(return_date) >= new Date())
+		{
+			jumlah_hari_terlambat = 0;
+		} 
+		else 
+		{ 
+			jumlah_hari_terlambat = diffDays;
+		}
+
+		// DENDA
+		if (jumlah_hari_terlambat > 0)
+		{
+			denda = jumlah_hari_terlambat * 500;
+			if (denda > 10000)
+			{
+				denda = 10000;
+			}
+		}
+		else
+		{
+			denda = 0;
+		}
 
 		// show modal
 		$('#modal-update').modal('show');
@@ -198,6 +246,8 @@ const getAll = async () => {
 		$('#modal-update input[name="member_name"]').val(member_name);
 		$('#modal-update input[name="book_title"]').val(book_title);
 		$('#modal-update input[name="jumlah_hari_terlambat"]').val(jumlah_hari_terlambat);
+		$('#modal-update input[name="denda"]').val(denda);
+
 	
 	});
 
