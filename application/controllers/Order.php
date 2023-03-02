@@ -158,7 +158,25 @@ class Order extends MY_Controller {
      * @return void
      */
     public function report_order(): void {
+		$post = $this->input->post();
 
+		if(!empty($post))
+		{
+			$transaction_book_id = $this->input->post('transaction_book_id', TRUE);
+			$penalty = $this->input->post('denda', TRUE);
+			$bayar = $this->input->post('bayar', TRUE);
+			$notes = $this->input->post('notes', TRUE);
+
+			// update data transaction book
+			$this->db->where('id', $transaction_book_id);
+			$this->db->update('transaction_book', ['amount_penalty' => $penalty, 'amount_paid' => $bayar, 'notes' => $notes, 'updated_at' => date('Y-m-d H:i:s')]);
+
+			// set flashdata
+			$resp = ['message' => 'Data berhasil di input !!!'];
+			$this->session->set_flashdata('success', $resp);
+			redirect('order/report_order');
+			return;
+		}
         $this->template->registerFunction('set_value', function($field, $value = NULL) {
             return set_value($field, $value);
         });
