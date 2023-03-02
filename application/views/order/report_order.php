@@ -83,7 +83,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title">Modal Title</h5>
+                <h5 class="modal-title">Pengembalian Buku</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -113,31 +113,22 @@
 
 					<div class="form-group">
                         <label>Hari Terlambat </label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['jumlah_hari_terlambat'])):?> is-invalid <?php endif ?>" 
-                              name="jumlah_hari_terlambat" value="<?=$_SESSION['error']['old']['jumlah_hari_terlambat'] ?? ''?>" readonly>
-                        
-                        <?php if(!empty($_SESSION['error']['errors']['jumlah_hari_terlambat'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['jumlah_hari_terlambat']?></small>
-                        <?php endif ?>
+                        <input type="text" class="form-control" name="jumlah_hari_terlambat" value="" readonly>
                     </div>
 					
 					<div class="form-group">
-                        <label>Alamat </label>
-						<textarea class="form-control <?php if(!empty($_SESSION['error']['errors']['address'])):?> is-invalid <?php endif ?>" name="address" id="" cols="30" rows="3" value="<?=$_SESSION['error']['old']['address'] ?? ''?>"></textarea>
-							
-						<?php if(!empty($_SESSION['error']['errors']['address'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['address']?></small>
-                        <?php endif ?>
+                        <label>Denda </label>
+                        <input type="text" class="form-control" name="denda" value="" readonly>
                     </div>
 
 					<div class="form-group">
-                        <label>Telp </label>
-                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['phone'])):?> is-invalid <?php endif ?>" 
-                              name="phone" value="<?=$_SESSION['error']['old']['phone'] ?? ''?>" required>
-                        
-                        <?php if(!empty($_SESSION['error']['errors']['phone'])): ?>
-                            <small class="text-danger"><?=$_SESSION['error']['errors']['phone']?></small>
-                        <?php endif ?>
+                        <label>Bayar </label>
+                        <input type="number" class="form-control" name="bayar" value="0">
+                    </div>
+
+					<div class="form-group">
+                        <label>Catatan </label>
+                        <textarea type="text" class="form-control" name="notes" value="" rows="3"></textarea>
                     </div>
 
                     <div class="row justify-content-end mt-4 border-top pt-3 px-2">
