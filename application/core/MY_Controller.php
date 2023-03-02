@@ -5,6 +5,7 @@ class MY_Controller extends CI_Controller
 {
 
     protected $data;
+    protected $settings;
 
     public function __construct()
     {
@@ -19,5 +20,7 @@ class MY_Controller extends CI_Controller
         $this->template->registerFunction('html_escape', function ($args) {
             return html_escape($args);
         });
+
+        $this->settings = $this->db->get_where('settings', ['id' => 1])->row_array();
     }
 }
