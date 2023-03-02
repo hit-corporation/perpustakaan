@@ -4,6 +4,12 @@ const tbody = tableForm.tBodies[0];
 const form = document.forms['form-input'];
 let idx = document.querySelectorAll('.book-row').length;
 
+// default tanggal kembali 7 hari dari sekarang pada form tambah
+tbody.querySelector('input[name="book[0][return_date]"]').valueAsDate = new Date(new Date().setDate(new Date().getDate() + 7));
+
+// default jumlah buku 1
+tbody.querySelector('input[name="book[0][qty]"]').value = 1;
+
 // get all books
 const getBooks = async () => {
 
@@ -54,11 +60,11 @@ const addData = async () => {
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
     cell_1.innerHTML = '<label class="d-lg-none mb-0">Jumlah</label>' +
-                        `<input type="number" class="form-control" min="0" name="book[${(idx)}][qty]">`;
+                        `<input type="number" class="form-control" min="0" name="book[${(idx)}][qty]" value="1">`;
     cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 2
     cell_2.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
-                        `<input type="date" class="form-control" name="book[${(idx)}][return_date]">`;
+                        `<input type="date" class="form-control" name="book[${(idx)}][return_date]" value="${new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]}">`;
     cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 3
     const btnDelete = document.createElement('button');
