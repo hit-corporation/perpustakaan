@@ -150,8 +150,13 @@ const setting = async () => {
 						const date3 = new Date(row.updated_at);
 						const diffTime = Math.abs(date3 - date1);
 						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+						const denda = diffDays * 500;
 
-						return 'Rp. ' + (diffDays * 500).toLocaleString('id-ID');
+						if(denda > 10000){
+							return 'Rp. 10.000';
+						} else {
+							return 'Rp. ' + denda.toLocaleString('id-ID');
+						}
 
 					} else {
 						return 'Rp. 0';
