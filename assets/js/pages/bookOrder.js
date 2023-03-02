@@ -88,6 +88,9 @@ const deleteRow = async e => {
     // default datetime
     document.querySelector('input[name="start-date"]').valueAsDate = new Date();
 
+	// set end date today + 7 days
+	document.querySelector('input[name="end-date"]').valueAsDate = new Date(new Date().setDate(new Date().getDate() + 7));
+
     // member select
     var selectMember = $('select[name="member"]').selectize({
         valueField: 'id',
