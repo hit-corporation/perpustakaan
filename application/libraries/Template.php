@@ -12,6 +12,10 @@ class template {
         $this->template->loadExtension(new League\Plates\Extension\URI(base_url()));
     }
 
+    public function instance() {
+        return $this->template;
+    }
+
     public function registerFunction($folder, $cb) {
         if(!is_callable($cb)) {
             throw $cb.' is not callable';

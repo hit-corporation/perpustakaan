@@ -4,11 +4,26 @@ const tbody = tableForm.tBodies[0];
 const form = document.forms['form-input'];
 let idx = document.querySelectorAll('.book-row').length;
 
-// default tanggal kembali 7 hari dari sekarang pada form tambah
-tbody.querySelector('input[name="book[0][return_date]"]').valueAsDate = new Date(new Date().setDate(new Date().getDate() + 7));
+const setReturnDate = (date, duration, unit) => {
+    
+    let after = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    switch(unit)
+    {
+        case 'days':
+            after.setDate(date.getDate() + duration);  
+            break;
+        case 'weeks':
+            after.setDate(date.getDate() + (7 * duration));
+            break;
+        case 'months':
+            after.setMonth(date.getMonth() + duration);
+            break;
 
-// default jumlah buku 1
-tbody.querySelector('input[name="book[0][qty]"]').value = 1;
+    }
+
+    return after;
+}
+
 
 // get all books
 const getBooks = async () => {
@@ -95,7 +110,13 @@ const deleteRow = async e => {
     document.querySelector('input[name="start-date"]').valueAsDate = new Date();
 
 	// set end date today + 7 days
-	document.querySelector('input[name="end-date"]').valueAsDate = new Date(new Date().setDate(new Date().getDate() + 7));
+	document.querySelector('input[name="end-date"]').valueAsDate = setReturnDate(form['start-date'].valueAsDate, SETTINGS['due_date_value'], SETTINGS['due_date_unit']);
+    
+    // default tanggal kembali 7 hari dari sekarang pada form tambah
+    tbody.querySelector('input[name="book[0][return_date]"]').valueAsDate = setReturnDate(form['start-date'].valueAsDate, SETTINGS['due_date_value'], SETTINGS['due_date_unit']);
+    
+    // default jumlah buku 1
+    tbody.querySelector('input[name="book[0][qty]"]').value = 1;
 
     // member select
     var selectMember = $('select[name="member"]').selectize({
@@ -182,10 +203,14 @@ const deleteRow = async e => {
 
     // add new book order forms
     document.getElementById('btn-add-book').addEventListener('click', async e => {
+        if(tbody.rows.length >= parseInt(SETTINGS['max_allowed']))
+            return;
         await addData();
 
         //setTimeout(() => observer.disconnect(), 3000);
     });
+
+    
 
   
 

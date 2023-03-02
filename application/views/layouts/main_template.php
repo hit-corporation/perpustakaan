@@ -351,6 +351,7 @@
 
     <script>
     const BASE_URL = "<?=base_url()?>";
+    const SETTINGS = Object.assign(<?=json_encode($settings)?>, {});
     </script>
 
     <?=$this->section('js')?>

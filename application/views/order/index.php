@@ -174,9 +174,7 @@
 <?php $this->start('js') ?>
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
-<script type="application/json">
-    <?=json_encode($due_date)?>
-</script>
+
 <script src="<?=$this->e(base_url('assets/js/pages/bookOrder.js'))?>"></script>
 
 <?php $this->stop() ?>
