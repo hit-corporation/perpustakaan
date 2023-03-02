@@ -17,19 +17,9 @@ class SettingSeeder extends AbstractSeed
     {
 		$data = [
 			[
-				'field' => 'due_date',
-				'key'	=> 'nilai',
-				'value' => '1'
-			],
-			[
-				'field' => 'due_date',
-				'key'	=> 'unit',
-				'value' => 'weeks'
-			],
-			[
-				'field' => 'max_allowed_order',
-				'key'	=> 'total',
-				'value' => '2'
+				'max_allowed' 	  => 2,
+				'due_date_value'  => 1,
+				'due_date_unit'   => 'weeks'
 			],
 		];
 

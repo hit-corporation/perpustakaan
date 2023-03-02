@@ -18,11 +18,11 @@ final class CreateSettingTable extends AbstractMigration
      */
     public function change(): void
     {
-		$table = $this->table('settings');
-		$table->addColumn('field', 'string', ['limit' => 230]);
-		$table->addColumn('key', 'string', ['limit' => 245]);
-		$table->addColumn('value', 'string', ['limit' => 245]);
-		$table->addTimestamps();
-		$table->create();
+      $table = $this->table('settings');
+      $table->addColumn('max_allowed', 'integer', ['default' => 2]);
+      $table->addColumn('due_date_value', 'integer', ['default' => 1]);
+      $table->addColumn('due_date_unit', 'string', ['default' => 'weeks']);
+      $table->addTimestamps();
+      $table->create();
     }
 }

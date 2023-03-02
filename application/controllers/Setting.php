@@ -28,7 +28,7 @@ class Setting extends MY_Controller {
      *
      * @return void
      */
-    public function return_date(): void {
+    public function loan(): void {
 
         $data['due_date'] = $this->setting_model->get_by_field('due_date');
 
@@ -60,13 +60,6 @@ class Setting extends MY_Controller {
 		}
 
         
-        echo $this->template->render('return_date', $data);
+        echo $this->template->render('loan', $data);
     }
-
-	public function test()
-	{
-		$model = $this->setting_model->get_by_field('due_date');
-		header('Content-Type: application/json');
-		echo json_encode($model, JSON_PRETTY_PRINT);
-	}
 }

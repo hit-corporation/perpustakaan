@@ -67,11 +67,11 @@
                             <?php endif ?>
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
-                            <label for="" class="form-label">Tanggal Peminjaman</label>
+                            <label for="" class="form-label">Tanggal Peminjaman <span class="text-danger">*</span></label>
                             <input type="date" class="form-control" name="start-date" value="<?=$_SESSION['error']['old']['start-date'] ?? NULL ?>">
                         </div>
                         <div class="col-12 col-md-6 col-lg-4 mt-3">
-                            <label for="" class="form-label">Tanggal Pengembalian</label>
+                            <label for="" class="form-label">Tanggal Pengembalian <span class="text-danger">*</span></label>
                             <input type="date" class="form-control" name="end-date" value="<?=$_SESSION['error']['old']['end-date'] ?? NULL ?>">
                         </div>
                     </fieldset>
@@ -88,7 +88,7 @@
                                 <tr>
                                     <th class="pl-2" style="width: 40%">Judul <span class="text-danger">*</span></th>
                                     <th class="pl-2">Jumlah <span class="text-danger">*</span></th>
-                                    <th class="pl-2">Tgl Kembali</th>
+                                    <th class="pl-2">Tgl Kembali <span class="text-danger">*</span></th>
                                     <th class="pl-2">Hapus</th>
                                 </tr>
                             </thead>
@@ -174,6 +174,9 @@
 <?php $this->start('js') ?>
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
+<script type="application/json">
+    <?=json_encode($due_date)?>
+</script>
 <script src="<?=$this->e(base_url('assets/js/pages/bookOrder.js'))?>"></script>
 
 <?php $this->stop() ?>

@@ -6,7 +6,7 @@ class Order extends MY_Controller {
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->helper('form');
-        $this->load->model(['member_model', 'transaction_model']);
+        $this->load->model(['member_model', 'transaction_model', 'setting_model']);
     }
 
     /**
@@ -19,7 +19,9 @@ class Order extends MY_Controller {
         $this->template->registerFunction('set_value', function($field, $value = NULL) {
             return set_value($field, $value);
         });
-        echo $this->template->render('index');
+
+        $data['due_date'] = $this->setting_model->get_by_field('due_date');
+        echo $this->template->render('index', $data);
     }
 
     /**

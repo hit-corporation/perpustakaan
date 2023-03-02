@@ -15,7 +15,7 @@
 
 <div class="container-fluid vh-75">
     <nav class="btn-group btn-group-sm">
-        <a class="btn btn-sm btn-purple" href="<?=base_url('setting/return_date')?>"><i class="fas fa-calendar-times"></i> Jatuh Tempo</a>
+        <a class="btn btn-sm btn-purple" href="<?=base_url('setting/loan')?>"><i class="fas fa-calendar-times"></i> Peminjaman</a>
         <a class="btn btn-sm btn-purple" href="<?=base_url('setting/penalty')?>"><i class="fas fa-coins"></i> Denda</a>
     </nav>
     <?=$this->section('setting_pages')?>
