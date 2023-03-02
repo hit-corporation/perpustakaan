@@ -132,7 +132,7 @@
                     </div>
 
                     <div class="row justify-content-end mt-4 border-top pt-3 px-2">
-                        <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button>
+                        <!-- <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button> -->
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
                     </div>
 
