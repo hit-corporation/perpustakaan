@@ -72,7 +72,7 @@ const form = document.forms['form-input'];
 
 <?php endif ?>
 
-<?php if(isset($_SESSION['success'])): ?>
+<?php if(!empty($_SESSION['success']['message'])): ?>
 
     Swal.fire({
         icon: 'success',
