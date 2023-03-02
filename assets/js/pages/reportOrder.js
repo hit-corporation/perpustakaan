@@ -161,7 +161,7 @@ const getAll = async () => {
                 render(data, type, row, _meta)
                 {
                     const btn = '<span class="d-flex flex-nowrap">' +
-                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
+                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 update_data"><i class="fas fa-edit"></i></button>' + 
                                 '</span>';
 
                     return btn;
@@ -179,6 +179,27 @@ const getAll = async () => {
 		tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
         
     });
+
+	// Update data
+	$('#table-main').on('click', '.update_data', function() {
+	
+		const data = tableMain.row($(this).parents('tr')).data();
+		const id = data.id;
+		const member_name = data.member_name;
+		const book_title = data.title;
+		const jumlah_hari_terlambat = data.jumlah_hari_terlambat;
+		console.log(jumlah_hari_terlambat);
+
+		// show modal
+		$('#modal-update').modal('show');
+
+		// set value
+		$('#modal-update input[name="transaction_book_id"]').val(id);
+		$('#modal-update input[name="member_name"]').val(member_name);
+		$('#modal-update input[name="book_title"]').val(book_title);
+		$('#modal-update input[name="jumlah_hari_terlambat"]').val(jumlah_hari_terlambat);
+	
+	});
 
 })(jQuery);
 
