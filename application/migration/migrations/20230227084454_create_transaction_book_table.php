@@ -25,7 +25,10 @@ final class CreateTransactionBookTable extends AbstractMigration
         $table->addColumn('transaction_id', 'integer');
         $table->addColumn('book_id', 'integer');
         $table->addColumn('qty', 'integer');
+        $table->addColumn('amount_penalty', 'integer');
+        $table->addColumn('amount_paid', 'integer');
         $table->addColumn('return_date', 'timestamp', ['null' => true]);
+        $table->addColumn('note', 'text', ['null' => true]);
         $table->addTimestamps();
 
         $table->addForeignKey('transaction_id', 'transactions', 'id', ['update' => 'CASCADE', 'delete' => 'CASCADE']);
