@@ -16,22 +16,22 @@ class StockSeeder extends AbstractSeed
     {  
 		$data = [
 			[
-				'stock_code' 		=> 'STK-001',
-				'book_id'    		=> 1,
-				'available_status' 	=> 1,
-				'rack_no' 			=> 'R-001'
+				'stock_code' 			=> 'STK-001',
+				'book_id'  		  		=> 1,
+				'availability_status' 	=> 1,
+				'rack_no' 				=> 'R-001'
 			],
 			[
-				'stock_code'		=> 'STK-002',
-				'book_id'    		=> 1,
-				'available_status' 	=> 1,
-				'rack_no' 			=> 'R-002'
+				'stock_code'			=> 'STK-002',
+				'book_id'  		  		=> 1,
+				'availability_status' 	=> 1,
+				'rack_no' 				=> 'R-002'
 			],
 			[
-				'stock_code' 		=> 'STK-003',
-				'book_id'    		=> 1,
-				'available_status' 	=> 1,
-				'rack_no' 			=> 'R-003'
+				'stock_code' 			=> 'STK-003',
+				'book_id'  		  		=> 1,
+				'availability_status' 	=> 1,
+				'rack_no' 				=> 'R-003'
 			]
 		];
 
