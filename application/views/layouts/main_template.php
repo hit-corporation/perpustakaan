@@ -118,14 +118,14 @@
                 Master
             </div> -->
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            <!-- Nav Item - Pages Collapse Menu Pendaftaran-->
             <li class="nav-item <?=$CI->uri->segment(1) == 'member' ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBooks"
                     aria-expanded="true" aria-controls="collapseBooks">
                     <i class="fa fa-book" aria-hidden="true"></i>
-                    <span>Masters</span>
+                    <span>Pendaftaran</span>
                 </a>
-                <div id="collapseBooks" class="collapse <?=($CI->uri->segment(1) == 'member' || $CI->uri->segment(1) == 'publisher' || $CI->uri->segment(1) == 'kategori') ? 'show' : '' ?>" 
+                <div id="collapseBooks" class="collapse <?=($CI->uri->segment(1) == 'member' || $CI->uri->segment(1) == 'publisher' || $CI->uri->segment(1) == 'kategori' || $CI->uri->segment(1) == 'user') ? 'show' : '' ?>" 
 					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
@@ -144,6 +144,32 @@
 							<i class="fas fa-tags"></i>
 							<span>Kategori</span>
 						</a>
+
+						<a class="collapse-item <?=$CI->uri->segment(1) == 'user' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('user')?>">
+							<i class="fas fa-tags"></i>
+							<span>User</span>
+						</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Pages Collapse Menu Laporan-->
+            <li class="nav-item <?=$CI->uri->segment(2) == 'report_order' ? 'active' : '' ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
+                    aria-expanded="true" aria-controls="collapseLaporan">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Laporan</span>
+                </a>
+                <div id="collapseLaporan" class="collapse <?=($CI->uri->segment(2) == 'report_order') ? 'show' : '' ?>" 
+					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+
+                        <a class="collapse-item <?=$CI->uri->segment(2) == 'report_order' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('order/report_order')?>">
+							<i class="fa fa-user" aria-hidden="true"> </i>
+							<span>Pengembalian</span>
+						</a>
+
                     </div>
                 </div>
             </li>
@@ -156,18 +182,18 @@
             </li>
 
 			 <!-- Nav Item - Peminjaman -->
-			 <li class="nav-item <?=$CI->uri->segment(1) == 'order' ? 'active bg-dark-2' : '' ?>">
+			 <li class="nav-item <?=($CI->uri->segment(1) == 'order' && $CI->uri->segment(2) == null) ? 'active bg-dark-2' : '' ?>">
                 <a class="nav-link" href="<?=base_url('order')?>">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Peminjaman</span></a>
             </li>
 
             <!-- Nav Item - Users -->
-            <li class="nav-item <?=$CI->uri->segment(1) == 'user' ? 'active bg-dark-2' : '' ?>">
-                <a class="nav-link" href="<?=base_url('user')?>">
+            <!-- <li class="nav-item <? // =$CI->uri->segment(1) == 'user' ? 'active bg-dark-2' : '' ?>">
+                <a class="nav-link" href="<? // =base_url('user')?>">
                     <i class="fas fa-fw fa-user"></i>
                     <span>User</span></a>
-            </li>
+            </li> -->
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
