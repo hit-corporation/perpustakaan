@@ -67,19 +67,16 @@ const addData = async () => {
     const cell_0 = tr.insertCell(0);
     const cell_1 = tr.insertCell(1);
     const cell_2 = tr.insertCell(2);
-    const cell_3 = tr.insertCell(3);
 
     // cell 0
     cell_0.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
                        `<select class="form-control book-title" name="book[${(idx)}][title]"></select>`; 
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
-    cell_1.innerHTML = '<label class="d-lg-none mb-0">Jumlah</label>' +
-                        `<input type="number" class="form-control" min="0" name="book[${(idx)}][qty]" value="1">`;
-    cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
-    // cell 2
+
     cell_2.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
-                        `<input type="date" class="form-control" name="book[${(idx)}][return_date]" value="${new Date(new Date().setDate(new Date().getDate() + 7)).toISOString().split('T')[0]}">`;
+                        `<input type="date" class="form-control" name="book[${(idx)}][return_date]"` + 
+						'value="'+ form['end-date'].value + '">';
     cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 3
     const btnDelete = document.createElement('button');

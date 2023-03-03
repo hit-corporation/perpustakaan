@@ -19,8 +19,7 @@ class Order extends MY_Controller {
         $this->template->registerFunction('set_value', function($field, $value = NULL) {
             return set_value($field, $value);
         });
-        $data['due_date'] = ['value' => $this->settings['due_date_value'], 'unit' => $this->settings['due_date_unit']];
-        echo $this->template->render('index', $data);
+        echo $this->template->render('index');
 
     }
 

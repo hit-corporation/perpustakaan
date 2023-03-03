@@ -25,8 +25,8 @@ return
                 'host' => 'localhost',
                 'name' => 'perpustakaan',
                 'user' => 'postgres',
-                'pass' => 'postgroow',
-                'port' => '65432',
+                'pass' => 'root',
+                'port' => '5432',
                 'charset' => 'utf8',
             ],
             'testing' => [

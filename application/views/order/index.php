@@ -87,7 +87,6 @@
                             <thead class="bg-primary text-white d-none d-lg-table-head">
                                 <tr>
                                     <th class="pl-2" style="width: 40%">Judul <span class="text-danger">*</span></th>
-                                    <th class="pl-2">Jumlah <span class="text-danger">*</span></th>
                                     <th class="pl-2">Tgl Kembali <span class="text-danger">*</span></th>
                                     <th class="pl-2">Hapus</th>
                                 </tr>
@@ -99,13 +98,6 @@
                                         <select class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][title]'])):?> is-invalid <?php endif ?>" name="book[0][title]" value="<?=$_SESSION['error']['old']['book'][0]['title'] ?? NULL ?>"></select>
 										<?php if(!empty($_SESSION['error']['errors']['book[0][title]'])): ?>
 											<small class="text-danger"><?=$_SESSION['error']['errors']['book[0][title]']?></small>
-										<?php endif ?>
-                                    </td>
-                                    <td class="d-inline-block d-lg-table-cell">
-                                        <label class="d-lg-none mb-0">Jumlah</label>
-                                        <input type="number" min="0" class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][qty]'])):?> is-invalid <?php endif ?>" name="book[0][qty]" value="<?=$_SESSION['error']['old']['book'][0]['qty'] ?? NULL ?>">
-										<?php if(!empty($_SESSION['error']['errors']['book[0][qty]'])): ?>
-											<small class="text-danger"><?=$_SESSION['error']['errors']['book[0][qty]']?></small>
 										<?php endif ?>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
