@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use SebastianBergmann\Type\NullType;
 
 class Order extends MY_Controller {
 
@@ -98,11 +100,13 @@ class Order extends MY_Controller {
             $data = [
                 'transaction_id'  => $_id,
                 'book_id'         => $book['title'],
-                'qty'             => $book['qty'],
+                'qty'             => 1,
                 'return_date'     => $book['return_date']
             ];
 
             $this->transaction_model->upsert($data, ['transaction_id' => $_id, 'book_id' => $book['title']]);
+
+			$this->db->set('qty', 'qty-1', FALSE)->where('id', $data['book_id'])->update('books');
         }
 
         $this->db->trans_complete();
