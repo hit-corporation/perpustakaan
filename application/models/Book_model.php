@@ -21,7 +21,7 @@ class Book_model extends CI_Model {
 	{
 
 		$this->db->select('a.id, a.title, a.cover_img, a.author, a.isbn, a.publish_year, a.description, a.qty, a.category_id, a.publisher_id, a.author, 
-							s.rack_no, b.category_name, c.publisher_name')
+							s.rack_no, b.category_name, c.publisher_name, TO_CHAR(a.created_at, \'YYYY-MM-DD\') as created_at', FALSE)
 				 ->from('books a')
 				 ->join('categories b', 'a.category_id=b.id')
 				 ->join('publishers c', 'a.publisher_id=c.id')

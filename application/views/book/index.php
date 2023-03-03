@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/css/selectize.bootstrap4.css'))?>">
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
+<link rel="stylesheet" href="<?=$this->e(base_url('assets/vendor/pagination-system/dist/pagination-system.min.css'))?>">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 
 <style>
@@ -14,6 +15,14 @@
 #category-tree.show {
     width: 24em;
     height: 18em;
+}
+
+.img-grid-height {
+    height: 12.5rem;
+}
+
+#data-grid {
+    overflow-y: auto;
 }
 </style>
 <?php $this->stop() ?>
@@ -25,56 +34,26 @@
     <div class="row">
         <div class="col-12">
 
-            <div class="d-sm-flex align-items-center justify-content-between mb-4 px-2">
+            <div class="d-sm-flex align-items-center justify-content-between pb-2 mb-3 px-2 border-bottom">
                 <h1 class="h3 mb-0 text-gray-800"><?=$this->e('Buku')?></h1>
                 <button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"  data-target="#modal-input" data-toggle="modal">
                     <i class="fas fa-plus fa-sm text-white-50"></i> 
                     Tambah Data
                 </button>
             </div>
-        <div class="card">
-            <div class="card-body">
+            
+            <div class="row">
+                <div class="col-12 col-lg-3"></div>
+                <div class="col-12 col-lg-9 vh-75">
+                    <div class="row" id="data-grid">
+                        <!-- images grid -->
 
-				<div class="col-xl-6 col-lg-6 col-md-6 float-right">
-					<form name="form-search">
-						<div class="row">
-							<div class="col-10">
-								<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
-							</div>
-							<div class="col-2">
-								<div class="btn-group btn-group-sm">
-									<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
-									<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-
-                <div class="table-responsive">
-                    <table id="table-main" class="table table-sm w-100">
-                        <thead class="bg-indigo text-white">
-                            <tr>
-                                <th>ID</th>
-                                <th>Gambar</th>
-                                <th>Judul</th>
-                                <th>Kategori ID</th>
-                                <th>Kategori</th>
-                                <th>Penerbit ID</th>
-                                <th>Penerbit</th>
-                                <th>Penulis</th>
-                                <th>ISBN</th>
-								<th>Stok</th>
-								<th>No Rak</th>
-                                <th>Operation</th>
-                            </tr>
-                        </thead>
-                    </table>
+                        <!-- end image grid -->
+                    </div>
+                    <div id="paging-container"></div>
                 </div>
             </div>
-        </div>
-        
-        
+            
         </div>
     </div>
 </div>
@@ -267,6 +246,7 @@
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/vendor/pagination-system/dist/pagination-system.umd.min.js'))?>"></script>
 
 <?php if(!empty($_SESSION['success'])): ?>
 <script>

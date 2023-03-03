@@ -1,4 +1,5 @@
 'use strict';
+//import PaginationSystem from '../../node_modules/pagination-system/dist/pagination-system.esm.min.js';
 
 const formSearch = document.forms['form-search'];
 const form = document.forms['form-input'],
@@ -50,7 +51,7 @@ const getBooks = async () => {
     }
 }
 
-(async $ => {
+(async ($, window) => {
 
     // category tree
     const categories = [...(await getCategories())].map(x => ({id: x.id, text: x.category_name, parent: x.parent_category == null ? '#' : x.parent_category }));
@@ -123,229 +124,148 @@ const getBooks = async () => {
         form['book-year'].value = thisYear;
     
 
-    // Datatable
-    var table = $('#table-main').DataTable({
-        serverSide: true,
-        processing: true,
-        ajax: {
-            url: BASE_URL + 'book/get_all_paginated'
+    // Paging Grid
+    const pageOptions = {
+        container: document.querySelector('#data-grid'),
+        dataContainer: document.querySelector('#data-grid'),
+        dataRenderFn: (datapage) => {
+            console.log(datapage);
+            return `${datapage.map(item => 
+                `<div class="col-12 col-lg-6">
+                    <figure class="d-flex bg-white rounded shadow">
+                        <img class="img-fluid img-grid-height" loading="lazy" src="${item.cover_img.length > 0 ? BASE_URL + `assets/img/books/${item.cover_img}` : BASE_URL + 'assets/img/Placeholder_book.svg' }">
+                        <figcaption class="w-100 p-0 m-0">
+                            <div class="position-relative p-2 top-0 left-0 h-100 w-100">
+                                <h6 class="text-primary">${item.created_at}</h6>
+                                <h4>${item.title}</h4>
+                                <div class="position-absolute p-2 w-100" style="bottom: 0; left: 0">
+                                    <hr class="mb-2">
+                                    <span class="d-flex flex-nowrap w-100 justify-content-end">
+                                        <button role="button" class="btn-circle btn-info rounded-circle border-0 show_data"><i class="fas fa-eye"></i></button>
+                                        <button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button> 
+                                        <a role="button" href="${BASE_URL}book/erase/${item.id}" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </div>`
+            ).join('')}`;
         },
-        columns: [
-            {
-                data: 'id',
-                visible: false
-            },
-            {
-                data: 'cover_img',
-                render: (data, type, row, _meta) => {
-                    if(data)
-                        return '<img src="'+BASE_URL+'assets/img/books/'+data+'" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';
-                    return  '<img src="'+BASE_URL+'assets/img/Placeholder_book.svg" height="'+(165 - 50)+'" width="'+(128 - 50)+'">';;
-                }
-            },
-            {
-                data: 'title',
-                className:'align-middle',
-                createdCell: cell => {
-                    cell.classList.add('text-dark');
-                }
-            },
-            {
-                data: 'category_id',
-                visible: false
-            },
-            {
-                data: 'category_name',
-                className: 'align-middle'
-            },
-            {
-                data: 'publisher_id',
-                visible: false
-            },
-            {
-                data: 'publisher_name',
-                className: 'align-middle'
-            },
-            {
-                data: 'author',
-                className: 'align-middle'
-            },
-            {
-                data: 'isbn',
-                className: 'align-middle'
-            },
-            {
-                data: 'qty',
-                className: 'align-middle'
-            },
-            {
-                data: 'rack_no',
-                className: 'align-middle'
-            },
-            {
-                data: null,
-                className: 'align-middle',
-                render(data, type, row, _meta)
-                {
-                    const btn = '<span class="d-flex flex-nowrap">' +
-                                '<button role="button" class="btn-circle btn-info rounded-circle border-0 show_data"><i class="fas fa-eye"></i></button>' + 
-                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 edit_data"><i class="fas fa-edit"></i></button>' + 
-                                `<a role="button" href="${BASE_URL}book/erase/${row.id}" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></a>` + 
-                                '</span>';
+        url: BASE_URL + 'book/get_all_paginated',
+        urlParams: {
+            limit: 'length',
+            pageNumber: 'page'
+        },
+        perPage: 8,
+        pagingContainer: document.querySelector('#paging-container')
+    };
 
-                    return btn;
-                }
-            }
-        ]
+    const dataPage =  await (new PaginationSystem(pageOptions)).getDataKeys().then(t => {
+        console.log(t);
     });
+    console.log(dataPage);
 
-    // show one
-    $('#table-main tbody').on('click', 'button.show_data', e => {
-        var row = table.row(e.target.parentNode.closest('tr')).data();
-        var sets = document.querySelectorAll('[data-item]');
+    // // show one
+    // $('#table-main tbody').on('click', 'button.show_data', e => {
+    //     var row = table.row(e.target.parentNode.closest('tr')).data();
+    //     var sets = document.querySelectorAll('[data-item]');
 
-        for(var set of sets)
-        {
-            if(set.dataset.item === 'cover_img')
-            {
-                if(row[set.dataset.item])
-                    set.src = BASE_URL + 'assets/img/books/' + row[set.dataset.item];
-                else
-                    set.src = BASE_URL + 'assets/img/Placeholder_book.svg'
-            }
+    //     for(var set of sets)
+    //     {
+    //         if(set.dataset.item === 'cover_img')
+    //         {
+    //             if(row[set.dataset.item])
+    //                 set.src = BASE_URL + 'assets/img/books/' + row[set.dataset.item];
+    //             else
+    //                 set.src = BASE_URL + 'assets/img/Placeholder_book.svg'
+    //         }
 
-            set.innerText = row[set.dataset.item];
-        }
+    //         set.innerText = row[set.dataset.item];
+    //     }
 
-        $('#modal-show').modal('show');
-    });
+    //     $('#modal-show').modal('show');
+    // });
 
-    // reset
-    form.addEventListener('reset', e => {
-        e.preventDefault();
-        resetForm();
-    });
+    // // reset
+    // form.addEventListener('reset', e => {
+    //     e.preventDefault();
+    //     resetForm();
+    // });
 
-    // add data
-    document.getElementById('btn-add').addEventListener('click', e => {
-         // reset form
-         form.action = BASE_URL + 'book/store';
-         resetForm();
-    });
+    // // add data
+    // document.getElementById('btn-add').addEventListener('click', e => {
+    //      // reset form
+    //      form.action = BASE_URL + 'book/store';
+    //      resetForm();
+    // });
 
-    // edit data
-    $('#table-main tbody').on('click', 'button.edit_data', e => {
-        var row = table.row(e.target.parentNode.closest('tr')).data();
+    // // edit data
+    // $('#table-main tbody').on('click', 'button.edit_data', e => {
+    //     var row = table.row(e.target.parentNode.closest('tr')).data();
 
-        // reset form
-        form.action = BASE_URL + 'book/edit';
-        resetForm();
+    //     // reset form
+    //     form.action = BASE_URL + 'book/edit';
+    //     resetForm();
 
-        form['book-id'].value = row.id;
-        form['book-title'].value = row.title;
-        form['book-category'].value = row.category_id;
-        form['book-category_text'].value = row.category_name;
-        form['book-publisher'].value = row.publisher_id;
-        form['book-author'].value = row.author;
-        form['book-isbn'].value = row.isbn;
-        form['book-year'].value = row.publish_year;
-        form['book-qty'].value = row.qty;
-        form['book-description'].value = row.description;
-        form['book-img_name'].value = row.cover_img;
+    //     form['book-id'].value = row.id;
+    //     form['book-title'].value = row.title;
+    //     form['book-category'].value = row.category_id;
+    //     form['book-category_text'].value = row.category_name;
+    //     form['book-publisher'].value = row.publisher_id;
+    //     form['book-author'].value = row.author;
+    //     form['book-isbn'].value = row.isbn;
+    //     form['book-year'].value = row.publish_year;
+    //     form['book-qty'].value = row.qty;
+    //     form['book-description'].value = row.description;
+    //     form['book-img_name'].value = row.cover_img;
 
-        // imagge
-        if(row.cover_img)
-          imgCover.src =  BASE_URL + 'assets/img/books/' + row.cover_img;
+    //     // imagge
+    //     if(row.cover_img)
+    //       imgCover.src =  BASE_URL + 'assets/img/books/' + row.cover_img;
 
-        // tree
-        $('#category-tree').jstree(true).select_node(form["book-category"].value);
+    //     // tree
+    //     $('#category-tree').jstree(true).select_node(form["book-category"].value);
 
-        // select
-        selectize.setValue(row.publisher_id);
+    //     // select
+    //     selectize.setValue(row.publisher_id);
 
-        $('#modal-input').modal('show');
-    });
+    //     $('#modal-input').modal('show');
+    // });
 
-     // reset form action
-    function resetForm()
-    {
-        const formData = new FormData(form);
-        const fields = Object.fromEntries(formData.entries());
+    //  // reset form action
+    // function resetForm()
+    // {
+    //     const formData = new FormData(form);
+    //     const fields = Object.fromEntries(formData.entries());
         
-        for(const field in fields) 
-        {
-            form[field].value = null;
-            form[field].classList.remove('is-invalid');
-            if(document.querySelector('small[data-error="'+field+'"]'))
-                document.querySelector('small[data-error="'+field+'"]').innerHTML = null;
-        }
+    //     for(const field in fields) 
+    //     {
+    //         form[field].value = null;
+    //         form[field].classList.remove('is-invalid');
+    //         if(document.querySelector('small[data-error="'+field+'"]'))
+    //             document.querySelector('small[data-error="'+field+'"]').innerHTML = null;
+    //     }
 
-        $('#category-tree').jstree(true).refresh();
-        imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
-        selectize.clear();
-        form['book-year'].value = thisYear;
+    //     $('#category-tree').jstree(true).refresh();
+    //     imgCover.src = BASE_URL + 'assets/img/Placeholder_book.svg';
+    //     selectize.clear();
+    //     form['book-year'].value = thisYear;
         
        
-    }
+    // }
 
-	// Search submit
-    formSearch.addEventListener('submit', e => {
-        e.preventDefault();
+	// // Search submit
+    // formSearch.addEventListener('submit', e => {
+    //     e.preventDefault();
 		
-        // if(formSearch['s_member_name'].value)
-		table.columns(1).search(formSearch['s_book_name'].value).draw();
+    //     // if(formSearch['s_member_name'].value)
+	// 	table.columns(1).search(formSearch['s_book_name'].value).draw();
         
-    });
-})(jQuery);
+    // });
+})(jQuery, window);
 
-// const setGridDisplay = async data => {
-//     display.innerHTML = null;
+const gridDisplay = () => {
 
-//     Array.from(data, item => {
-//         const col = document.createElement('div');
-//         col.classList.add('col-12', 'col-md-4', 'col-lg-2');
-
-//         const card = document.createElement('div');
-//         card.classList.add('card');
-//         card.style.height = "300px";
-//         col.appendChild(card);
-
-//         const body = document.createElement('div');
-//         body.classList.add('card-body', 'px-2', 'pt-2', 'justify-content-center');
-//         card.appendChild(body);
-
-//         let cover = BASE_URL + 'assets/img/Placeholder_book.svg';
-
-//         if(item.cover_img)
-//             cover = BASE_URL + 'assets/img/books/'+item.cover_img;
-
-//         const img = document.createElement('img');
-//         img.classList.add('w-100', 'mx-auto');
-//         img.src = cover;
-//         img.loading = "lazy";
-//         img.setAttribute('style', 'height: 165px !important');
-//         body.appendChild(img);
-
-//         const p = document.createElement('p');
-//         p.innerHTML = item.title;
-//         p.style.fontSize = '14px';
-//         p.classList.add('text-center');
-//         body.appendChild(p);
-
-//         const btnContainer = document.createElement('div');
-//         btnContainer.classList.add('card-footer', 'bg-white', 'd-flex', 'justify-content-center');
-//         btnContainer.style.bottom = 0;
-//         btnContainer.style.left = 0;
-//         card.appendChild(btnContainer);
-
-//         const btnDetails = document.createElement('a');
-//         btnDetails.classList.add('btn', 'btn-sm', 'btn-info', 'mx-auto');
-//         btnDetails.innerHTML = 'Details';
-//         btnDetails.href = BASE_URL + 'book/show/' + item.id;
-//         btnContainer.appendChild(btnDetails);
-
-//         display.appendChild(col);
-//     });
-
-// }
+}
 

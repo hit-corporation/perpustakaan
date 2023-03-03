@@ -16,22 +16,25 @@ user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 /vendor/
+phinx.*
+/assets/js/pages/book copy.js
+application/views/book/index copy.php
 
 # IDE Files
 #-------------------------
-/nbproject/
-.idea/*
+# /nbproject/
+# .idea/*
 
 ## Sublime Text cache files
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
+# *.tmlanguage.cache
+# *.tmPreferences.cache
+# *.stTheme.cache
+# *.sublime-workspace
+# *.sublime-project
 /tests/tests/
 /tests/results/
 application/session/
 application/config/database.php
 assets/node_modules
 assets/img/books
-/phinx.php
+
