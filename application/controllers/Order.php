@@ -171,6 +171,9 @@ class Order extends MY_Controller {
 			$this->db->where('id', $transaction_book_id);
 			$this->db->update('transaction_book', $data);
 
+			// update data book
+			$this->db->set('qty', 'qty+1', FALSE)->where('id', $this->input->post('book_id', TRUE))->update('books');
+
 			// set flashdata
 			$resp = ['message' => 'Data berhasil di input !!!'];
 			$this->session->set_flashdata('success', $resp);

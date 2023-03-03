@@ -59,6 +59,7 @@
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
+                                <th>Book ID</th>
                                 <th>Nama Peminjam</th>
                                 <th>Nama Buku</th>
                                 <th>Tanggal Pinjam</th>
@@ -93,6 +94,7 @@
             <div class="modal-body">
                 <form id="form-input" name="form-input" method="POST" action="<?=base_url('order/report_order')?>">
                     <input type="text" class="d-none" name="transaction_book_id">
+                    <input type="text" class="d-none" name="book_id">
                     <div class="form-group">
                         <label>Nama Anggota <span class="text-danger">*</span></label>
                         <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['member_name'])):?> is-invalid <?php endif ?>" 

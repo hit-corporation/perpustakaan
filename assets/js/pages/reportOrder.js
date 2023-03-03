@@ -52,6 +52,10 @@ const setting = async () => {
                 visible: false
             },
             {
+                data: 'book_id',
+                visible: false
+            },
+            {
                 data: 'member_name',
                 className: 'align-middle pl-2'
             },
@@ -244,6 +248,7 @@ const setting = async () => {
 	
 		const data = tableMain.row($(this).parents('tr')).data();
 		const id = data.id;
+		const book_id = data.book_id;
 		const member_name = data.member_name;
 		const book_title = data.title;
 		const return_date = data.return_date;
@@ -280,6 +285,7 @@ const setting = async () => {
 
 		// set value
 		$('#modal-update input[name="transaction_book_id"]').val(id);
+		$('#modal-update input[name="book_id"]').val(book_id);
 		$('#modal-update input[name="member_name"]').val(member_name);
 		$('#modal-update input[name="book_title"]').val(book_title);
 		$('#modal-update input[name="jumlah_hari_terlambat"]').val(jumlah_hari_terlambat);

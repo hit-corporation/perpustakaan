@@ -30,7 +30,7 @@ class Transaction_model extends CI_Model {
 		if(!empty($limit) && !is_null($offset))
 		$this->db->limit($limit, $offset);
         
-		$this->db->select('transactions.*, transaction_book.id, transaction_book.qty, transaction_book.return_date, transaction_book.updated_at, transaction_book.amount_paid, transaction_book.note, books.title, members.member_name, 
+		$this->db->select('transactions.*, transaction_book.id, transaction_book.book_id, transaction_book.qty, transaction_book.return_date, transaction_book.updated_at, transaction_book.amount_paid, transaction_book.note, books.title, members.member_name, 
 		AGE(transaction_book.return_date, trans_timestamp) AS jumlah_hari_pinjam');
         $this->db->from('transactions');
 		$this->db->join('transaction_book', 'transactions.id = transaction_book.transaction_id');
