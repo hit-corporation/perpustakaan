@@ -87,6 +87,7 @@ const form = document.forms['form-input'];
 
     form['due_date[value]'].value = `<?=$_SESSION['error']['old']['due_date[value]'] ?? $settings['due_date_value'] ?>`;
     form['due_date[unit]'].value = `<?=$_SESSION['error']['old']['due_date[unit]'] ?? $settings['due_date_unit'] ?>`;
+    form['max_loan'].value = `<?=$_SESSION['error']['old']['max_loan'] ?? $settings['max_allowed'] ?>`;
 
 })(jQuery)
 

@@ -86,7 +86,7 @@
                         <table id="book-form" class="table table-sm w-100">
                             <thead class="bg-primary text-white d-none d-lg-table-head">
                                 <tr>
-                                    <th class="pl-2" style="width: 40%">Judul <span class="text-danger">*</span></th>
+                                    <th class="pl-2" style="width: 50%">Judul <span class="text-danger">*</span></th>
                                     <th class="pl-2">Tgl Kembali <span class="text-danger">*</span></th>
                                     <th class="pl-2">Hapus</th>
                                 </tr>

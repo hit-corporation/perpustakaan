@@ -66,11 +66,6 @@ class Order extends MY_Controller {
                 'rules' => 'required'
 			];
 			$validation[] = [
-				'field' => 'book['.$k.'][qty]',
-                'label' => 'Jumlah Buku',
-                'rules' => 'required|integer'
-			];
-			$validation[] = [
 				'field' => 'book['.$k.'][return_date]',
                 'label' => 'Tanggal Kembali',
                 'rules' => 'callback_valid_date'
@@ -104,6 +99,7 @@ class Order extends MY_Controller {
                 'transaction_id'  => $_id,
                 'book_id'         => $book['title'],
                 'qty'             => $book['qty'],
+                'return_date'     => $book['return_date']
             ];
 
             $this->transaction_model->upsert($data, ['transaction_id' => $_id, 'book_id' => $book['title']]);

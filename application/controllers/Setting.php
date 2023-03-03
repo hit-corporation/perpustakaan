@@ -43,7 +43,7 @@ class Setting extends MY_Controller {
             {
                 $errors = ['errors' => $this->form_validation->error_array(), 'old' => $_POST];
                 $this->session->set_flashdata('error', $errors);
-                echo $this->template->render('return_date');
+                echo $this->template->render('loan');
                 return;
             }
 

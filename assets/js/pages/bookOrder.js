@@ -74,10 +74,10 @@ const addData = async () => {
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
 
-    cell_2.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
+    cell_1.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
                         `<input type="date" class="form-control" name="book[${(idx)}][return_date]"` + 
 						'value="'+ form['end-date'].value + '">';
-    cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
+    cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 3
     const btnDelete = document.createElement('button');
     btnDelete.innerHTML = '<i class="fas fa-trash"></i>';
@@ -86,8 +86,8 @@ const addData = async () => {
     btnDelete.onclick = async e => await deleteRow(e);
 
     //cell_3.innerHTML =  '<button href="javascript:void(0)" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>';
-    cell_3.appendChild(btnDelete);
-    cell_3.classList.add('d-inline-block', 'd-lg-table-cell');
+    cell_2.appendChild(btnDelete);
+    cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
     
     // delete button;
 
@@ -112,8 +112,6 @@ const deleteRow = async e => {
     // default tanggal kembali 7 hari dari sekarang pada form tambah
     tbody.querySelector('input[name="book[0][return_date]"]').valueAsDate = setReturnDate(form['start-date'].valueAsDate, SETTINGS['due_date_value'], SETTINGS['due_date_unit']);
     
-    // default jumlah buku 1
-    tbody.querySelector('input[name="book[0][qty]"]').value = 1;
 
     // member select
     var selectMember = $('select[name="member"]').selectize({
@@ -178,6 +176,7 @@ const deleteRow = async e => {
        
         for(var n=0;n<=idx;n++)
         {
+
             var $select = $('select[name="book['+(n + 1)+'][title]"]').selectize({
                 create: false,
                 valueField: 'id',
@@ -185,13 +184,6 @@ const deleteRow = async e => {
                 searchField: ['title'],
                 options: books
             });
-
-			var sl = $select[0].selectize;
-
-			sl.load(e => {
-				if(form['book['+(n + 1)+'][title]'].getAttribute('value'))
-					sl.setValue(form['book['+(n + 1)+'][title]'].getAttribute('value'));
-			});
         }
        
     });
