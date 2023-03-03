@@ -200,7 +200,18 @@ const deleteRow = async e => {
     });
 
     
+    // input end-date change then all tgl pengembalian must changes
+    document.querySelector('input[name="end-date"]').addEventListener('change', e => {
+       
+        Array.from(tbody.rows, item => {
+            
+            var inputDate = item.cells[1].getElementsByTagName('input')[0];
+            console.log(inputDate);
+            inputDate.valueAsDate = e.target.valueAsDate;
 
+        })
+
+    });
   
 
 })(jQuery);
