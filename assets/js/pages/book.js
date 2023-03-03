@@ -138,6 +138,15 @@ const getBooks = async () => {
                             <div class="position-relative p-2 top-0 left-0 h-100 w-100">
                                 <h6 class="text-primary">${item.created_at}</h6>
                                 <h4>${item.title}</h4>
+                                <dl class="mb-5">
+                                    <dt>Penerbit<dt>
+                                    <dd>${item.publisher_name}</dd>
+                                    <dt>Penulis<dt>
+                                    <dd>${item.author}</dd>
+                                    <dt>ISBN<dt>
+                                    <dd>${item.isbn ? item.isbn : '-' }</dd>
+                                </dl>
+                                <div class="py-2"></div>
                                 <div class="position-absolute p-2 w-100" style="bottom: 0; left: 0">
                                     <hr class="mb-2">
                                     <span class="d-flex flex-nowrap w-100 justify-content-end">
