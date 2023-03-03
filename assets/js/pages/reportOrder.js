@@ -106,7 +106,7 @@ const setting = async () => {
 					{
 						// TANGGAL SEKARANG - TANGGAL PENGEMBALIAN = JUMLAH HARI TERLAMBAT
 						const diffTime = Math.abs(date2 - date1);
-						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
 
 						return diffDays + ' hari';
 						
@@ -116,7 +116,7 @@ const setting = async () => {
 
 						// TANGGAL PENGEMBALIAN YANG DIUPDATE - TANGGAL PENGEMBALIAN = JUMLAH HARI TERLAMBAT
 						const diffTime = Math.abs(date3 - date1);
-						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
 						return diffDays + ' hari';
 					} else {
@@ -137,7 +137,7 @@ const setting = async () => {
 					if(date2 > date1 && row.updated_at == null)
 					{
 						const diffTime = Math.abs(date2 - date1);
-						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 						const denda = diffDays * 500;
 
 						if(denda > 10000){
@@ -149,7 +149,7 @@ const setting = async () => {
 					} else if (date2 > date1 && row.updated_at != null) {
 						const date3 = new Date(row.updated_at);
 						const diffTime = Math.abs(date3 - date1);
-						const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 						const denda = diffDays * 500;
 
 						if(denda > 10000){
@@ -162,6 +162,18 @@ const setting = async () => {
 						return 'Rp. 0';
 					}
 
+				}
+			},
+			{
+				// paid amount
+				data: 'amount_paid',
+				render(data, type, row, _meta)
+				{
+					if (data == null) {
+						return 'Rp. 0';
+					} else {
+						return 'Rp. ' + data.toLocaleString('id-ID');
+					}
 				}
 			},
 			{
@@ -183,6 +195,19 @@ const setting = async () => {
 				}
 
 			},
+			{
+				// note
+				data: 'note',
+				render(data, type, row, _meta)
+				{
+					if(data != null || data != '')
+					{
+						return data;
+					} else {
+						return '-';
+					}
+				}
+			},
             {
                 data: null,
                 render(data, type, row, _meta)
@@ -190,11 +215,12 @@ const setting = async () => {
                     const btn = '<span class="d-flex flex-nowrap">' +
                                 '<button role="button" class="btn-circle btn-success rounded-circle border-0 update_data"><i class="fas fa-edit"></i></button>' + 
                                 '</span>';
-								
+
 					// jika tanggal pengembalian sudah diupdate hide button
 					if(row.updated_at != null)
 					{
-						return '';
+						// add class disabled to button
+						return btn.replace('update_data', 'd-none disabled update_data');
 					} else {
                     	return btn;
 					}
@@ -221,7 +247,7 @@ const setting = async () => {
 		const member_name = data.member_name;
 		const book_title = data.title;
 		const return_date = data.return_date;
-		const diffDays = Math.ceil((Math.abs(new Date(return_date) - new Date())) / (1000 * 60 * 60 * 24));
+		const diffDays = Math.floor((Math.abs(new Date(return_date) - new Date())) / (1000 * 60 * 60 * 24));
 		let jumlah_hari_terlambat = 0;
 		let denda = 0;
 		

@@ -55,7 +55,7 @@
 
             <div class="card-body">
                 <div class="table-reponsive">
-					<table id="table-main" class="table table-sm table-striped" width="100%">
+					<table id="table-main" class="table table-sm table-striped w-100" style="overflow-x: auto;">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
@@ -66,7 +66,9 @@
                                 <th>Batas Waktu Pengembalian</th>
                                 <th>Terlambat</th>
                                 <th>Denda</th>
+                                <th>Terbayar</th>
                                 <th>Tanggal Pengembalian</th>
+                                <th>Catatan</th>
                                 <th></th>
                             </tr>
                         </thead>
