@@ -190,8 +190,14 @@ const setting = async () => {
                     const btn = '<span class="d-flex flex-nowrap">' +
                                 '<button role="button" class="btn-circle btn-success rounded-circle border-0 update_data"><i class="fas fa-edit"></i></button>' + 
                                 '</span>';
-
-                    return btn;
+								
+					// jika tanggal pengembalian sudah diupdate hide button
+					if(row.updated_at != null)
+					{
+						return '';
+					} else {
+                    	return btn;
+					}
                 }
             }
        ]
