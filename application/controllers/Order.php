@@ -163,8 +163,9 @@ class Order extends MY_Controller {
 			$notes = $this->input->post('notes', TRUE);
 
 			// update data transaction book
+            $data = ['amount_penalty' => $penalty, 'amount_paid' => $bayar, 'note' => $notes, 'updated_at' => date('Y-m-d H:i:s.u'), 'actual_return' => date('Y-m-d H:i:s')];
 			$this->db->where('id', $transaction_book_id);
-			$this->db->update('transaction_book', ['amount_penalty' => $penalty, 'amount_paid' => $bayar, 'notes' => $notes, 'updated_at' => date('Y-m-d H:i:s')]);
+			$this->db->update('transaction_book', $data);
 
 			// set flashdata
 			$resp = ['message' => 'Data berhasil di input !!!'];

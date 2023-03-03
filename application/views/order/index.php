@@ -160,6 +160,32 @@
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
+<?php if(isset($_SESSION['success'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'success',
+        title: '<h4 class="text-success">SUKSES</h4>',
+        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
+<?php if(isset($_SESSION['error']['message'])): ?>
+<script>
+   
+    Swal.fire({
+        icon: 'error',
+        title: '<h4 class="text-danger">GAGAL</h4>',
+        html: '<h5 class="text-danger"><?=$_SESSION['error']['message']?></h5>',
+        timer: 1500
+    });
+
+</script>
+<?php endif; ?>
+
 <script src="<?=$this->e(base_url('assets/js/pages/bookOrder.js'))?>"></script>
 
 <?php $this->stop() ?>
