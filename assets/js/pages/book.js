@@ -1,8 +1,9 @@
 'use strict';
 
+const formSearch = document.forms['form-search'];
 const form = document.forms['form-input'],
-      display = document.querySelector('#ul-display'),
-      imgCover = document.getElementById('img-cover');
+display = document.querySelector('#ul-display'),
+imgCover = document.getElementById('img-cover');
 
 // get all Categories
 const getCategories = async () => {
@@ -286,6 +287,15 @@ const getBooks = async () => {
         
        
     }
+
+	// Search submit
+    formSearch.addEventListener('submit', e => {
+        e.preventDefault();
+		
+        // if(formSearch['s_member_name'].value)
+		table.columns(1).search(formSearch['s_book_name'].value).draw();
+        
+    });
 })(jQuery);
 
 // const setGridDisplay = async data => {

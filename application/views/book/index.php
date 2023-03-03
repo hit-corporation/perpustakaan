@@ -34,6 +34,23 @@
             </div>
         <div class="card">
             <div class="card-body">
+
+				<div class="col-xl-6 col-lg-6 col-md-6 float-right">
+					<form name="form-search">
+						<div class="row">
+							<div class="col-10">
+								<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
+							</div>
+							<div class="col-2">
+								<div class="btn-group btn-group-sm">
+									<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+									<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
                 <div class="table-responsive">
                     <table id="table-main" class="table table-sm w-100">
                         <thead class="bg-indigo text-white">

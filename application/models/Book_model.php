@@ -28,7 +28,8 @@ class Book_model extends CI_Model {
 				 ->join('stocks s', 'a.id=s.book_id', 'left	')
 				 ->where('a.deleted_at IS NULL');
 
-		if(!empty($filters)) {}
+		if(!empty($filter[1]['search']['value']))
+		$this->db->where('LOWER(a.title) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
 
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
