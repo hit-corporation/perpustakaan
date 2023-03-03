@@ -23,13 +23,13 @@ class StockSeeder extends AbstractSeed
 			],
 			[
 				'stock_code'			=> 'STK-002',
-				'book_id'  		  		=> 1,
+				'book_id'  		  		=> 2,
 				'availability_status' 	=> 1,
 				'rack_no' 				=> 'R-002'
 			],
 			[
 				'stock_code' 			=> 'STK-003',
-				'book_id'  		  		=> 1,
+				'book_id'  		  		=> 3,
 				'availability_status' 	=> 1,
 				'rack_no' 				=> 'R-003'
 			]
