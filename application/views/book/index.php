@@ -45,7 +45,10 @@
                                 <th>Kategori</th>
                                 <th>Penerbit ID</th>
                                 <th>Penerbit</th>
+                                <th>Penulis</th>
                                 <th>ISBN</th>
+								<th>Stok</th>
+								<th>No Rak</th>
                                 <th>Operation</th>
                             </tr>
                         </thead>

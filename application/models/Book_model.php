@@ -20,10 +20,11 @@ class Book_model extends CI_Model {
 	public function get_all(?array $filter=NULL, ?int $limit=NULL, int $offset=NULL): array 
 	{
 
-		$this->db->select('a.id, a.title, a.cover_img, a.author, a.isbn, a.publish_year, a.description, a.qty, a.category_id, a.publisher_id,
+		$this->db->select('a.id, a.title, a.cover_img, a.author, a.isbn, a.publish_year, a.description, a.qty, a.category_id, a.publisher_id, a.author, a.qty, s.rack_no,
 						   b.category_name, c.publisher_name')
 				 ->join('categories b', 'a.category_id=b.id')
 				 ->join('publishers c', 'a.publisher_id=c.id')
+				 ->join('stocks s', 's.book_id=b.id', 'left')
 				 ->where('a.deleted_at IS NULL');
 
 		if(!empty($filters)) {}

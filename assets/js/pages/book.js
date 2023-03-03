@@ -166,7 +166,19 @@ const getBooks = async () => {
                 className: 'align-middle'
             },
             {
+                data: 'author',
+                className: 'align-middle'
+            },
+            {
                 data: 'isbn',
+                className: 'align-middle'
+            },
+            {
+                data: 'qty',
+                className: 'align-middle'
+            },
+            {
+                data: 'rack_no',
                 className: 'align-middle'
             },
             {
