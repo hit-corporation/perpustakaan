@@ -125,13 +125,6 @@
 										<?php endif ?>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
-                                        <label class="d-lg-none mb-0">Jumlah</label>
-                                        <input type="number" min="0" class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][qty]'])):?> is-invalid <?php endif ?>" name="book[<?=$key?>][qty]" value="<?=$_SESSION['error']['old']['book'][$key]['qty'] ?? NULL ?>">
-										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][qty]'])): ?>
-											<small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][qty]']?></small>
-										<?php endif ?>
-                                    </td>
-                                    <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Tgl Pengembalian</label>
                                         <input type="date" class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][return_date]'])): ?> is-invalid <?php endif ?>" name="book[<?=$key?>][return_date]" value="<?=$_SESSION['error']['old']['book'][$key]['return_date'] ?? NULL ?>">
 										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][return_date]'])): ?>
