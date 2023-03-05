@@ -10,10 +10,10 @@ const setReturnDate = (date, duration, unit) => {
     switch(unit)
     {
         case 'days':
-            after.setDate(date.getDate() + duration);  
+            after.setDate(date.getDate() + (duration + 1));  
             break;
         case 'weeks':
-            after.setDate(date.getDate() + (7 * duration));
+            after.setDate(date.getDate() + 1 + (7 * duration));
             break;
         case 'months':
             after.setMonth(date.getMonth() + duration);
