@@ -9,7 +9,7 @@
             <div class="card-header bg-primary">
                 <h4 class="text-white font-weight-bold text-shadow mb-0">Peminjaman</h4>
             </div>
-            <form name="form-input" method="POST" class="card-body">
+            <form name="form-input" method="POST" action="<?=$this->e(base_url('setting/store_loan'))?>" class="card-body">
                 <div class="form-row align-items-center">
                     <label class="form-label col-12 col-md-4 col-lg-3">Maksimal Buku</label>
                     <div class="col-12 col-md-8 col-lg-9">
@@ -89,7 +89,22 @@ const form = document.forms['form-input'];
     form['due_date[unit]'].value = `<?=$_SESSION['error']['old']['due_date[unit]'] ?? $settings['due_date_unit'] ?>`;
     form['max_loan'].value = `<?=$_SESSION['error']['old']['max_loan'] ?? $settings['max_allowed'] ?>`;
 
+	form.addEventListener('submit', e => {
+		loading();
+	});
+
 })(jQuery)
+
+const loading = () => {
+    Swal.fire({
+        html: 	'<div class="d-flex flex-column align-items-center">'
+        + '<span class="spinner-border text-primary"></span>'
+        + '<h3 class="mt-2">Loading...</h3>'
+        + '<div>',
+        showConfirmButton: false,
+        width: '10rem'
+    });
+}
 
 </script>
 <?php $this->stop() ?>

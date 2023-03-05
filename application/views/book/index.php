@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/css/selectize.bootstrap4.css'))?>">
 <link href="<?=$this->e(base_url('assets/vendor/jstree/dist/themes/default/style.min.css'))?>" rel="stylesheet">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.min.css'))?>">
-<link rel="stylesheet" href="<?=$this->e(base_url('assets/vendor/pagination-system/dist/pagination-system.min.css'))?>">
 <link rel="stylesheet" href="<?=$this->e(base_url('assets/css/main.min.css'))?>">
 
 <style>
@@ -41,17 +40,49 @@
                     Tambah Data
                 </button>
             </div>
-            
-            <div class="row">
-                <div class="col-12">
-                    <div class="row" id="data-grid">
-                        <!-- images grid -->
+			<div class="card">
+            	<div class="card-body">
 
-                        <!-- end image grid -->
-                    </div>
-                    <div id="paging-container"></div>
-                </div>
-            </div>
+					<div class="col-xl-6 col-lg-6 col-md-6 float-right">
+						<form name="form-search">
+							<div class="row">
+								<div class="col-10">
+									<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
+								</div>
+								<div class="col-2">
+									<div class="btn-group btn-group-sm">
+										<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
+										<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+
+					<div class="table-responsive">
+						<table id="table-main" class="table table-sm">
+							<thead class="bg-indigo text-white">
+								<tr>
+									<th>ID</th>
+									<th>Gambar</th>
+									<th>Judul</th>
+									<th>Kategori ID</th>
+									<th>Kategori</th>
+									<th>Penerbit ID</th>
+									<th>Penerbit</th>
+									<th>Penulis</th>
+									<th>ISBN</th>
+									<th>Stok</th>
+									<th>Tanggal Input</th>
+									<th>No Rak</th>
+									<th>Operation</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
+				</div>
+       		 </div>
+			
             
         </div>
     </div>
@@ -245,7 +276,6 @@
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
-<script src="<?=$this->e(base_url('assets/vendor/pagination-system/dist/pagination-system.umd.min.js'))?>"></script>
 
 <?php if(!empty($_SESSION['success'])): ?>
 <script>
