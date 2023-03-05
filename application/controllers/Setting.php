@@ -38,7 +38,7 @@ class Setting extends MY_Controller {
 	 *
 	 * @return void
 	 */
-	public function save_loan():void {
+	public function store_loan():void {
 		
 		$due_date = $this->input->post('due_date', TRUE);
 		$max_book = $this->input->post('max_loan', TRUE);

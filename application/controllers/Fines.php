@@ -1,6 +1,6 @@
 <?php
 
-class Denda extends MY_Controller {
+class Fines extends MY_Controller {
 	
 	public function __construct() {
 		parent::__construct();
@@ -21,6 +21,6 @@ class Denda extends MY_Controller {
 	 * @return void
 	 */
 	public function store(): void {
-
+		$madoel = $this->input->post('');
 	}
 }
