@@ -34,8 +34,11 @@ class Transaction_model extends CI_Model {
 						   transaction_book.return_date, transaction_book.updated_at, transaction_book.amount_paid, 
 						   transaction_book.note, books.title, members.member_name, 
 						   AGE(transaction_book.return_date::date, trans_timestamp::date) AS jumlah_hari_pinjam,
-						   CASE WHEN CURRENT_DATE > transaction_book.return_date::date 
-						   		THEN AGE(CURRENT_DATE, transaction_book.return_date::date) 
+						   CASE 
+						   		WHEN (CURRENT_DATE > transaction_book.return_date::date) and (transaction_book.actual_return IS NULL)
+						   			THEN AGE(CURRENT_DATE, transaction_book.return_date::date)
+								WHEN (CURRENT_DATE > transaction_book.return_date::date) and (transaction_book.actual_return IS NOT NULL)
+									THEN AGE(transaction_book.actual_return::date, transaction_book.return_date::date)
 								ELSE NULL
 							END as jumlah_hari_terlambat,
 							CASE WHEN CURRENT_DATE > transaction_book.return_date::date 
