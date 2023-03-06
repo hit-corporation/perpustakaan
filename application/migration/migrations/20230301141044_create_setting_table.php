@@ -22,6 +22,10 @@ final class CreateSettingTable extends AbstractMigration
       $table->addColumn('max_allowed', 'integer', ['default' => 2]);
       $table->addColumn('due_date_value', 'integer', ['default' => 1]);
       $table->addColumn('due_date_unit', 'string', ['default' => 'weeks']);
+      $table->addColumn('fines_amount', 'integer', ['null' => true]);
+      $table->addColumn('fines_period_value', 'integer', ['null' => true]);
+      $table->addColumn('fines_period_unit', 'string', ['null' => true]);
+      $table->addColumn('fines_maximum', 'integer', ['null' => true]);
       $table->addTimestamps();
       $table->create();
     }

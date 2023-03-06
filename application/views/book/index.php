@@ -17,7 +17,7 @@
 }
 
 .img-grid-height {
-    height: 22rem;
+    height: 18rem;
 }
 
 #data-grid {
