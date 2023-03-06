@@ -88,7 +88,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="form-input" name="form-input" method="POST" action="<?=base_url('order/report_order')?>">
+                <form id="form-input" name="form-input" method="POST" action="<?=base_url('order/return_order')?>">
                     <input type="text" class="d-none" name="transaction_book_id">
                     <input type="text" class="d-none" name="book_id">
                     <div class="form-group">
