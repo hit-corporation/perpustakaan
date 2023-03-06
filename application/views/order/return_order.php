@@ -21,18 +21,14 @@
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800">Laporan Peminjaman Buku</h1>
-			<button id="btn-add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#modal-input" >
-				<i class="fas fa-plus fa-sm text-white-50"></i> Tambah Data Peminjaman
-			</button>
-			
+			<h1 class="h3 mb-0 text-gray-800">Pengembalian Buku</h1>
 		</div>
 
         <div class="card">
 			<div class="card-header py-3">
 				<div class="row">
 					<div class="col-xl-6 col-lg-6 col-md-6">
-						<h6 class="m-0 font-weight-bold text-primary">List Data Peminjaman Buku</h6>
+						<h6 class="m-0 font-weight-bold text-primary">List Data Pengembalian Buku</h6>
 
 					</div>
 					<div class="col-xl-6 col-lg-6 col-md-6">
@@ -136,7 +132,6 @@
                     </div>
 
                     <div class="row justify-content-end mt-4 border-top pt-3 px-2">
-                        <!-- <button type="reset" class="btn btn-secondary"><i class="fas fa-sync"></i> Ulangi</button> -->
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
                     </div>
 
@@ -149,7 +144,6 @@
 
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
-<!-- <script src="<? // =$this->e(base_url('assets/vendor/jstree/dist/jstree.min.js'))?>"></script> -->
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
 <?php if(isset($_SESSION['error'])): ?>
@@ -171,7 +165,7 @@
 </script>
 <?php endif; ?>
 
-<script src="<?=$this->e(base_url('assets/js/pages/reportOrder.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/js/pages/returnOrder.js'))?>"></script>
 
 
 
