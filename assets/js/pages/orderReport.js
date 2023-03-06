@@ -79,32 +79,16 @@ const getAll = async () => {
 				// JUMLAH HARI TERLAMBAT
 				data: 'jumlah_hari_terlambat',
 				render(data, type, row, _meta)
-				{
-					const date1 = new Date(row.return_date);
-					const date2 = new Date();
-					
-					// JIKA TANGGAL SEKARANG LEBIH BESAR DARI TANGGAL PENGEMBALIAN DAN TANGGAL PENGEMBALIAN BELUM DIUPDATE
-					if(date2 > date1 && row.updated_at == null)
+				{ 
+					var results = null;
+					if(data)
 					{
-						// TANGGAL SEKARANG - TANGGAL PENGEMBALIAN = JUMLAH HARI TERLAMBAT
-						const diffTime = Math.abs(date2 - date1);
-						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
-
-						return diffDays + ' hari';
-						
-						// JIKA TANGGAL SEKARANG LEBIH BESAR DARI TANGGAL PENGEMBALIAN DAN TANGGAL PENGEMBALIAN SUDAH DIUPDATE 
-					}else if(date2 > date1 && row.updated_at != null) {
-						const date3 = new Date(row.updated_at);
-
-						// TANGGAL PENGEMBALIAN YANG DIUPDATE - TANGGAL PENGEMBALIAN = JUMLAH HARI TERLAMBAT
-						const diffTime = Math.abs(date3 - date1);
-						const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
-						return diffDays + ' hari';
-					} else {
-						return '0 hari';
+						results = data.replace('days', 'hari').replace('day', 'hari');
+						results = results.replace('mons', 'bulan').replace('mon', 'bulan');
+						results = results.replace('years', 'tahun').replace('year', 'tahun');
 					}
-
+					
+					return results;
 				}
 
             },
