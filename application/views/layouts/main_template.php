@@ -188,12 +188,12 @@
                     <span>Peminjaman</span></a>
             </li>
 
-            <!-- Nav Item - Users -->
-            <!-- <li class="nav-item <? // =$CI->uri->segment(1) == 'user' ? 'active bg-dark-2' : '' ?>">
-                <a class="nav-link" href="<? // =base_url('user')?>">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>User</span></a>
-            </li> -->
+			<!-- Nav Item - Pengembalian -->
+			<li class="nav-item <?=($CI->uri->segment(1) == 'order' && $CI->uri->segment(2) == 'return_order') ? 'active bg-dark-2' : '' ?>">
+                <a class="nav-link" href="<?=base_url('order/return_order')?>">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Pengembalian</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

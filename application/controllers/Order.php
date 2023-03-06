@@ -152,11 +152,11 @@ class Order extends MY_Controller {
 	}
 
 	/**
-     * Report Order View 
+     * Return Order View 
      *
      * @return void
      */
-    public function report_order(): void {
+    public function return_order(): void {
 		$post = $this->input->post();
 
 		if(!empty($post))
@@ -177,13 +177,13 @@ class Order extends MY_Controller {
 			// set flashdata
 			$resp = ['message' => 'Data berhasil di input !!!'];
 			$this->session->set_flashdata('success', $resp);
-			redirect('order/report_order');
+			redirect('order/return_order');
 			return;
 		}
         $this->template->registerFunction('set_value', function($field, $value = NULL) {
             return set_value($field, $value);
         });
-        echo $this->template->render('report_order');
+        echo $this->template->render('return_order');
     }
 
 	/**
