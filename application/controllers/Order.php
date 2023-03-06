@@ -121,7 +121,7 @@ class Order extends MY_Controller {
 
         $resp = ['message' => 'Data berhasil di input !!!'];
         $this->session->set_flashdata('success', $resp);
-        redirect('order/report_order');
+        redirect('order/return_order');
     }
 
     /**

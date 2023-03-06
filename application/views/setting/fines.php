@@ -91,6 +91,11 @@ const form = document.forms['form-input'];
 		loading();
 	});
 
+	form['amount'].value = "<?=html_escape($_SESSION['error']['old']['amount'] ?? $settings['fines_amount']) ?>";
+	form['period[value]'].value = "<?=html_escape($_SESSION['error']['old']['period[value]'] ?? $settings['fines_period_value']) ?>";
+	form['period[unit]'].value = "<?=html_escape($_SESSION['error']['old']['period[unit]'] ?? $settings['fines_period_unit']) ?>";
+	form['max-amount'].value = "<?=html_escape($_SESSION['error']['old']['max-amount'] ?? $settings['fines_maximum']) ?>";
+
 })(jQuery)
 
 const loading = () => {

@@ -68,10 +68,10 @@ class Fines extends MY_Controller {
 		}
 
 		$data = [
-			'fine_amount' => $nilai,
-			'fine_period_value' => $periode['value'],
-			'fine_period_unit' => $periode['unit'],
-			'fine_maximum' => $max_value
+			'fines_amount' => $nilai,
+			'fines_period_value' => $periode['value'],
+			'fines_period_unit' => $periode['unit'],
+			'fines_maximum' => $max_value
 		];
 
 		if(!$this->db->update('settings', $data, ['id' => 1]))
