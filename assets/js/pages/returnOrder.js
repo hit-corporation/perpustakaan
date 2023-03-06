@@ -106,7 +106,7 @@ const setting = async () => {
 					if(data)
 					{
 						results = data.replace('days', 'hari');
-						results = results.replace('mons', 'bulan');
+						results = results.replace('mons', 'bulan').replace('mon', 'bulan');
 						results = results.replace('years', 'tahun');
 					}
 					
