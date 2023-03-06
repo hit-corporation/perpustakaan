@@ -58,16 +58,15 @@ class Book extends MY_Controller
 		$filters = $this->input->get('columns');
 		$data = $this->book_model->get_all($filters, $limit, $offset);
 
-		// $response = [
-		// 	'draw' => $draw,
-		// 	'data' => $data,
-		// 	'recordsTotal' => $this->db->count_all_results('books'),
-		// 	'recordsFiltered' => $this->book_model->count_all($filters)
-		// ];
+		$response = [
+			'draw' => $draw,
+			'data' => $data,
+			'recordsTotal' => $this->db->count_all_results('books'),
+			'recordsFiltered' => $this->book_model->count_all($filters)
+		];
 
-		header('x-total-count: '.$this->db->count_all_results('books'));
 
-		echo json_encode($data, JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_TAG);
+		echo json_encode($response, JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT|JSON_HEX_TAG);
 	}
 
 	/**
