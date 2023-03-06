@@ -60,12 +60,7 @@ const getAll = async () => {
 				data: 'jumlah_hari_pinjam',
 				render(data, type, row, _meta)
 				{
-					const date1 = new Date(row.trans_timestamp);
-					const date2 = new Date(row.return_date);
-					const diffTime = Math.abs(date2 - date1);
-					const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-
-					return diffDays + ' hari';
+					return data.replace('days', 'hari').replace('day', 'hari').replace('00:00:00', '0');
 				}
 
 				
@@ -224,5 +219,14 @@ const getAll = async () => {
 		tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
         
     });
+
+	// Search daterangepicker
+	$('input[name="daterange"]').daterangepicker({
+		opens: 'left',
+	}, function(start, end, label) {
+		console.log(tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')));
+		tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')).draw();
+	});
+	
 	
 })(jQuery);
