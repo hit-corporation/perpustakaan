@@ -81,6 +81,6 @@
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
 
-<script src="<?=$this->e(base_url('assets/js/pages/order_report.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/js/pages/orderReport.js'))?>"></script>
 
 <?php $this->stop() ?>

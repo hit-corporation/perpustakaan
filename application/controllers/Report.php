@@ -34,9 +34,9 @@ class Report extends MY_Controller
 
         $dataTable = [
             'draw'            => $this->input->get('draw') ?? NULL,
-            'data'            => $this->kategori_model->get_all($filter, $limit, $offset),
+            'data'            => $this->transaction_model->get_all($filter, $limit, $offset),
             'recordsTotal'    => $this->db->count_all_results('categories'),
-            'recordsFiltered' => $this->kategori_model->count_all($filter)
+            'recordsFiltered' => $this->transaction_model->count_all($filter)
         ];
 
         echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
@@ -49,7 +49,7 @@ class Report extends MY_Controller
      */
     public function get_all(): void
     {
-        $data = $this->kategori_model->get_all();
+        $data = $this->transaction_model->get_all();
         echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
     }
 
