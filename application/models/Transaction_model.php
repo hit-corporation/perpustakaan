@@ -36,8 +36,18 @@ class Transaction_model extends CI_Model {
 						   AGE(transaction_book.return_date::date, trans_timestamp::date) AS jumlah_hari_pinjam,
 						   CASE WHEN CURRENT_DATE > transaction_book.return_date::date 
 						   		THEN AGE(CURRENT_DATE, transaction_book.return_date::date) 
-								ELSE NULL 
-							END as jumlah_hari_terlambat');
+								ELSE NULL
+							END as jumlah_hari_terlambat,
+							CASE WHEN CURRENT_DATE > transaction_book.return_date::date 
+									AND ((CURRENT_DATE - transaction_book.return_date::date)::integer * (SELECT fines_amount FROM settings WHERE settings.id=1)::integer) <=
+										(SELECT fines_maximum FROM settings WHERE settings.id=1)
+									THEN (CURRENT_DATE - transaction_book.return_date::date)::integer * (SELECT fines_amount FROM settings WHERE settings.id=1)::integer
+								WHEN CURRENT_DATE > transaction_book.return_date::date 
+								 		AND ((CURRENT_DATE - transaction_book.return_date::date)::integer * (SELECT fines_amount FROM settings WHERE settings.id=1)::integer) >=
+									 	(SELECT fines_maximum FROM settings WHERE settings.id=1)
+									THEN (SELECT fines_maximum FROM settings WHERE settings.id=1)
+								ELSE 0 
+							END as denda', FALSE);
         $this->db->from('transactions');
 		$this->db->join('transaction_book', 'transactions.id = transaction_book.transaction_id');
 		$this->db->join('books', 'transaction_book.book_id = books.id');
