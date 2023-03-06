@@ -35,7 +35,7 @@ class Report extends MY_Controller
         $dataTable = [
             'draw'            => $this->input->get('draw') ?? NULL,
             'data'            => $this->transaction_model->get_all($filter, $limit, $offset),
-            'recordsTotal'    => $this->db->count_all_results('categories'),
+            'recordsTotal'    => $this->db->count_all_results('transactions'),
             'recordsFiltered' => $this->transaction_model->count_all($filter)
         ];
 
