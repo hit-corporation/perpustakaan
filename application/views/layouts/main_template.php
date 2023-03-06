@@ -154,20 +154,20 @@
             </li>
 
             <!-- Nav Item - Pages Collapse Menu Laporan-->
-            <li class="nav-item <?=$CI->uri->segment(2) == 'report_order' ? 'active' : '' ?>">
+            <li class="nav-item <?=$CI->uri->segment(1) == 'report' ? 'active' : '' ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
                     aria-expanded="true" aria-controls="collapseLaporan">
                     <i class="fa fa-book" aria-hidden="true"></i>
                     <span>Laporan</span>
                 </a>
-                <div id="collapseLaporan" class="collapse <?=($CI->uri->segment(2) == 'report_order') ? 'show' : '' ?>" 
+                <div id="collapseLaporan" class="collapse <?=($CI->uri->segment(1) == 'report') ? 'show' : '' ?>" 
 					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
 
-                        <a class="collapse-item <?=$CI->uri->segment(2) == 'report_order' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('order/report_order')?>">
+                        <a class="collapse-item <?=$CI->uri->segment(2) == '' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('report')?>">
 							<i class="fa fa-user" aria-hidden="true"> </i>
-							<span>Pengembalian</span>
+							<span>Laporan Peminjaman</span>
 						</a>
 
                     </div>
