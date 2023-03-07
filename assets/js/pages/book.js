@@ -327,6 +327,8 @@ const getBooks = async () => {
         e.preventDefault();
         // if(formSearch['s_member_name'].value)
 		table.columns(1).search(formSearch['s_book_name'].value).draw();
+		table.columns(2).search(formSearch['s_book_author'].value).draw();
+		table.columns(3).search(formSearch['s_book_publisher'].value).draw();
     });
 })(jQuery, window);
 

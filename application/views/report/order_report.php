@@ -109,7 +109,7 @@
 <?php $this->start('js') ?>
 
 <script src="<?=$this->e(base_url('assets/js/pages/orderReport.js'))?>"></script>
-<script src="<?=base_url('assets/js/jquery.redirect.js')?>"></script>
+<!-- <script src="<?//=base_url('assets/js/jquery.redirect.js')?>"></script> -->
 
 
 

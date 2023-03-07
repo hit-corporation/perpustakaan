@@ -31,6 +31,12 @@ class Book_model extends CI_Model {
 		if(!empty($filter[1]['search']['value']))
 		$this->db->where('LOWER(a.title) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
 
+		if(!empty($filter[2]['search']['value']))
+		$this->db->where('LOWER(a.author) LIKE \'%'.trim(strtolower($filter[2]['search']['value'])).'%\'', NULL, FALSE);
+
+		if(!empty($filter[3]['search']['value']))
+		$this->db->where('LOWER(c.publisher_name) LIKE \'%'.trim(strtolower($filter[3]['search']['value'])).'%\'', NULL, FALSE);
+
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
 		
