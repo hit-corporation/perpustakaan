@@ -24,15 +24,15 @@
         <div class="card">
 			<div class="card-header py-3">
 				<div class="row">
-					<div class="col-xl-3 col-lg-3 col-md-3">
+					<div class="col-xl-3 col-lg-3 col-md-3 mb-2">
 						<h6 class="m-0 font-weight-bold text-primary">List Data Peminjaman Buku</h6>
-
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4 mb-2">
+					<div class="col-xl-3 col-lg-3 col-md-3 mb-2">
 						<form name="form-search">
 							<div class="row">
-								<div class="col-10">
-									<input class="rounded-lg w-100"  style="border-color: rgba(0, 0, 255, 0.3); height: calc(1.5em + 0.5rem + 2px);" type="text" name="daterange" 
+								<div class="col-12">
+									<input class="rounded-lg w-100"  style="border-color: rgba(0, 0, 255, 0.3); height: calc(1.5em + 0.5rem + 2px); font-size: 12px;
+    color: currentcolor; padding-left: inherit;" type="text" name="daterange" 
 										value="<?php 
 										if(isset($start)){ 
 											echo date('m/d/Y', strtotime($start));
@@ -67,8 +67,8 @@
 			</div>
 
             <div class="card-body">
-                <div class="table-reponsive">
-					<table id="table-main" class="table table-sm table-striped w-100" style="overflow-x: auto;">
+                <div class="table-reponsive" style="overflow: auto;">
+					<table id="table-main" class="table table-sm table-striped w-100">
                         <thead class="bg-primary text-white">
                             <tr>
                                 <th>ID</th>
