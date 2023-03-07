@@ -43,13 +43,19 @@
 			<div class="card">
             	<div class="card-body">
 
-					<div class="col-xl-6 col-lg-6 col-md-6 float-right">
+					<div class="col-xl-12 col-lg-12 col-md-12 float-right">
 						<form name="form-search">
-							<div class="row">
-								<div class="col-10">
+							<div class="row" style="text-align: end;">
+								<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
+									<input type="text" class="form-control form-control-sm" name="s_book_author" placeholder="Nama Penulis">
+								</div>
+								<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
+									<input type="text" class="form-control form-control-sm" name="s_book_publisher" placeholder="Nama Penerbit">
+								</div>
+								<div class="col-xl-3 col-lg-3 col-md-4 mb-2">
 									<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
 								</div>
-								<div class="col-2">
+								<div class="col-xl-1 col-lg-1 col-md-1">
 									<div class="btn-group btn-group-sm">
 										<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
 										<button type="reset" class="btn btn-sm btn-danger"><i class="fas fa-times"></i></button>
