@@ -174,25 +174,7 @@ const getAll = async () => {
 						return '-';
 					}
 				}
-			},
-            {
-                data: null,
-                render(data, type, row, _meta)
-                {
-                    const btn = '<span class="d-flex flex-nowrap">' +
-                                '<button role="button" class="btn-circle btn-success rounded-circle border-0 update_data"><i class="fas fa-edit"></i></button>' + 
-                                '</span>';
-
-					// jika tanggal pengembalian sudah diupdate hide button
-					if(row.updated_at != null)
-					{
-						// add class disabled to button
-						return btn.replace('update_data', 'd-none disabled update_data');
-					} else {
-                    	return btn;
-					}
-                }
-            }
+			}
 		]
 	});
 
@@ -200,42 +182,43 @@ const getAll = async () => {
     formSearchName.addEventListener('submit', e => {
         e.preventDefault();
 		
-        let daterange = formSearch['daterange'].value;
-		let daterangeArr = daterange.split(' - ');
-		let daterangeStart = daterangeArr[0];
-		let daterangeEnd = daterangeArr[1];
+		// Get daterange value
+        let daterange 		= formSearch['daterange'].value;
+		let daterangeArr 	= daterange.split(' - ');
+		let daterangeStart 	= daterangeArr[0];
+		let daterangeEnd	= daterangeArr[1];
 		
 		// Create a date object from a date string
-		let start = new Date(daterangeStart);
-		let end = new Date(daterangeEnd);
+		let start 	= new Date(daterangeStart);
+		let end 	= new Date(daterangeEnd);
 
 		// Get year, month, and day part from the date
-		let startYear = start.toLocaleString("default", { year: "numeric" });
-		let startMonth = start.toLocaleString("default", { month: "2-digit" });
-		let startDay = start.toLocaleString("default", { day: "2-digit" });
+		let startYear 	= start.toLocaleString("default", { year: "numeric" });
+		let startMonth 	= start.toLocaleString("default", { month: "2-digit" });
+		let startDay 	= start.toLocaleString("default", { day: "2-digit" });
 
-		let endYear = end.toLocaleString("default", { year: "numeric" });
-		let endMonth = end.toLocaleString("default", { month: "2-digit" });
-		let endDay = end.toLocaleString("default", { day: "2-digit" });
+		let endYear 	= end.toLocaleString("default", { year: "numeric" });
+		let endMonth 	= end.toLocaleString("default", { month: "2-digit" });
+		let endDay 		= end.toLocaleString("default", { day: "2-digit" });
 
 		// Generate yyyy-mm-dd date string
-		start = startYear + '-' + startMonth + '-' + startDay;
-		end = endYear + '-' + endMonth + '-' + endDay;
+		start 	= startYear + '-' + startMonth + '-' + startDay;
+		end 	= endYear + '-' + endMonth + '-' + endDay;
 
 		// search by daterange
-		tableMain.columns(2).search(start + ' - ' + end);
+		tableMain.columns(1).search(formSearchName['s_member_name'].value).draw();
+		tableMain.columns(2).search(start + ' - ' + end).draw();
+		tableMain.columns(3).search(formSearchName['status'].value).draw();
 		
-		tableMain.columns(3).search(formSearchName['s_member_name'].value).draw();
-        
     });
 
 	// Search daterangepicker
 	$('input[name="daterange"]').daterangepicker({
 		opens: 'left',
 	}, function(start, end, label) {
-
-		tableMain.columns(3).search(formSearchName['s_member_name'].value);
+		tableMain.columns(1).search(formSearchName['s_member_name'].value).draw();
 		tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')).draw();
+		tableMain.columns(3).search(formSearchName['status'].value).draw();
 	});
 	
 	
