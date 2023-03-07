@@ -32,9 +32,23 @@ class Report extends MY_Controller
 		$offset = $this->input->get('start');
         $filter = $this->input->get('columns');
 
+        // generate data
+        $data = [];
+        $query = $this->transaction_model->get_all($filter, $limit, $offset);
+
+        $date_mod = $this->settings['fines_period_value'].' '.$this->settings['fines_period_unit'];
+
+        foreach($query as $q)
+        {
+            $denda = (new DateTime('now')) > (new DateTime($q['return_date'])) ? 
+                          ((new DateTime('now'))->diff(new DateTime($q['return_date'])))->days * $this->settings['fines_amount'] : NULL;
+            $q['denda'] = $denda >= $this->settings['fines_maximum'] ? $this->settings['fines_maximum'] : $denda;
+            $data[] = $q;
+        }
+
         $dataTable = [
             'draw'            => $this->input->get('draw') ?? NULL,
-            'data'            => $this->transaction_model->get_all($filter, $limit, $offset),
+            'data'            => $data,
             'recordsTotal'    => $this->db->count_all_results('transactions'),
             'recordsFiltered' => $this->transaction_model->count_all($filter)
         ];
