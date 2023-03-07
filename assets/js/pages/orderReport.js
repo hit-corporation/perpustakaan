@@ -200,7 +200,31 @@ const getAll = async () => {
     formSearchName.addEventListener('submit', e => {
         e.preventDefault();
 		
-        // if(formSearch['s_member_name'].value)
+        let daterange = formSearch['daterange'].value;
+		let daterangeArr = daterange.split(' - ');
+		let daterangeStart = daterangeArr[0];
+		let daterangeEnd = daterangeArr[1];
+		
+		// Create a date object from a date string
+		let start = new Date(daterangeStart);
+		let end = new Date(daterangeEnd);
+
+		// Get year, month, and day part from the date
+		let startYear = start.toLocaleString("default", { year: "numeric" });
+		let startMonth = start.toLocaleString("default", { month: "2-digit" });
+		let startDay = start.toLocaleString("default", { day: "2-digit" });
+
+		let endYear = end.toLocaleString("default", { year: "numeric" });
+		let endMonth = end.toLocaleString("default", { month: "2-digit" });
+		let endDay = end.toLocaleString("default", { day: "2-digit" });
+
+		// Generate yyyy-mm-dd date string
+		start = startYear + '-' + startMonth + '-' + startDay;
+		end = endYear + '-' + endMonth + '-' + endDay;
+
+		// search by daterange
+		tableMain.columns(2).search(start + ' - ' + end);
+		
 		tableMain.columns(3).search(formSearchName['s_member_name'].value).draw();
         
     });
@@ -209,6 +233,8 @@ const getAll = async () => {
 	$('input[name="daterange"]').daterangepicker({
 		opens: 'left',
 	}, function(start, end, label) {
+
+		tableMain.columns(3).search(formSearchName['s_member_name'].value);
 		tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')).draw();
 	});
 	
