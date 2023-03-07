@@ -13,8 +13,7 @@ class Fines extends MY_Controller {
 	 * @return void
 	 */
 	public function index(): void {
-		$data['settings'] = $this->db->get_where('settings', ['id' => 1])->row_array();
-		echo $this->template->render('fines', $data, 'setting');
+		echo $this->template->render('fines', [], 'setting');
 	}
 
 	/**
