@@ -35,6 +35,21 @@ class Transaction_model extends CI_Model {
         
 		if(!empty($filter[1]['search']['value']))
 		$this->db->where('LOWER(member_name) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+
+		if(!empty($filter[2]['search']['value'])){
+			// PARSING DATE RANGE
+			$date_range = explode(' - ', $filter[2]['search']['value']);
+
+			$this->db->where('date(transactions.created_at) >=', $date_range[0]);
+			$this->db->where('date(transactions.created_at) <=', $date_range[1]);
+		}
+
+		if(!empty($filter[3]['search']['value'])){
+			if($filter[3]['search']['value'] == 'belum')
+				$this->db->where('transaction_book.actual_return IS NULL', NULL, FALSE);
+			else
+				$this->db->where('transaction_book.actual_return IS NOT NULL', NULL, FALSE);
+		}
 	
 		if(!empty($limit) && !is_null($offset))
 		$this->db->limit($limit, $offset);

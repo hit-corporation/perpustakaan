@@ -24,10 +24,8 @@
         <div class="card">
 			<div class="card-header py-3">
 				<div class="row">
-					<div class="col-xl-3 col-lg-3 col-md-3 mb-2">
-						<h6 class="m-0 font-weight-bold text-primary">List Data Peminjaman Buku</h6>
-					</div>
-					<div class="col-xl-3 col-lg-3 col-md-3 mb-2">
+					
+					<div class="col-xl-2 col-lg-4 col-md-4 mb-2">
 						<form name="form-search">
 							<div class="row">
 								<div class="col-12">
@@ -48,12 +46,22 @@
 							</div>
 						</form>
 					</div>
-					<div class="col-xl-4 col-lg-4 col-md-4">
+
+					<div class="col-xl-10 col-lg-8 col-md-8">
 						<form name="form-search-name">
 							<div class="row">
-								<div class="col-10">
+								<div class="col-4">
+									<select class="form-control form-control-sm" name="status" id="status">
+										<option value="">Status - Semua</option>
+										<option value="sudah">Sudah Mengembalikan</option>
+										<option value="belum">Belum Mengembalikan</option>
+									</select>
+								</div>
+								
+								<div class="col-6">
 									<input type="text" class="form-control form-control-sm" name="s_member_name" placeholder="Nama Member">
 								</div>
+
 								<div class="col-2">
 									<div class="btn-group btn-group-sm">
 										<button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-search"></i></button>
@@ -83,7 +91,6 @@
                                 <th>Terbayar</th>
                                 <th>Tanggal Pengembalian</th>
                                 <th>Catatan</th>
-                                <th></th>
                             </tr>
                         </thead>
                     </table>
