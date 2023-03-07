@@ -1,6 +1,7 @@
 'use strict'
 
 const formSearch = document.forms['form-search'];
+const formSearchName = document.forms['form-search-name'];
 
 // get all data
 const getAll = async () => {
@@ -196,11 +197,11 @@ const getAll = async () => {
 	});
 
 	// Search submit
-    formSearch.addEventListener('submit', e => {
+    formSearchName.addEventListener('submit', e => {
         e.preventDefault();
 		
         // if(formSearch['s_member_name'].value)
-		tableMain.columns(1).search(formSearch['s_member_name'].value).draw();
+		tableMain.columns(3).search(formSearchName['s_member_name'].value).draw();
         
     });
 
@@ -208,7 +209,6 @@ const getAll = async () => {
 	$('input[name="daterange"]').daterangepicker({
 		opens: 'left',
 	}, function(start, end, label) {
-		console.log(tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')));
 		tableMain.columns(2).search(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD')).draw();
 	});
 	
