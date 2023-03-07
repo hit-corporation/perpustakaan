@@ -50,7 +50,7 @@
 			</div>
 
             <div class="card-body">
-                <div class="table-reponsive">
+                <div class="table-reponsive" style="overflow: auto;">
 					<table id="table-main" class="table table-sm table-striped w-100" style="overflow-x: auto;">
                         <thead class="bg-primary text-white">
                             <tr>
