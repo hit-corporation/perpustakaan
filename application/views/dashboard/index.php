@@ -59,13 +59,13 @@
 <?php $this->start('contents') ?>
 
 <!-- highchart  -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="./assets/js/dashboard/highcharts/highcharts.js"></script>
+<script src="./assets/js/dashboard/highcharts/exporting.js"></script>
+<script src="./assets/js/dashboard/highcharts/export-data.js"></script>
+<script src="./assets/js/dashboard/highcharts/accessibility.js"></script>
 
 <!-- apex charts -->
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="./assets/js/dashboard/apexcharts/apexcharts.js"></script>
 
 <!-- Begin Page Content -->
 
