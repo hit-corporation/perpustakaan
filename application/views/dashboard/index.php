@@ -4,6 +4,9 @@
 <?php $this->start('css') ?>
 
 <style>
+	.highcharts-credits {
+		display: none;
+	}
 	.highcharts-figure,
 	.highcharts-data-table table {
 	min-width: 320px;
@@ -158,10 +161,10 @@
 
 	<!-- Content Row -->
 	<div class="row">
-		<div class="col-6">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
 			<div class="container border rounded-lg shadow p-3">
 
-				<figure class="highcharts-figure" style="height: 473px;">
+				<figure class="highcharts-figure" style="height: 417px;">
 					<div id="container"></div>
 					<!-- <p class="highcharts-description">
 						Pie charts are very popular for showing a compact overview of a
@@ -172,10 +175,10 @@
 			</div>
 		</div>
 
-		<div class="col-6">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
 			<div class="container border rounded-lg shadow p-3">
 				
-				<div id="chartdiv2" style="width: 100%; height: 500px;"></div>
+				<div id="chartdiv2" style="width: 100%; height: 400px;"></div>
 				</div>
 		</div>
 	</div>
