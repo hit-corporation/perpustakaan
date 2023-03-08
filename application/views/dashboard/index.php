@@ -183,6 +183,37 @@
 		</div>
 	</div>
 
+	<!-- Content Row -->
+	<div class="row">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2 mt-3">
+			<!-- <div class="container border rounded-lg shadow mx-0"> -->
+				<h6 class="mb-3">Top 10 Siswa meminjam buku</h6>
+				<table class="table table rounded-lg">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nama Siswa</th>
+							<th scope="col">Kelas</th>
+							<th scope="col">Jumlah Buku</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php $i=1; foreach ($top_member_borrow as $key => $val): ?>
+							<tr>
+								<th scope="row"><?=$i?></th>
+								<td><?=$val['member_name']?></td>
+								<td></td>
+								<td class="text-center"><?=$val['total']?></td>
+							</tr>
+						<?php $i++; endforeach ?>
+					</tbody>
+				</table>
+			<!-- </div> -->
+		</div>
+
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-2">
+		</div>
+	</div>
 
 </div>
 <!-- /.container-fluid -->

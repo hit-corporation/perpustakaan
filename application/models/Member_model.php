@@ -23,4 +23,16 @@ class Member_model extends CI_Model {
         $query = $this->db->get('members');
         return $query->num_rows();
     }
+
+	public function get_top_borrow(): array {
+		$this->db->select('m.member_name, count(m.member_name) as total');
+		$this->db->from('transactions t');
+		$this->db->join('members m', 'm.id = t.member_id');
+		$this->db->join('transaction_book tb', 'tb.transaction_id = t.id');
+		$this->db->group_by('m.member_name');
+		$this->db->order_by('total', 'DESC');
+		$this->db->limit(10);
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 }
