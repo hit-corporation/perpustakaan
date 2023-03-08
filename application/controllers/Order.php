@@ -220,7 +220,7 @@ class Order extends MY_Controller {
                         $denda = $dateDiff->days / $this->settings['fines_period_value']; 
                         break;
                     case 'weeks':
-                        $denda = $dateDiff->w / $this->settings['fines_period_value'];
+                        $denda = intval($dateDiff->days / 7) / $this->settings['fines_period_value'];
                         break;
                     case 'months':
                         $denda = $dateDiff->m / $this->settings['fines_period_value'];
@@ -229,7 +229,6 @@ class Order extends MY_Controller {
                 $denda = ceil($denda);
                 $denda = $denda * $this->settings['fines_amount'];
             }
-        
             $q['denda'] = $denda >= $this->settings['fines_maximum'] ? $this->settings['fines_maximum'] : $denda;
             $data[] = $q;
         }
