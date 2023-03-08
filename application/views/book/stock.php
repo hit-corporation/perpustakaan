@@ -12,7 +12,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive">
-				<table class="table">
+				<table id="table-main" class="table table-sm">
 					<thead class="bg-purple">
 						<tr>
 							<th>ID</th>
@@ -25,11 +25,11 @@
 				</table>
 			</div>
 		</div>
-		
 	</div>
 
 </div>
 <?php $this->stop() ?>
 
 <?php $this->start('js') ?>
+<script src="<?=$this->e(base_url('assets/pages/js/stock.js'))?>"></script>
 <?php $this->stop() ?>

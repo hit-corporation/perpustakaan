@@ -196,6 +196,11 @@ class Order extends MY_Controller {
         echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
     }
 
+    /**
+     * Get All Paginated
+     *
+     * @return void
+     */
 	public function get_all_paginated(): void {
 		$limit  = $this->input->get('length');
 		$offset = $this->input->get('start');
