@@ -76,4 +76,53 @@ class Book_model extends CI_Model {
 		return $this->db->get_where('books', ['books.id' => $id, 'books.deleted_at' => NULL])->row_array();
 	}
 
+	public function get_all_borrow(): array
+	{
+		$this->db->select('b.*');
+		$this->db->from('transaction_book tb');
+		$this->db->join('books b', 'tb.book_id=b.id');
+		$this->db->where('tb.actual_return IS NULL');
+		return $this->db->get()->result_array();
+	}
+
+	public function get_late_borrow(): array
+	{
+		$this->db->select('b.*');
+		$this->db->from('transaction_book tb');
+		$this->db->join('books b', 'tb.book_id=b.id');
+		$this->db->where('tb.actual_return IS NULL');
+		$this->db->where('tb.return_date < NOW()');
+		return $this->db->get()->result_array();
+	}
+
+	public function get_top_borrow(): array
+	{
+		$this->db->select('b.*, COUNT(tb.book_id) as total');
+		$this->db->from('transaction_book tb');
+		$this->db->join('books b', 'tb.book_id=b.id');
+		$this->db->group_by('b.id');
+		$this->db->order_by('total', 'DESC');
+		$this->db->limit(5);
+		return $this->db->get()->result_array();
+	}
+
+	public function get_percentage_borrow(): array{
+		// persentase siswa yang pernah meminjam buku
+		$this->db->select('COUNT(DISTINCT t.member_id) as total');
+		$this->db->from('transactions t');
+		$has_borrow = $this->db->get()->row_array();
+
+		// persentase siswa yang belum pernah meminjam buku
+		$this->db->select('COUNT(DISTINCT m.id) as total');
+		$this->db->from('members m');
+		$this->db->where('m.id NOT IN (SELECT DISTINCT t.member_id FROM transactions t)', NULL, FALSE);
+		$never_borrow = $this->db->get()->row_array();
+
+		return [
+			'has_borrow' => $has_borrow['total'],
+			'never_borrow' => $never_borrow['total']
+		];
+
+	}
+
 }

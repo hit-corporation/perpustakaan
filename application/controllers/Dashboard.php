@@ -13,8 +13,12 @@ class Dashboard extends MY_Controller {
 
 	public function index(){
 		$data['user'] = $this->user_model->get_user($this->session->userdata('user')['id']);
-		$data['total_member'] = count($this->user_model->get_all());
-		$data['total_buku']	= count($this->book_model->get_all());
+		$data['total_member'] = count($this->member_model->get_all());
+		$data['total_book'] = count($this->book_model->get_all());
+		$data['total_borrow_book']	= count($this->book_model->get_all_borrow());
+		$data['late_borrow'] = count($this->book_model->get_late_borrow());
+		$data['top_book_borrow'] = $this->book_model->get_top_borrow();
+		$data['percentage_book_borrow'] = $this->book_model->get_percentage_borrow();
 
 		// MENGGUNAKAN TEMPLATE ENGINE PLATES
 		echo $this->template->render('index', $data);
