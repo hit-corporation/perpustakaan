@@ -205,34 +205,28 @@ const setting = async () => {
 		const member_name = data.member_name;
 		const book_title = data.title;
 		const return_date = data.return_date;
-		const diffDays = Math.floor((Math.abs(new Date(return_date) - new Date())) / (1000 * 60 * 60 * 24));
-		let jumlah_hari_terlambat = 0;
-		let denda = 0;
+
+		let lateDays = data.jumlah_hari_terlambat;
+		if(data.jumlah_hari_terlambat)
+		{
+			lateDays = lateDays.replace('days', 'hari')
+							   .replace('day', 'hari')
+							   .replace('mons', 'bulan')
+							   .replace('mon', 'bulan')
+							   .replace('years', 'tahun')
+							   .replace('year', 'tahun');
+		}
+
+		let diffDays = data.jumlah_hari_pinjam.replace('days', 'hari')
+												.replace('day', 'hari')
+												.replace('mons', 'bulan')
+												.replace('mon', 'bulan')
+												.replace('years', 'tahun')
+												.replace('year', 'tahun');
+		let jumlah_hari_terlambat = lateDays;
+		let denda = data.denda;
 		
-		// JUMLAH HARI TERLAMBAT
-		if (new Date(return_date) >= new Date())
-		{
-			jumlah_hari_terlambat = 0;
-		} 
-		else 
-		{ 
-			jumlah_hari_terlambat = diffDays;
-		}
-
-		// DENDA
-		if (jumlah_hari_terlambat > 0)
-		{
-			denda = jumlah_hari_terlambat * 500;
-			if (denda > 10000)
-			{
-				denda = 10000;
-			}
-		}
-		else
-		{
-			denda = 0;
-		}
-
+		
 		// show modal
 		$('#modal-update').modal('show');
 
