@@ -209,8 +209,27 @@ class Order extends MY_Controller {
 
         foreach($query as $q)
         {
-            $denda = (new DateTime('now')) > (new DateTime($q['return_date'])) ? 
-                          ((new DateTime('now'))->diff(new DateTime($q['return_date'])))->days * $this->settings['fines_amount'] : NULL;
+            $dateDiff = (new DateTime('now'))->diff(new DateTime($q['return_date']));
+            $denda = NULL;
+            
+            if((new DateTime('now')) > (new DateTime($q['return_date']))) 
+            {
+                switch($this->settings['fines_period_unit'])
+                {
+                    case 'days':
+                        $denda = $dateDiff->days / $this->settings['fines_period_value']; 
+                        break;
+                    case 'weeks':
+                        $denda = $dateDiff->w / $this->settings['fines_period_value'];
+                        break;
+                    case 'months':
+                        $denda = $dateDiff->m / $this->settings['fines_period_value'];
+                        break;
+                }
+                $denda = ceil($denda);
+                $denda = $denda * $this->settings['fines_amount'];
+            }
+        
             $q['denda'] = $denda >= $this->settings['fines_maximum'] ? $this->settings['fines_maximum'] : $denda;
             $data[] = $q;
         }
