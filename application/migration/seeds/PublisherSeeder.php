@@ -35,7 +35,15 @@ class PublisherSeeder extends AbstractSeed
             [
                 'publisher_name' => 'Ganeca Exact',
                 'address'        => 'JL. P. Selayar Kav. A5, Kawasan Industri MM 2100, Bekasi'
-            ]
+			],
+			[
+				'publisher_name' => 'Intan Pariwara',
+                'address'        => 'Jl. Ki Hajar Dewantoro No.1, Morangan, Karanganom, Klaten Utara, Kabupaten Klaten, Jawa Tengah 57411'
+			],
+			[
+				'publisher_name' => 'Pusat Kurikulum dan Perbukuan, Balitbang, Kemdikbud',
+                'address'        => 'Jl. Jenderal Sudirman No. 1, RT.1/RW.1, Senayan, Kecamatan Kebayoran Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 10270'
+			]
         ];
 
         $table = $this->table('publishers');

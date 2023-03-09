@@ -75,8 +75,112 @@ class BookSeeder extends AbstractSeed
 					'publisher_id'	=> 1,
 					'description'	=> 'Buku ini merupakan buku pelajaran yang dikhususkan untuk siswa kelas 6 SD yang mengikuti kurikulum 2013 revisi. Buku ini berisi materi-materi yang dibagi menjadi 10 bab, yaitu: 1. Kata Kerja, 2. Kata Sifat, 3. Kata Benda, 4. Kata Ganti, 5. Kalimat, 6. Kalimat Tanya, 7. Kalimat Perintah, 8. Kalimat Sifat, 9. Kalimat Tanya Sifat, dan 10. Kalimat Perintah Sifat. Setiap bab diawali dengan materi yang berisi penjelasan tentang materi yang akan dipelajari, contoh-contoh, dan latihan soal. Setelah itu, siswa akan diberikan latihan soal yang lebih banyak dan lebih rumit. Setiap bab diakhiri dengan latihan soal yang lebih rumit lagi. Buku ini juga dilengkapi dengan kunci jawaban yang dapat digunakan untuk memeriksa jawaban siswa. Buku ini dapat digunakan oleh siswa kelas 6 SD yang mengikuti kurikulum 2013 revisi.',
 					'qty'			=> 1
-				]
+				],
+				[
+					'title'	 		=> 'SD - Buku Teks Pendamping - Buku Siswa Tema 3: Kegiatanku Kelas I SD/MI',
+					'cover_img'		=> 'Tema 3 Kegiatanku.jpg',
+					'author'		=> 'Nuki Rusiyani, Ria Nita Fatimah',
+					'isbn'			=> '-',
+					'publish_year'	=> '2023',
+					'category_id'	=> 2,
+					'publisher_id'	=> 4,
+					'description'	=> 'Buku siswa tematik kelas 1 ini merupakan buku panduan sekaligus buku aktivitas yang akan membantu siswa terlibat aktif dalam pembelajaran. Cara pembelajaran yang dianjurkan dalam Buku siswa tematik ini adalah berbasis kegiatan, bersifat interaktif, dan partisipatif. Buku ini juga dapat digunakan oleh orang tua secara mandiri untuk mendukung aktivitas belajar siswa di rumah. Orang tua diharapkan berdiskusi dan terlibat dalam aktivitas belajar kalian. Struktur buku siswa tematik untuk SD/MI Kelas I ini memfasilitasi pengalaman belajar yang bermakna dan diterjemahkan melalui rubrik berbasis aktivitas, sepertiayo amati, ayo bermain peran, ayo berlatih, ayo ceritakan, ayo berkreasi, ayo menulis, ayo membaca, ayo bernyanyi, ayo kerjakan, ayo berdiskusi, ayo memasangkan, ayo menghubungkan, ayo cari tahu, ayo menghitung, dan belajar bersama orang tua.',
+					'qty'			=> 3
+				],
+				[
+					'title'	 		=> 'PR Kelas II Tema 1: Hidup Rukun',
+					'cover_img'		=> 'I1PR7T21CD.jpg',
+					'author'		=> 'Dewi Agustina, Dwi Martini Sari, Eis Puspita',
+					'isbn'			=> '-',
+					'publish_year'	=> '2023',
+					'category_id'	=> 2,
+					'publisher_id'	=> 4,
+					'description'	=> 'Pembelajaran di SD sesuai dengan Kurikulum 2013 adalah pembelajaran tematik. Siswa tidak lagi belajar mata pelajaran per mata pelajaran. Oleh karena itu, siswa perlu dituntun. Salah satu sarananya adalah buku PR Tematik. PR Tematik Kelas II Tema 1: Hidup Rukun ini terdiri atas empat subtema. Pada bagian awal disajikan apersepsi berupa gambar dan percakapan. Materi dalam apersepsi akan dibahas pada buku ini. Kemudian, setiap subtema terdiri atas enam pembelajaran. Dalam setiap pembelajaran terdiri atas penanaman konsep, kegiatan, dan uji kompetensi. Pada setiap akhir pembelajaran disajikan Ulangan Harian sebagai sarana siswa untuk mengetes kemampuannya menyerap materi yang disajikan. Glosarium yang disajikan pada akhir buku dimaksudkan untuk membantu siswa memahami kata sulit atau kata-kata yang baru dikenalnya. Dengan begitu, siswa akan mudah memahami bacaan atau materi yang tersaji dalam buku ini.',
+					'qty'			=> 5
+				],
+				[
+					'title'	 		=> 'PR Kelas III Tema 2: Menyayangi Hewan dan Tumbuhan',
+					'cover_img'		=> 'I1PR9T32CD.jpg',
+					'author'		=> 'Dewi Agustina, Dini Fima Udari, Dwi Martina Dewi',
+					'isbn'			=> '-',
+					'publish_year'	=> '2023',
+					'category_id'	=> 4,
+					'publisher_id'	=> 6,
+					'description'	=> '',
+					'qty'			=> 2
+				],
+				[
+					'title'	 		=> 'Buku Interaktif-PAI dan Budi Pekerti Kelas IV SD/MI',
+					'cover_img'		=> 'I1MD2EPAI04.jpg',
+					'author'		=> 'Azizah Niki Purnami, Ma\'sumatul Ni\'mah',
+					'isbn'			=> '-',
+					'publish_year'	=> '2023',
+					'category_id'	=> 5,
+					'publisher_id'	=> 6,
+					'description'	=> '',
+					'qty' 			=> 1
+				],
+				[
+					'title' 		=> 'Buku Interaktif-Pendidikan Pancasila Kelas IV SD/MI',
+					'cover_img'		=> 'I1MD2EPKN04.jpg',
+					'author'		=> 'Erni Fitri Astuti, Faizah Nur Diana',
+					'isbn'			=> '-',
+					'publish_year'	=> '2023',
+					'category_id'	=> 5,
+					'publisher_id'	=> 6,
+					'description'	=> '',
+					'qty'			=> 1
+				],
+				[
+					'title' 		=> 'Ilmu Pengetahuan Alam dan Sosial untuk SD Kelas 5',
+					'cover_img'		=> 'mnuxu5vibvzbwnjflvudip.jpg',
+					'author'		=> 'Amalia Fitri Ghaniem, Anggayudha A. Rasa, Ati H. Oktora, Miranda Yasella',
+					'isbn'			=> '9786022446811',
+					'publish_year'	=> '2023',
+					'category_id'	=> 2,
+					'publisher_id'	=> 6,
+					'description'	=> 'Deskripsi Buku
+					Pendidikan selayaknya berperan dalam membekali kalian dalam peranannya di masa yang akan datang. Untuk itu proses pembelajaran perlu dirancang agar mengasah kemampuan dan potensi dari segi akademik maupun non akademik. Semuanya bertujuan agar kalian memiliki keterampilan yang sesuai dengan kebutuhan abad 21. Hal ini selaras dengan program Merdeka Belajar dari Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi yang memberikan keleluasan bagi siswa dan guru untuk menentukan tujuan belajar sesuai dengan kebutuhan dan perkembangannya.
+					
+					Adanya buku ini diharapkan mendorong terjadinya revolusi pendidikan dan semangat merdeka belajar bagi guru dan siswa. Dalam buku ini kalian akan belajar:
+					
+					1. Melakukan penyelidikan ilmiah dan menganalisis hasilnya untuk memahami ilmu alam dan sosial dengan lebih baik.
+					
+					2. Berkolaborasi dengan teman dalam mencapai tujuan pembelajaran membuat proyek belajar secara mandiri.
+					
+					Komponen-komponen dalam buku ini akan membekali kalian untuk pembelajar yang percaya diri, kritis, dan menjadi pribadi yang menampilkan profil Pelajar Pancasila.
+					
+					Tantangan mempelajari bidang keilmuan IPAS senantiasa berkembang dari waktu ke waktu yang tentunya memengaruhi cara belajar peserta didik. Buku ini mengelaborasikan pemahaman-pemahaman esensial dengan ragam aktivitas yang diharapkan mampu menstimulus keingintahuan peserta didik terhadap topik-topik seputar fenomena alam dan sosial di sekitarnya sehingga peserta. didik termotivasi untuk belajar lebih lanjut secara mandiri. Semoga buku ini dapat memberikan kontribusi yang nyata dalam membantu peserta didik mencapai kompetensinya sehingga berdampak terhadap kemajuan pendidikan IPAS tingkat dasar di Indonesia. Penulis menantikan kritik dan masukan yang membangun untuk perbaikan buku ini di masa yang akan datang.
+					
+					Informasi Tambahan
+					
+					Cetakan 1, 2021',
+					'qty'			=> 4
+				],
+				[
+					'title' 		=> 'Bahasa Indonesia : Keluargaku Unik untuk SD Kelas 2',
+					'cover_img'		=> 'tzatrcm4uz7qd94ydkpwhs.jpg',
+					'author'		=> 'Widjati Hartiningtyas, Eni Priyanti',
+					'isbn'			=> '9786022446309',
+					'publish_year'	=> '2023',
+					'category_id'	=> 5,
+					'publisher_id'	=> 7,
+					'description'	=> 'Bahasa Indonesia Keluargaku Unik
 
+					Di kelas dua, para peserta didik akan mempelajari hal-hal baru dan meningkatkan kemampuan berbahasa mereka dengan cara yang menyenangkan. Melalui buku Bahasa Indonesia Keluargaku Unik, peserta didik kelas dua akan melakukan kegiatan menyimak, membaca, berbicara, dan menulis melalui cerita, teks informasi, serta gambar-gambar yang menarik.
+					
+					Buku Siswa ini akan menemani peserta didik melatih cara berpikir kritis, mengemukakan pendapat secara lisan dan tertulis, berdiskusi, mendapatkan informasi melalui kegiatan menyimak, membaca, dan mengamati. Bacaan yang beragam di dalam buku ini diharapkan dapat menumbuhkan kecintaan membaca peserta didik.
+					
+					Tentu saja Buku Siswa ini tidak menjadi satu-satunya bahan mengajar. Guru disarankan untuk menggunakan perangkat ajar dan sumber bacaan lain yang menampilkan budaya dan keindahan alam setempat. Dengan begitu, peserta didik tak hanya memiliki keterampilan berbahasa terhadap budaya dan bangsa.
+					Indonesia yang baik, tetapi juga kecintaan
+					
+					Pusat Perbukuan; Badan Standar, Kurikulum, dan Asesmen Pendidikan; Kementerian Pendidikan, Kebudayaan, Riset dan Teknologi sesuai tugas dan fungsinya mengembangkan kurikulum yang mengusung semangat merdeka belajar mulai dari satuan Pendidikan Anak Usia Dini, Pendidikan Dasar, dan Pendidikan Menengah. Kurikulum ini memberikan keleluasaan bagi satuan pendidikan dalam mengembangkan potensi yang dimiliki oleh peserta didik. Untuk mendukung pelaksanaan kurikulum tersebut, sesuai Undang-Undang Nomor 3 tahun 2017 tentang Sistem Perbukuan, pemerintah dalam hal ini Pusat Perbukuan memiliki tugas untuk menyiapkan Buku Teks Utama.
+					
+					Buku teks ini merupakan salah satu sumber belajar utama untuk digunakan pada satuan pendidikan. Adapun acuan penyusunan buku adalah Keputusan Menteri Pendidikan dan Kebudayaan Republik Indonesia Nomor 958/P/2020 tentang Capaian Pembelajaran pada Pendidikan Anak Usia Dini, Pendidikan Dasar, dan Pendidikan Menengah. Sajian buku dirancang dalam bentuk berbagai aktivitas pembelajaran untuk mencapai kompetensi dalam Capaian Pembelajaran tersebut. Penggunaan buku teks ini dilakukan secara bertahap pada Sekolah Penggerak, sesuai dengan Keputusan Menteri Pendidikan dan Kebudayaan Nomor 162/M/2021 tentang Program Sekolah Penggerak.
+					
+					Sebagai dokumen hidup, buku ini tentunya dapat diperbaiki dan disesuaikan dengan kebutuhan. Oleh karena itu, saran-saran dan masukan dari para guru, peserta didik, orang tua, dan masyarakat sangat dibutuhkan untuk penyempurnaan buku teks ini. Pada kesempatan ini, Pusat Perbukuan mengucapkan terima kasih kepada semua pihak yang telah terlibat dalam penyusunan buku ini mulai dari penulis, penelaah, penyunting, ilustrator, desainer, dan pihak terkait lainnya yang tidak dapat disebutkan satu per satu. Semoga buku ini dapat bermanfaat khususnya bagi peserta didik dan guru dalam meningkatkan mutu pembelajaran.',
+					'qty'			=> 4
+				]
             ];
         }
 
