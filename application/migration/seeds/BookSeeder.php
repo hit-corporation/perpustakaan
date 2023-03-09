@@ -180,6 +180,34 @@ class BookSeeder extends AbstractSeed
 					
 					Sebagai dokumen hidup, buku ini tentunya dapat diperbaiki dan disesuaikan dengan kebutuhan. Oleh karena itu, saran-saran dan masukan dari para guru, peserta didik, orang tua, dan masyarakat sangat dibutuhkan untuk penyempurnaan buku teks ini. Pada kesempatan ini, Pusat Perbukuan mengucapkan terima kasih kepada semua pihak yang telah terlibat dalam penyusunan buku ini mulai dari penulis, penelaah, penyunting, ilustrator, desainer, dan pihak terkait lainnya yang tidak dapat disebutkan satu per satu. Semoga buku ini dapat bermanfaat khususnya bagi peserta didik dan guru dalam meningkatkan mutu pembelajaran.',
 					'qty'			=> 4
+				],
+				[
+					'title' 		=> 'Bank Soal + Soal Hots Superlengkap Matematika Sd/Mi Kelas 4,',
+					'cover_img'		=> 'qk6dqv8usmbkk9f268dogp.jpg',
+					'author'		=> 'Uly Amalia Dkk',
+					'isbn'			=> '9786026725653',
+					'publish_year'	=> '2023',
+					'category_id'	=> 5,
+					'publisher_id'	=> 7,
+					'description'	=> 'BANK SOAL SOAL HOTS (HIGHER ORDER
+
+					SUPERLENGKAP MATEMATIKA
+					
+					SD/MI KELAS 4, 5, & 6
+					
+					Membaca materi supaya tahu. berlatih mengerjakan soal supaya paham. Membaca dan berlatih adalah dua hal penting yang harus dilalui siswa untuk mendapatkan nilai terbaik. Pengetahuan dasar yang dibaca, apabila tidak lanjut digunakan dengan mengerjakan soal, akan sulit untuk tersimpan dalam pemahaman siswa. Dengan cara membaca dan mengerjakan soal, siswa diharapkan akan memiliki yang telah pengetahuan komprehensif karena menguasai kemampuan berpikir dan memahami materi sekaligus
+					
+					kemampuan memecahkan masalah yang dijabarkan pada soal.
+					
+					Buku Bank Soal Superlengkap Matematika SD/MI Kelas 4, 5, & 6 memberikan kesempatan bagi siswa untuk belajar dan berlatih memecahkan permasalahan yang diajukan pada soal. Buku ini menyajikan materi pelajaran Matematika berdasarkan poin-poin penting dari kelas 4, 5, & 6 yang disusun ringkas, disertai trik smart mengerjakan soal, contoh soal plus pembahasan, soal pendalaman materi, soal latihan plus kunci jawaban, paket soal-bahas US/M, dan paket prediksi soal-kunci jawaban US/M. Semoga dengan belajar dan berlatih, siswa yang membaca buku ini dapat sukses meraih nilai terbaik saat menghadapi ujian dan asesmen di kemudian hari.
+					Untuk bisa mengerjakan soal-soal ujian, tentu siswa tidak hanya belajar menghafal atau memahami materinya saja, tapi diperlukan juga soal-soal latihan agar siswa terlatih dan terbiasa mengerjakan soal. Seperti peribahasa yang mengatakan "tajam pisau karena diasah" Peribahasa itu bisa diartikan jika kita berlatih mengerjakan soal terus-menerus, kita akan terlatih menyelesaikan soal dengan tepat dan semakin paham akan konsep materi yang sedang dipelajari.
+					
+					Buku Bank Soal Superlengkap Matematika SD/MI Kelas 4, 5, & 6 ini adalah buku yang tepat dijadikan pegangan bagi siswa untuk berlatih mengerjakan soal-soal, karena selain bervariasi tingkat kesulitannya, juga bervariasi sumber soalnya. Soal-soal dalam buku diambil dari soal-soal penilaian harian, penilaian akhir semester, penilaian akhir tahun, dan ujian sekolah/madrasah (US/M). Harapannya, dengan soal yang bervariasi, siswa siap menghadapi berbagai ujian di sekolah. Soal-soal dalam buku ini dibahas secara detail, lengkap, dan mudah dipahami. Selain cara yang biasa, ada juga cara cepat atau trik smart mengerjakan soal
+					
+					Buku ini dilengkapi juga dengan materi pelajaran matematika yang diringkas berdasarkan poin-poin penting yang harus dikuasai siswa. Sebagai bahan pemantapan dalam menghadapi US/M, dalam buku ini disajikan pula paket soal US/M beserta pemibahasannya.
+					
+					Selamat berlatih mengerjakan soal!',
+					'qty'			=> 4
 				]
             ];
         }

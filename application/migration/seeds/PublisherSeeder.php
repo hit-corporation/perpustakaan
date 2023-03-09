@@ -43,6 +43,10 @@ class PublisherSeeder extends AbstractSeed
 			[
 				'publisher_name' => 'Pusat Kurikulum dan Perbukuan, Balitbang, Kemdikbud',
                 'address'        => 'Jl. Jenderal Sudirman No. 1, RT.1/RW.1, Senayan, Kecamatan Kebayoran Baru, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 10270'
+			],
+			[
+				'publisher_name' => 'B-Media',
+                'address'        => 'Jl. H. Montong No.57 Ciganjur - Jagakarsa Faks. 021 7270996'
 			]
         ];
 
