@@ -229,9 +229,30 @@
 
 <script src="./assets/js/dashboard/percentageBookBorrow.js"></script>
 <script src="./assets/js/dashboard/topBookBorrow.js"></script>
+<script src="./assets/js/dashboard/topTenMemberBorrow.js"></script>
 <script>
 	percentage_book_borrow(<?= json_encode($percentage_book_borrow) ?>);
 	top_book_borrow(<?= json_encode(array_column($top_book_borrow , 'total')) ?>, <?= json_encode(array_column($top_book_borrow , 'title')) ?>);
+	
+	// create data for chart top ten member borrow
+	var dataTopMember = [];
+	<?php foreach($top_member_borrow as $key => $value) : ?>
+		dataTopMember.push({
+			name: '<?= $value['member_name'] ?>',
+			y: <?= $value['total'] ?>
+		});
+	<?php endforeach; ?>
+
+	topTenMemberBorrow(dataTopMember);
+
+	// set temout for change font
+	setTimeout(() => {
+		// change font
+		let SvgjsText1005 = document.querySelector('#SvgjsText1005');
+		SvgjsText1005.style.fontSize = '12px';
+		SvgjsText1005.style.fontFamily = '"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
+
+	}, 500);
 </script>
 
 
@@ -251,83 +272,9 @@
 
 <script>
 
-	// create data for chart
-	var dataTopMember = [];
-	<?php foreach($top_member_borrow as $key => $value) : ?>
-		dataTopMember.push({
-			name: '<?= $value['member_name'] ?>',
-			y: <?= $value['total'] ?>
-		});
-	<?php endforeach; ?>
+	
 
-
-	Highcharts.chart('top-ten-member', {
-		chart: {
-			type: 'column',
-		},
-		title: {
-			text: '<h6>Top 10 Siswa Meminjam Buku selama 1 bulan terakhir</h6>'
-		},
-		xAxis: {
-			type: 'category',
-			labels: {
-			rotation: -45,
-			style: {
-				fontSize: '11px',
-				fontFamily: 'Verdana, sans-serif'
-			}
-			}
-		},
-		yAxis: {
-			min: 0,
-			title: {
-			text: 'Banyaknya (buku)'
-			}
-		},
-		legend: {
-			enabled: false
-		},
-		tooltip: {
-			pointFormat: 'Total: <b>{point.y:.f} Buku</b>'
-		},
-		series: [{
-			name: 'Population',
-			// data: [
-			// ['Tokyo', 37.33],
-			// ['Delhi', 31.18],
-			// ['Shanghai', 27.79],
-			// ['Sao Paulo', 22.23],
-			// ['Mexico City', 21.91],
-			// ['Dhaka', 21.74],
-			// ['Cairo', 21.32],
-			// ['Beijing', 20.89],
-			// ['Mumbai', 20.67],
-			// ['Osaka', 19.11]
-			// ],
-			data: dataTopMember,
-			dataLabels: {
-			enabled: true,
-			rotation: 0,
-			color: '#FFFFFF',
-			align: 'right',
-			format: '{point.y:.f}', // one decimal
-			y: 25, // 10 pixels down from the top
-			style: {
-				fontSize: '13px',
-				fontFamily: 'Verdana, sans-serif'
-			}
-			}
-		}]
-	});
-
-	// set temout for change font
-	setTimeout(() => {
-		// change font
-		let SvgjsText1005 = document.querySelector('#SvgjsText1005');
-		SvgjsText1005.style.fontSize = '12px';
-		SvgjsText1005.style.fontFamily = '"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"'
-
-	}, 500);
+	
 
 
 </script>
