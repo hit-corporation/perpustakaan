@@ -28,8 +28,17 @@
 	</div>
 
 </div>
+
+<div id="modal-input" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header"></div>
+			<div class="modal-body"></div>
+		</div>
+	</div>
+</div>
 <?php $this->stop() ?>
 
 <?php $this->start('js') ?>
-<script src="<?=$this->e(base_url('assets/pages/js/stock.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/js/pages/stocks.js'))?>"></script>
 <?php $this->stop() ?>
