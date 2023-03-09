@@ -29,16 +29,29 @@
 
 </div>
 
-<div id="modal-input" class="modal fade">
-	<div class="modal-dialog">
+<div id="modal-input" class="modal fade show">
+	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
-			<div class="modal-header"></div>
-			<div class="modal-body"></div>
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title">DETAIL BUKU</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+			</div>
+			<form class="modal-body">
+				<div class="form-group">
+					<label class="form-label mb-0">Buku <span class="text-danger">*</span></label>
+					<select class="form-control" name="book">
+
+					</select>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
 <?php $this->stop() ?>
 
 <?php $this->start('js') ?>
+<script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/js/pages/stocks.js'))?>"></script>
 <?php $this->stop() ?>

@@ -32,6 +32,7 @@ class Order extends MY_Controller {
      */
     public function store(): void {
         // input
+        $code = $this->input->post('code', TRUE);
         $member = $this->input->post('member', TRUE);
         $startDate = $this->input->post('start_date', TRUE);
         $endDate = $this->input->post('end_date', TRUE);
@@ -95,7 +96,8 @@ class Order extends MY_Controller {
 		// INSERT START
         $this->db->trans_start();
         $trans = [
-            'member_id' => $member
+            'trans_code'    => $code,
+            'member_id'     => $member
         ];
         $this->db->insert('transactions', $trans);
         $_id = $this->db->insert_id();
@@ -110,11 +112,28 @@ class Order extends MY_Controller {
             ];
 
             $this->transaction_model->upsert($data, ['transaction_id' => $_id, 'book_id' => $book['title']]);
-
 			$this->db->set('qty', 'qty-1', FALSE)->where('id', $data['book_id'])->update('books');
         }
+        // realase memory
+        unset($trans);
+        unset($books);
 
+        // reports
+        $transac = $this->transaction_model->get_by_code($code);
+        foreach($transac as $trans)
+        {
+            $report = [
+                'trans_code'    => $trans['trans_code'],
+                'member_name'   => $trans['member_name'],
+                'book_title'    => $trans['title'],
+                'loan_date'     => $trans['trans_timestamp'],
+                'return_date'   => $trans['return_date']
+            ];
+    
+            $this->db->insert('reports', $report);
+        }
         $this->db->trans_complete();
+        // INSERT COMPLETE
 
         if($this->db->trans_status() === FALSE)
         {
@@ -170,6 +189,7 @@ class Order extends MY_Controller {
 			$penalty = $this->input->post('denda', TRUE);
 			$bayar = $this->input->post('bayar', TRUE);
 			$notes = $this->input->post('notes', TRUE);
+            $trans_code = $this->input->post('trans_code', TRUE);
 
 			// update data transaction book
             $data = ['amount_penalty' => $penalty, 'amount_paid' => $bayar, 'note' => $notes, 'updated_at' => date('Y-m-d H:i:s.u'), 'actual_return' => date('Y-m-d H:i:s')];

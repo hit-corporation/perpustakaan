@@ -23,6 +23,22 @@ class Transaction_model extends CI_Model {
     }
 
 	/**
+	 * Get One By Transaction Code
+	 *
+	 * @param string $code
+	 * @return array
+	 */
+	public function get_by_code(string $code): array
+	{
+		$this->db->select('a.*, b.trans_code, b.trans_timestamp, d.member_name, c.title')
+				->from('transaction_book a, transactions b, books c, members d', FALSE)
+				->where('a.transaction_id=b.id AND a.book_id=c.id AND b.member_id=d.id', NULL, FALSE)
+				->where('b.trans_code', $code);
+
+		return $this->db->get()->result_array();
+	}
+
+	/**
 	 * Get All Data With Generator 
 	 *
 	 * @param array|null $filter

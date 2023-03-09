@@ -232,6 +232,7 @@ const setting = async () => {
 
 		// set value
 		$('#modal-update input[name="transaction_book_id"]').val(id);
+		$('#modal-update input[name="transaction_code"]').val(id);
 		$('#modal-update input[name="book_id"]').val(book_id);
 		$('#modal-update input[name="member_name"]').val(member_name);
 		$('#modal-update input[name="book_title"]').val(book_title);

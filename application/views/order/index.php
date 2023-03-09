@@ -61,7 +61,7 @@
                     <fieldset class="form-row">
                         <div class="col-12 col-md-6 col-lg-3 mt-3">
                             <label for="" class="form-label">Kode Transaksi <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" name="code" value="<?=$_SESSION['error']['old']['code'] ?? strtoupper(bin2hex(random_bytes(8))) ?? NULL ?>">
+                            <input type="text" class="form-control" name="code" value="<?=$_SESSION['error']['old']['code'] ?? strtoupper(bin2hex(random_bytes(8))) ?? NULL ?>" readonly>
                         </div>
                         <div class="col-12 col-md-6 col-lg-3 mt-3">
                             <label for="" class="form-label">Anggota <span class="text-danger">*</span></label>

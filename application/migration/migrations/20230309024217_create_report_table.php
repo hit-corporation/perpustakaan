@@ -25,13 +25,13 @@ final class CreateReportTable extends AbstractMigration
         $table->addColumn('book_title', 'string', ['limit' => 245]);
         $table->addColumn('loan_date', 'timestamp');
         $table->addColumn('return_date', 'timestamp');
-        $table->addColumn('actual_return', 'timestamp');
-        $table->addColumn('late_days', 'string', ['limit' => 245]);
-        $table->addColumn('fines_amount', 'integer');
-        $table->addColumn('fines_period', 'string', ['limit' => 245]);
-        $table->addColumn('fines_total', 'integer');
-        $table->addColumn('fines_payment', 'integer');
-        $table->addColumn('notes', 'text');
+        $table->addColumn('actual_return', 'timestamp', ['null' => true]);
+        $table->addColumn('late_days', 'string', ['limit' => 245, 'null' => true]);
+        $table->addColumn('fines_amount', 'integer', ['null' => true]);
+        $table->addColumn('fines_period', 'string', ['limit' => 245, 'null' => true]);
+        $table->addColumn('fines_total', 'integer', ['null' => true]);
+        $table->addColumn('fines_payment', 'integer', ['null' => true]);
+        $table->addColumn('notes', 'text', ['null' => true]);
 
         $table->addTimestamps();
         $table->create();
