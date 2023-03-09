@@ -2853,7 +2853,7 @@
             };
             v.prototype.getStyle = function(c) {
                 return this.style = b({
-                    fontFamily: '"Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif',
+                    fontFamily: '"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
                     fontSize: "12px"
                 }, c)
             };
@@ -8113,7 +8113,7 @@
                     var c = this,
                         d = "title" === b ? {
                             color: "#333333",
-                            fontSize: this.options.isStock ? "16px" : "18px"
+                            fontSize: this.options.isStock ? "12px" : "14px"
                         } : {
                             color: "#666666"
                         };

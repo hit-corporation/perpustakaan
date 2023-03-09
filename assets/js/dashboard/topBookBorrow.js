@@ -51,10 +51,10 @@ const top_book_borrow = (data, title) => {
 			align: 'center',
 			floating: true
 		},
-		subtitle: {
-			text: 'Nama buku terdapat di dalam grafik',
-			align: 'center',
-		},
+		// subtitle: {
+		// 	text: 'Nama buku terdapat di dalam grafik',
+		// 	align: 'center',
+		// },
 		tooltip: {
 			theme: 'dark',
 			x: {

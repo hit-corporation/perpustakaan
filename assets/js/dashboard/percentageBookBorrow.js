@@ -9,7 +9,7 @@ const percentage_book_borrow = (percentage_book_borrow) => {
 		},
 		colors: ['#50a5f1', '#2a3042', '#d4526e', '#13d8aa', '#A5978B', '#2b908f', '#f9a3a4', '#90ee7e', '#f48024', '#69d2e7'],
 		title: {
-			text: 'Persentase Siswa Meminjam Buku',
+			text: '<span id="percentageSiswaTitle">Persentase Siswa Meminjam Buku</span>',
 			align: 'left'
 		},
 		tooltip: {
