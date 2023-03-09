@@ -99,7 +99,6 @@ const deleteRow = async e => {
 }
 
 
-
 (async $ => {
 	const books = [...await getBooks()];
 

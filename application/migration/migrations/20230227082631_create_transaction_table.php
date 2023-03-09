@@ -23,9 +23,11 @@ final class CreateTransactionTable extends AbstractMigration
         $this->execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp"');
         // TABLE
         $table = $this->table('transactions');
+        $table->addColumn('trans_code', 'string', ['limit' => 225, 'default' => bin2hex(random_bytes(8))]);
         $table->addColumn('trans_timestamp', 'timestamp', ['default' => 'CURRENT_TIMESTAMP']);
         $table->addColumn('member_id', 'integer', ['null' => true]);
 
+        $table->addIndex('trans_code', ['unique' => true]);
         $table->addForeignKey('member_id', 'members', 'id', ['update' => 'CASCADE', 'delete' => 'CASCADE']);
         $table->addTimestamps();
         $table->create();

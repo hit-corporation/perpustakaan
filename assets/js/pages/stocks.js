@@ -11,4 +11,5 @@
         ]
     });
 
+    console.log(crypto);
 })(jQuery);

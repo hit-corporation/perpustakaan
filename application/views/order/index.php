@@ -59,21 +59,26 @@
                         <button type="submit" class="btn btn-primary ml-2"><i class="fas fa-save"></i> Simpan</button>
                    </fieldset>
                     <fieldset class="form-row">
-                        <div class="col-12 col-md-6 col-lg-4 mt-3">
+                        <div class="col-12 col-md-6 col-lg-3 mt-3">
+                            <label for="" class="form-label">Kode Transaksi <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" name="code" value="<?=$_SESSION['error']['old']['code'] ?? strtoupper(bin2hex(random_bytes(8))) ?? NULL ?>">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3 mt-3">
                             <label for="" class="form-label">Anggota <span class="text-danger">*</span></label>
                             <select class="form-control <?php if(!empty($_SESSION['error']['errors']['member'])): ?> is-invalid <?php endif ?>" name="member" value="<?=$_SESSION['error']['old']['member'] ?? NULL ?>"></select>
                             <?php if(!empty($_SESSION['error']['errors']['member'])): ?>
                                 <small class="text-danger"><?=$_SESSION['error']['errors']['member']?></small>
                             <?php endif ?>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 mt-3">
+                        <div class="col-12 col-md-6 col-lg-3 mt-3">
                             <label for="" class="form-label">Tanggal Peminjaman <span class="text-danger">*</span></label>
                             <input type="date" class="form-control" name="start-date" value="<?=$_SESSION['error']['old']['start-date'] ?? NULL ?>">
                         </div>
-                        <div class="col-12 col-md-6 col-lg-4 mt-3">
+                        <div class="col-12 col-md-6 col-lg-3 mt-3">
                             <label for="" class="form-label">Tanggal Pengembalian <span class="text-danger">*</span></label>
                             <input type="date" class="form-control" name="end-date" value="<?=$_SESSION['error']['old']['end-date'] ?? NULL ?>">
                         </div>
+                        
                     </fieldset>
                    <fieldset class="w-100 mt-4 ">
                         <div class="d-flex flex-nowrap w-100">
