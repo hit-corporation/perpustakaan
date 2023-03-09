@@ -91,6 +91,7 @@
                         <table id="book-form" class="table table-sm w-100">
                             <thead class="bg-primary text-white d-none d-lg-table-head">
                                 <tr>
+                                    <th class="pl-2" style="width: 20%">Kode Stock <span class="text-danger">*</span></th>
                                     <th class="pl-2" style="width: 50%">Judul <span class="text-danger">*</span></th>
                                     <th class="pl-2">Tgl Kembali <span class="text-danger">*</span></th>
                                     <th class="pl-2">Hapus</th>
@@ -98,6 +99,10 @@
                             </thead>
                             <tbody>
                                 <tr class="d-flex flex-column d-lg-table-row">
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Judul</label>
+                                        <input type="text" class="form-control" name="stock_code" autofocus>
+                                    </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
                                         <select class="form-control <?php if(!empty($_SESSION['error']['errors']['book[0][title]'])):?> is-invalid <?php endif ?>" name="book[0][title]" value="<?=$_SESSION['error']['old']['book'][0]['title'] ?? NULL ?>"></select>

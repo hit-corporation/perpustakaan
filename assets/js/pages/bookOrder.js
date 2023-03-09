@@ -67,17 +67,21 @@ const addData = async () => {
     const cell_0 = tr.insertCell(0);
     const cell_1 = tr.insertCell(1);
     const cell_2 = tr.insertCell(2);
+    const cell_3 = tr.insertCell(3);
 
-    // cell 0
     cell_0.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
-                       `<select class="form-control book-title" name="book[${(idx)}][title]"></select>`; 
+                       '<input type="text" class="form-control" name="stock_code" autofocus>';
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
-
-    cell_1.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
+    cell_1.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
+                       `<select class="form-control book-title" name="book[${(idx)}][title]"></select>`; 
+    cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
+    
+    // cell 2
+    cell_2.innerHTML =  '<label class="d-lg-none mb-0">Tgl Pengembalian</label>' + 
                         `<input type="date" class="form-control" name="book[${(idx)}][return_date]"` + 
 						'value="'+ form['end-date'].value + '">';
-    cell_1.classList.add('d-inline-block', 'd-lg-table-cell');
+    cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 3
     const btnDelete = document.createElement('button');
     btnDelete.innerHTML = '<i class="fas fa-trash"></i>';
@@ -86,8 +90,8 @@ const addData = async () => {
     btnDelete.onclick = async e => await deleteRow(e);
 
     //cell_3.innerHTML =  '<button href="javascript:void(0)" class="btn-circle btn-danger rounded-circle border-0 delete_data"><i class="fas fa-trash"></i></button>';
-    cell_2.appendChild(btnDelete);
-    cell_2.classList.add('d-inline-block', 'd-lg-table-cell');
+    cell_3.appendChild(btnDelete);
+    cell_3.classList.add('d-inline-block', 'd-lg-table-cell');
     
     // delete button;
 
