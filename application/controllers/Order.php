@@ -41,6 +41,11 @@ class Order extends MY_Controller {
         $members = $this->member_model->get_all();
         $validation = [
             [
+                'field' => 'code',
+                'label' => 'Kode Transaksi',
+                'rules' => 'required'
+            ],
+            [
                 'field'  => 'member',
                 'label'  => 'Anggota',
                 'rules'  => ['required', 'in_list['.implode(',', array_column($members, 'id')).']']   
