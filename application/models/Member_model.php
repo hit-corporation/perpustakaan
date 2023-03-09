@@ -25,10 +25,12 @@ class Member_model extends CI_Model {
     }
 
 	public function get_top_borrow(): array {
+		// date range 30 days postgresql
 		$this->db->select('m.member_name, count(m.member_name) as total');
 		$this->db->from('transactions t');
 		$this->db->join('members m', 'm.id = t.member_id');
 		$this->db->join('transaction_book tb', 'tb.transaction_id = t.id');
+		$this->db->where('t.trans_timestamp >= now() - interval \'30 days\'');
 		$this->db->group_by('m.member_name');
 		$this->db->order_by('total', 'DESC');
 		$this->db->limit(10);
