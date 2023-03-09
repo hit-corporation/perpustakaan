@@ -45,6 +45,10 @@
 
 					</select>
 				</div>
+				<div class="form-group">
+					<label></label>
+					<input type="text" class="form-control">
+				</div>
 			</form>
 		</div>
 	</div>
