@@ -275,6 +275,9 @@
         </div>
     </div>
 </div>
+
+<?php $this->insert('book/modal_stock', ['book_id' => ($_SESSION['success']['book_id'] ?? NULL)]) ?>
+
 <?php $this->stop() ?>
 
 <!-- SECTION JS -->
@@ -285,12 +288,29 @@
 
 <?php if(!empty($_SESSION['success'])): ?>
 <script>
-    Swal.fire({
-        icon: 'success',
-        title: '<h4 class="text-success"></h4>',
-        html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
-        timer: 2000
-    });
+    <?php if(isset($_SESSION['success']['add_stock'])): ?>
+        Swal.fire({
+            icon: 'success',
+            title: '<h4 class="text-success"></h4>',
+            html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+            confirmButtonText: 'Tambah Stok',
+            showDenyButton: true
+        })
+        .then(t => {
+            if(t.isConfirmed)
+            {
+                $('#modal_stock').modal('show');
+            }
+
+        });
+    <?php else: ?>
+        Swal.fire({
+            icon: 'success',
+            title: '<h4 class="text-success"></h4>',
+            html: '<h5 class="text-success"><?=$_SESSION['success']['message']?></h5>',
+            timer: 2000
+        });
+    <?php endif ?>
 </script>
 <?php endif ?>
 
@@ -309,5 +329,7 @@
 <?php endif ?>
 
 <script src="<?=$this->e(base_url('assets/js/pages/book.js'))?>"></script>
+
+<?php $this->insert('book/modal_stock_js', ['is_readonly' => true]) ?>
 
 <?php $this->stop() ?>

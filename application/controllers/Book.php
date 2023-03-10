@@ -153,7 +153,7 @@ class Book extends MY_Controller
 		}
 
 		// Success
-		$resp = ['success' => true, 'message' => 'Data berhasil di simpan'];
+		$resp = ['success' => true, 'message' => 'Data berhasil di simpan', 'add_stock' => true, 'book_id' => $this->db->insert_id()];
 		$this->session->set_flashdata('success', $resp);
 		redirect($_SERVER['HTTP_REFERER']);
 	}
