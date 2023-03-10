@@ -12,12 +12,15 @@
             options: books
         });
 
+        var sel = $select[0].selectize;
+
         // modal stock event
         $('#modal_stock').on('show.bs.modal', e => {
             if(formStock.getAttribute('value'))
-            {
-
-            }
+                sel.setValue(formStock.getAttribute('value'));
+            <?php if($is_readonly): ?>
+                sel.lock();
+            <?php endif ?>
         });
     })(jQuery);
 </script>
