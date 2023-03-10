@@ -298,9 +298,7 @@
         })
         .then(t => {
             if(t.isConfirmed)
-            {
                 $('#modal_stock').modal('show');
-            }
 
         });
     <?php else: ?>
