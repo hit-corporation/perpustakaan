@@ -270,6 +270,18 @@
 
 
 <script>
+	// get category
+	var category = [];
+	<?php foreach($daily_borrow as $key => $value) : ?>
+		category.push('<?= $value['date'] ?>');
+	<?php endforeach; ?>
+
+	// get data
+	var data = [];
+	<?php foreach($daily_borrow as $key => $value) : ?>
+		data.push(<?= $value['total'] ?>);
+	<?php endforeach; ?>
+
 
 	// Data retrieved https://en.wikipedia.org/wiki/List_of_cities_by_average_temperature
 	Highcharts.chart('monyhly-member-borrow', {
@@ -280,7 +292,8 @@
 			text: 'Kunjungan Siswa Perbulan'
 		},
 		xAxis: {
-			categories: ['1 feb', '2 feb', '3 feb', '4 feb', '5 feb', '6 feb', '7 feb', '8 feb', '9 feb', '10 feb', '11 feb', '12 feb', '13 feb', '14 feb', '15 feb', '16 feb', '17 feb', '18 feb', '19 feb', '20 feb', '21 feb', '22 feb', '23 feb', '24 feb', '25 feb', '26 feb', '27 feb', '28 feb', '1 mar', '2 mar']
+			// categories: ['1 feb', '2 feb', '3 feb', '4 feb', '5 feb', '6 feb', '7 feb', '8 feb', '9 feb', '10 feb', '11 feb', '12 feb', '13 feb', '14 feb', '15 feb', '16 feb', '17 feb', '18 feb', '19 feb', '20 feb', '21 feb', '22 feb', '23 feb', '24 feb', '25 feb', '26 feb', '27 feb', '28 feb', '1 mar', '2 mar']
+			categories: category
 		},
 		yAxis: {
 			title: {
@@ -297,8 +310,8 @@
 		},
 		series: [{
 			name: 'Siswa',
-			data: [16, 18, 23, 27, 32, 36, 39, 38, 35, 29,
-			22, 17, 16, 18, 23, 27, 32, 36, 39, 38, 35, 29, 22, 17, 16, 18, 23, 27, 32, 36]
+			// data: [16, 18, 23, 27, 32, 36, 39, 38, 35, 29, 22, 17, 16, 18, 23, 27, 32, 36, 39, 38, 35, 29, 22, 17, 16, 18, 23, 27, 32, 36]
+			data: data
 		},
 	]
 	});

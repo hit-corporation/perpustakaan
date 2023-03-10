@@ -125,4 +125,14 @@ class Book_model extends CI_Model {
 
 	}
 
+	public function get_daily_borrow(): array{
+		// create query for 30 days	
+		$this->db->select('COUNT(t.id) as total, TO_CHAR(t.trans_timestamp, \'dd Mon\') as date, t.trans_timestamp', FALSE);
+		$this->db->from('transactions t');
+		$this->db->where('t.trans_timestamp >= NOW() - INTERVAL \'30 days\'', NULL, FALSE);
+		$this->db->group_by('date, t.trans_timestamp');
+		$this->db->order_by('t.trans_timestamp', 'ASC');
+		return $this->db->get()->result_array();
+	}
+
 }

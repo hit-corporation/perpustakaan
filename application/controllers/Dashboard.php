@@ -20,6 +20,7 @@ class Dashboard extends MY_Controller {
 		$data['top_book_borrow'] = $this->book_model->get_top_borrow();
 		$data['percentage_book_borrow'] = $this->book_model->get_percentage_borrow();
 		$data['top_member_borrow'] = $this->member_model->get_top_borrow();
+		$data['daily_borrow'] = $this->book_model->get_daily_borrow();
 
 		// MENGGUNAKAN TEMPLATE ENGINE PLATES
 		echo $this->template->render('index', $data);
