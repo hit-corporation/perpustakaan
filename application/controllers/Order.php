@@ -186,15 +186,15 @@ class Order extends MY_Controller {
 		if(!empty($post))
 		{
 			$transaction_book_id = $this->input->post('transaction_book_id', TRUE);
-			$penalty = $this->input->post('denda', TRUE);
-			$bayar = $this->input->post('bayar', TRUE);
+			$penalty = $this->input->post('denda', TRUE) ?? NULL;
+			$bayar = $this->input->post('bayar', TRUE) ?? NULL;
 			$notes = $this->input->post('notes', TRUE);
             $trans_code = $this->input->post('trans_code', TRUE);
 
 			// update data transaction book
             $data = ['amount_penalty' => $penalty, 'amount_paid' => $bayar, 'note' => $notes, 'updated_at' => date('Y-m-d H:i:s.u'), 'actual_return' => date('Y-m-d H:i:s')];
-			$this->db->where('id', $transaction_book_id);
-			$this->db->update('transaction_book', $data);
+			// $this->db->where('id', $transaction_book_id);
+			$this->db->update('transaction_book', $data, ['id' => $transaction_book_id]);
 
 			// update data book
 			$this->db->set('qty', 'qty+1', FALSE)->where('id', $this->input->post('book_id', TRUE))->update('books');
