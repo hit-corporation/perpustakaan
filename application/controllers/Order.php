@@ -186,8 +186,8 @@ class Order extends MY_Controller {
 		if(!empty($post))
 		{
 			$transaction_book_id = $this->input->post('transaction_book_id', TRUE);
-			$penalty = $this->input->post('denda', TRUE) ?? NULL;
-			$bayar = $this->input->post('bayar', TRUE) ?? NULL;
+			$penalty = !empty($this->input->post('denda', TRUE)) ? $this->input->post('denda', TRUE) : 0;
+			$bayar = !empty($this->input->post('bayar', TRUE)) ? $this->input->post('bayar', TRUE) : 0;
 			$notes = $this->input->post('notes', TRUE);
             $trans_code = $this->input->post('trans_code', TRUE);
 

@@ -16,8 +16,8 @@
 
         // modal stock event
         $('#modal_stock').on('show.bs.modal', e => {
-            if(formStock.getAttribute('value'))
-                sel.setValue(formStock.getAttribute('value'));
+            if(formStock['book'].getAttribute('value'))
+                sel.setValue(formStock['book'].getAttribute('value'));
             <?php if($is_readonly): ?>
                 sel.lock();
             <?php endif ?>

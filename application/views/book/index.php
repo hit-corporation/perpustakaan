@@ -39,6 +39,7 @@
                     <i class="fas fa-plus fa-sm text-white-50"></i> 
                     Tambah Data
                 </button>
+                <button class="btn btn-sm bg-purple" data-target="#modal_stock" data-toggle="modal">Tambah Stock</button>
             </div>
 			<div class="card">
             	<div class="card-body">
@@ -276,7 +277,7 @@
     </div>
 </div>
 
-<?php $this->insert('book/modal_stock', ['book_id' => ($_SESSION['success']['book_id'] ?? NULL)]) ?>
+<?php $this->insert('book/modal_stock', ['book_id' => 14, 'is_readonly' => TRUE]) ?>
 
 <?php $this->stop() ?>
 

@@ -208,7 +208,7 @@ const deleteRow = async e => {
        
         Array.from(tbody.rows, item => {
             
-            var inputDate = item.cells[1].getElementsByTagName('input')[0];
+            var inputDate = item.cells[2].getElementsByTagName('input')[0];
             console.log(inputDate);
             inputDate.valueAsDate = e.target.valueAsDate;
 

@@ -10,7 +10,12 @@
             <form name="save-stock" id="save-stock" class="modal-body">
                 <div class="form-group">
                     <label class="form-label mb-0">Buku <span class="text-danger">*</span></label>
-                    <select class="form-control" name="book" value="<?=$this->e($book_id)?>"></select>
+                    <select class="form-control" name="book" value="<?=$this->e($book_id)?>" <?php if($is_readonly):?> readonly <?php endif ?>></select>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        
+                    </div>
                 </div>
                 <div class="table-reponsive">
                     <table class="table table-sm">
