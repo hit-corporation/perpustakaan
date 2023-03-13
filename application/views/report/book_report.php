@@ -53,8 +53,8 @@
 								<div class="col-4">
 									<select class="form-control form-control-sm" name="stok" id="stok">
 										<option value="">Stok - Semua</option>
-										<option value="sudah">Habis</option>
-										<option value="belum">Tersedia</option>
+										<option value="unavailable">Habis</option>
+										<option value="available">Tersedia</option>
 									</select>
 								</div>
 								
@@ -90,6 +90,7 @@
                                 <th>Year</th>
                                 <th>Kategori</th>
                                 <th>Tanggal Input</th>
+                                <th>No Rak</th>
                             </tr>
                         </thead>
                     </table>
@@ -107,6 +108,6 @@
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
 
-
+	<script src="<?=$this->e(base_url('assets/js/pages/bookReports.js'))?>"></script>
 
 <?php $this->stop() ?>
