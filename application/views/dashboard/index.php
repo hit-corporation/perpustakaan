@@ -272,8 +272,18 @@
 <script>
 	// get category
 	var category = [];
+	let monthNames = ["Jan", "Feb", "Mar", "Apr", "Mey", "Jun", "Jul", "Agu", "Sep", "Okt", "Nop", "Des"];
+
 	<?php foreach($daily_borrow as $key => $value) : ?>
-		category.push('<?= $value['date'] ?>');
+
+
+		var date = new Date('<?= $value['date'] ?>');
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		var year = date.getFullYear();
+
+		category.push(day + ' ' + monthNames[date.getMonth()]);
+
 	<?php endforeach; ?>
 
 	// get data
@@ -317,16 +327,6 @@
 	});
 
 </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
