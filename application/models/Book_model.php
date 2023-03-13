@@ -76,6 +76,12 @@ class Book_model extends CI_Model {
 		return $this->db->get_where('books', ['books.id' => $id, 'books.deleted_at' => NULL])->row_array();
 	}
 
+	/**
+	 * Get All Borrowed Book
+	 * for Dashboard
+	 *
+	 * @return array
+	 */
 	public function get_all_borrow(): array
 	{
 		$this->db->select('b.*');
@@ -85,6 +91,12 @@ class Book_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	/**
+	 * Get All Late Book
+	 * for Dashboard
+	 *
+	 * @return array
+	 */
 	public function get_late_borrow(): array
 	{
 		$this->db->select('b.*');
@@ -95,6 +107,12 @@ class Book_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	/**
+	 * Get Top 5 Borrowed Book
+	 * for Dashboard
+	 *
+	 * @return array
+	 */
 	public function get_top_borrow(): array
 	{
 		$this->db->select('b.*, COUNT(tb.book_id) as total');
@@ -106,6 +124,12 @@ class Book_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	/**
+	 * Get Top 5 Borrowed Book
+	 * for Dashboard
+	 *
+	 * @return array
+	 */
 	public function get_percentage_borrow(): array{
 		// persentase siswa yang pernah meminjam buku
 		$this->db->select('COUNT(DISTINCT t.member_id) as total');
@@ -125,6 +149,12 @@ class Book_model extends CI_Model {
 
 	}
 
+	/**
+	 * Get Daily Borrow
+	 * for Dashboard
+	 *
+	 * @return array
+	 */
 	public function get_daily_borrow(): array{
 		// create query for 30 days	
 		$this->db->select('COUNT(t.id) as total, TO_CHAR(t.trans_timestamp, \'dd Mon\') as date, t.trans_timestamp', FALSE);
