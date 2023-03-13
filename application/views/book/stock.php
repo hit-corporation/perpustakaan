@@ -17,9 +17,11 @@
 						<tr>
 							<th>ID</th>
 							<th>Kode Stok</th>
+							<th>Book Id</th>
 							<th>Judul</th>
 							<th>Rak No</th>
 							<th>Status</th>
+							<th></th>
 						</tr>
 					</thead>
 				</table>

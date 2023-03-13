@@ -28,6 +28,29 @@ class Stock extends MY_Controller {
 	}
 
 	/**
+	 * Read data with pagination and send json response 
+	 *
+	 * @method GET
+	 * @return void
+	 */
+	public function get_all_paginated(): void {
+		$draw = $this->input->get('draw');
+		$limit = $this->input->get('length');
+		$offset = $this->input->get('start');
+		$filter = $this->input->get('columns');
+		$data = $this->stock_model->get_all($filter, $limit, $offset);
+
+		$resp = [
+			'draw'  => $draw,
+			'data'	=> $data,
+			'recordsTotal' => $this->db->count_all_results('stocks'),
+			'recordsFiltered' => $this->stock_model->count_all($filter)
+		];
+
+		echo json_encode($resp, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+	}
+
+	/**
 	 * Store new data to database
 	 *
 	 * @method POST

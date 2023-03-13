@@ -7,17 +7,33 @@ class Stock_model extends CI_Model {
 	}
 
 	/**
-	 * Get All Data
+	 * Undocumented function
 	 *
+	 * @param array|null $filter
+	 * @param int|null $limit
+	 * @param int|null $offset
 	 * @return array
 	 */
 	public function get_all(array $filter = NULL, int $limit = NULL, int $offset = NULL): array {
 
-		$query = $this->db->select('a.stock_code, a.is_available, a.book_id, a.created_at, b.title, b.cover_img, b.author')
+		$query = $this->db->select('a.id, a.stock_code, a.is_available, a.rack_no, a.book_id, a.created_at, b.title, b.cover_img, b.author')
 						  ->from('stocks a, books b')
 						  ->where('a.book_id=b.id');
 
 		return $query->get()->result_array();
+	}
+
+	/**
+	 * Undocumented function
+	 *
+	 * @param array|null $filter
+	 * @return integer
+	 */
+	public function count_all(array $filter = NULL): int {
+		$query = $this->db->select('a.id, a.stock_code, a.is_available, a.book_id, a.created_at, b.title, b.cover_img, b.author')
+						  ->from('stocks a, books b')
+						  ->where('a.book_id=b.id');
+		return $query->get()->num_rows();
 	}
 }
 
