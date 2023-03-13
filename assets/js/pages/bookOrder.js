@@ -57,6 +57,21 @@ const getMembers = async () => {
     }
 }
 
+// get all stocks
+const getStocks = async () => {
+    try
+    {
+        const f = await fetch(`${BASE_URL}/stock/get_all`);
+        const j = await f.json();
+        
+        return j;
+    }
+    catch(err)
+    {
+        console.log(err);
+    }
+}
+
 // add new book row
 const addData = async () => {
     idx = document.querySelectorAll('.book-row').length + 1;
@@ -70,7 +85,7 @@ const addData = async () => {
     const cell_3 = tr.insertCell(3);
 
     cell_0.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
-                       '<input type="text" class="form-control" name="stock_code" autofocus>';
+                       `<input type="text" class="form-control" name="book[${(idx)}][stock_code]" autofocus>`;
     cell_0.classList.add('d-inline-block', 'd-lg-table-cell');
     // cell 1
     cell_1.innerHTML = '<label class="d-lg-none mb-0">Judul</label>' +
@@ -168,26 +183,57 @@ const deleteRow = async e => {
 	
 		});
 	}
+
+    // Stock Code autocomplete
+    const stocks = [...await getStocks()].filter(i => i.is_available == 1);
+    var autocompleteOptions = {
+        label: 'stock_code',
+        value: 'id',
+        source: stocks,
+        treshold: 1,
+        onSelectItem: val => {
+            let stock = stocks.find(item => item.id == val.value);
+            form['book[0][title]'].value = stock.book_id;
+            selectize.setValue(stock.book_id);
+        }
+    };
+
+    $('input[name="book[0][stock_code]"]').autocomplete(autocompleteOptions);
 	
-      // check changes on book form table
+    // check changes on book form table
     
     const mConfig = { childList: true };
     var observer = new MutationObserver(async (mutations, obsrv) => {
         const mut = mutations[0];
 
         // console.log(mut.addedNodes);
-       
-        for(var n=0;n<=idx;n++)
-        {
+       $(document).ready(function() {
+            var $nArr = [];
+            for(var n=0;n<=idx;n++)
+            {
 
-            var $select = $('select[name="book['+(n + 1)+'][title]"]').selectize({
-                create: false,
-                valueField: 'id',
-                labelField: 'title',
-                searchField: ['title'],
-                options: books
-            });
-        }
+                $nArr.push($('select[name="book['+(n + 1)+'][title]"]').selectize({
+                    create: false,
+                    valueField: 'id',
+                    labelField: 'title',
+                    searchField: ['title'],
+                    options: books
+                }));
+
+                var $ac = $('input[name="book['+(n + 1)+'][stock_code]"]').autocomplete({
+                    label: 'stock_code',
+                    value: 'id',
+                    source: stocks,
+                    treshold: 1,
+                    onSelectItem: val => {
+                        let stock = stocks.find(item => item.id == val.value);
+                        // console.log($(`select[name="book[${n + 1}][title]"]`));
+                        sel.
+                    }
+                });
+            }
+       })
+       
        
     });
     

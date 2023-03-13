@@ -101,7 +101,7 @@
                                 <tr class="d-flex flex-column d-lg-table-row">
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
-                                        <input type="text" class="form-control" name="stock_code" autofocus>
+                                        <input type="text" class="form-control" name="book[0][stock_code]" autofocus>
                                     </td>
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
@@ -168,6 +168,7 @@
 <!-- JS SECTION -->
 <?php $this->start('js') ?>
 <script src="<?=$this->e(base_url('assets/node_modules/@selectize/selectize/dist/js/selectize.min.js'))?>"></script>
+<script src="<?=$this->e(base_url('assets/node_modules/bootstrap-4-autocomplete/dist/bootstrap-4-autocomplete.min.js'))?>"></script>
 <script src="<?=$this->e(base_url('assets/node_modules/sweetalert2/dist/sweetalert2.all.min.js'))?>"></script>
 
 <?php if(isset($_SESSION['success'])): ?>

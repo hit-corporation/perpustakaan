@@ -28,6 +28,17 @@ class Stock extends MY_Controller {
 	}
 
 	/**
+	 * Get All Data 
+	 *
+	 * @method GET
+	 * @return void
+	 */
+	public function get_all(): void {
+		$books  = $this->stock_model->get_all();
+		echo json_encode($books, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+	}
+
+	/**
 	 * Read data with pagination and send json response 
 	 *
 	 * @method GET
@@ -130,15 +141,5 @@ class Stock extends MY_Controller {
 		{
 			log_message('error', $e->__toString());
 		}
-	}
-
-	/**
-	 * view all data
-	 *
-	 * @return void
-	 */
-	public function get_all(): void {
-		$model = $this->stock_model->get_all();
-		echo json_encode($model);
 	}
 }
