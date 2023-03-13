@@ -39,7 +39,6 @@
                     <i class="fas fa-plus fa-sm text-white-50"></i> 
                     Tambah Data
                 </button>
-                <button class="btn btn-sm bg-purple" data-target="#modal_stock" data-toggle="modal">Tambah Stock</button>
             </div>
 			<div class="card">
             	<div class="card-body">
@@ -323,7 +322,11 @@
             timer: 2000
         });
     <?php endif ?>
-    $('#modal-input').modal('show');
+    <?php if($_SESSION['error']['is_stockform']): ?>
+        $('#modal_stock').modal('show');
+    <?php else: ?>
+        $('#modal-input').modal('show');
+    <?php endif ?>
 </script>
 <?php endif ?>
 
