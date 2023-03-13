@@ -167,7 +167,12 @@
 
                         <a class="collapse-item <?=$CI->uri->segment(2) == '' ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('report')?>">
 							<i class="fa fa-user" aria-hidden="true"> </i>
-							<span>Laporan Peminjaman</span>
+							<span>Peminjaman</span>
+						</a>
+                        
+						<a class="collapse-item <?=($CI->uri->segment(1) == 'report' && $CI->uri->segment(2) == 'book') ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('report/book')?>">
+							<i class="fa fa-user" aria-hidden="true"> </i>
+							<span>Buku</span>
 						</a>
 
                     </div>
