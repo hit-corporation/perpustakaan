@@ -202,6 +202,9 @@ class Book_model extends CI_Model {
 			}
 		}
 
+		if(!empty($filter[5]['search']['value']))
+		$this->db->where('LOWER(s.rack_no) LIKE \'%'.trim(strtolower($filter[5]['search']['value'])).'%\'', NULL, FALSE);
+
 		if(!empty($limit) && !is_null($offset))
 			$this->db->limit($limit, $offset);
 		

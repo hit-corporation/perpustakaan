@@ -91,7 +91,10 @@ const getAll = async () => {
     formSearchName.addEventListener('submit', e => {
         e.preventDefault();
 		tableMain.columns(1).search(formSearchName['s_book_name'].value).draw();
+		tableMain.columns(2).search(formSearchName['s_author_name'].value).draw();
+		tableMain.columns(3).search(formSearchName['s_publisher_name'].value).draw();
 		tableMain.columns(4).search(formSearchName['stok'].value).draw();
+		tableMain.columns(5).search(formSearchName['s_rack_number'].value).draw();
     });
 
 	// search reset
@@ -99,6 +102,15 @@ const getAll = async () => {
 		e.preventDefault();
 		tableMain.columns(1).search('').draw();
 		formSearchName['s_book_name'].value = '';
+
+		tableMain.columns(2).search('').draw();
+		formSearchName['s_author_name'].value = '';
+
+		tableMain.columns(3).search('').draw();
+		formSearchName['s_publisher_name'].value = '';
+
+		tableMain.columns(5).search('').draw();
+		formSearchName['s_rack_number'].value = '';
 	});
 
 

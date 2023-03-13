@@ -24,33 +24,11 @@
         <div class="card">
 			<div class="card-header py-3">
 				<div class="row">
-					
-					<div class="col-xl-2 col-lg-4 col-md-4 mb-2">
-						<form name="form-search">
-							<div class="row">
-								<div class="col-12">
-									<input class="rounded-lg w-100"  style="border-color: rgba(0, 0, 255, 0.3); height: calc(1.5em + 0.5rem + 2px); font-size: 12px;
-    color: currentcolor; padding-left: inherit;" type="text" name="daterange" 
-										value="<?php 
-										if(isset($start)){ 
-											echo date('m/d/Y', strtotime($start));
-										} else { 
-											echo date('m', time()).'//1//'.date('Y', time()); 
-										}?> - <?php 
-										if(isset($end)){ 
-											echo date('m/d/Y', strtotime($end)); 
-										}else{ 
-											echo date('m/d/Y', time()); 
-										}?>" />
-								</div>
-							</div>
-						</form>
-					</div>
-
-					<div class="col-xl-10 col-lg-8 col-md-8">
+				
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
 						<form name="form-search-name">
 							<div class="row">
-								<div class="col-4">
+								<div class="col-xl-2 col-lg-2 col-md-3 col-sm-4 col-xs-6 mb-1">
 									<select class="form-control form-control-sm" name="stok" id="stok">
 										<option value="">Stok - Semua</option>
 										<option value="unavailable">Habis</option>
@@ -58,7 +36,19 @@
 									</select>
 								</div>
 								
-								<div class="col-6">
+								<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+									<input type="text" class="form-control form-control-sm" name="s_author_name" placeholder="Nama Penulis">
+								</div>
+								
+								<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+									<input type="text" class="form-control form-control-sm" name="s_publisher_name" placeholder="Nama Penerbit">
+								</div>
+
+								<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+									<input type="text" class="form-control form-control-sm" name="s_rack_number" placeholder="Nomor Rak">
+								</div>
+
+								<div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
 									<input type="text" class="form-control form-control-sm" name="s_book_name" placeholder="Nama Buku">
 								</div>
 
@@ -71,6 +61,7 @@
 							</div>
 						</form>
 					</div>
+
 				</div>
 			</div>
 
