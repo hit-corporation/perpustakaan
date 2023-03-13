@@ -165,4 +165,63 @@ class Book_model extends CI_Model {
 		return $this->db->get()->result_array();
 	}
 
+	/**
+	 * Get All Book Report
+	 * for Report Book
+	 *
+	 * @return array
+	 */
+	public function get_all_book(?array $filter = NULL, ?int $limit=NULL, ?int $offset=NULL): array{
+		$this->db->select('a.id, a.title, a.cover_img, a.author, a.isbn, a.publish_year, a.description, a.qty, a.category_id, a.publisher_id, a.author, 
+							s.rack_no, b.category_name, c.publisher_name, TO_CHAR(a.created_at, \'YYYY-MM-DD\') as created_at, tb2.qty_dipinjam', FALSE)
+				 ->from('books a')
+				 ->join('categories b', 'a.category_id=b.id')
+				 ->join('publishers c', 'a.publisher_id=c.id')
+				 ->join('stocks s', 'a.id=s.book_id', 'left	')
+				 ->join('(select tb.book_id, count(tb.book_id) as qty_dipinjam  
+				 from transaction_book tb
+				 where actual_return is null
+				 group by tb.book_id) as tb2', 'a.id = tb2.book_id', 'left')
+				 ->where('a.deleted_at IS NULL');
+
+		if(!empty($filter[1]['search']['value']))
+		$this->db->where('LOWER(a.title) LIKE \'%'.trim(strtolower($filter[1]['search']['value'])).'%\'', NULL, FALSE);
+
+		if(!empty($filter[2]['search']['value']))
+		$this->db->where('LOWER(a.author) LIKE \'%'.trim(strtolower($filter[2]['search']['value'])).'%\'', NULL, FALSE);
+
+		if(!empty($filter[3]['search']['value']))
+		$this->db->where('LOWER(c.publisher_name) LIKE \'%'.trim(strtolower($filter[3]['search']['value'])).'%\'', NULL, FALSE);
+
+		// filter by stock
+		if(!empty($filter[4]['search']['value'])){
+			if($filter[4]['search']['value'] == 'available'){
+				$this->db->where('a.qty > 0', NULL, FALSE);
+			}else if($filter[4]['search']['value'] == 'unavailable'){
+				$this->db->where('a.qty = 0', NULL, FALSE);
+			}
+		}
+
+		if(!empty($limit) && !is_null($offset))
+			$this->db->limit($limit, $offset);
+		
+		return $this->db->get()->result_array();
+	}
+
+	/**
+	 * Count All Book Report
+	 * for Report Book
+	 *
+	 * @return integer
+	 */
+	public function count_all_book(): int{
+		$this->db->select('b.*, c.category_name, p.publisher_name');
+		$this->db->from('books b');
+		$this->db->join('categories c', 'b.category_id=c.id');
+		$this->db->join('publishers p', 'b.publisher_id=p.id');
+		$this->db->join('stocks s', 'b.id=s.book_id', 'left');
+		$this->db->where('b.deleted_at IS NULL');
+		return $this->db->get()->num_rows();
+	}
+
 }
