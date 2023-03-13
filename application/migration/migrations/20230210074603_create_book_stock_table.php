@@ -22,7 +22,7 @@ final class CreateBookStockTable extends AbstractMigration
         $table = $this->table('stocks');
         $table->addColumn('stock_code', 'string', ['limit' => 120]);
         $table->addColumn('book_id', 'integer');
-        $table->addColumn('availability_status', 'smallinteger');
+        $table->addColumn('is_available', 'smallinteger');
         $table->addColumn('rack_no', 'string', ['limit' => 50, 'default' => NULL, 'null' => true]);
         $table->addColumn('deleted_at', 'datetime', ['default' => NULL, 'null' => TRUE]);
 

@@ -216,6 +216,19 @@ const deleteRow = async e => {
 
     });
   
+    form.addEventListener('submit', e => {
+        loading();
+    });
 
 })(jQuery);
 
+const loading = () => {
+    Swal.fire({
+        html: 	'<div class="d-flex flex-column align-items-center">'
+        + '<span class="spinner-border text-primary"></span>'
+        + '<h3 class="mt-2">Loading...</h3>'
+        + '<div>',
+        showConfirmButton: false,
+        width: '10rem'
+    });
+}
