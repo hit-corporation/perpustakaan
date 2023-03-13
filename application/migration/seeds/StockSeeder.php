@@ -18,21 +18,27 @@ class StockSeeder extends AbstractSeed
 			[
 				'stock_code' 			=> 'STK-001',
 				'book_id'  		  		=> 1,
-				'is_available' 		=> 1,
+				'is_available' 			=> 1,
 				'rack_no' 				=> 'R-001'
 			],
 			[
 				'stock_code'			=> 'STK-002',
 				'book_id'  		  		=> 2,
-				'is_available' 		=> 1,
+				'is_available' 			=> 1,
 				'rack_no' 				=> 'R-002'
 			],
 			[
 				'stock_code' 			=> 'STK-003',
 				'book_id'  		  		=> 3,
-				'is_available' 		=> 1,
+				'is_available' 			=> 1,
 				'rack_no' 				=> 'R-003'
-			]
+			],
+			[
+				'stock_code' 			=> 'STK-004',
+				'book_id'  		  		=> 3,
+				'is_available' 			=> 0,
+				'rack_no' 				=> 'R-003'
+			],
 		];
 
         $table = $this->table('stocks');
