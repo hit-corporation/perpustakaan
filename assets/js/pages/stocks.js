@@ -1,5 +1,20 @@
 'use strict';
 
+const getBooks = async () => {
+
+    try
+    {
+        const f = await fetch(`${BASE_URL}book/get_all`);
+        const j = await f.json();
+
+        return j;
+    }
+    catch(err)
+    {
+
+    }
+}
+
 (async $ => {
 
     const table = $('#table-main').DataTable({
@@ -54,3 +69,14 @@
 
     console.log(crypto);
 })(jQuery);
+
+const loading = () => {
+    Swal.fire({
+        html: 	'<div class="d-flex flex-column align-items-center">'
+        + '<span class="spinner-border text-primary"></span>'
+        + '<h3 class="mt-2">Loading...</h3>'
+        + '<div>',
+        showConfirmButton: false,
+        width: '10rem'
+    });
+}

@@ -85,7 +85,7 @@ class Stock extends MY_Controller {
 				[
 					'field' => 'stock_codes',
 					'label' => 'Kode Stok',
-					'rules' => 'is_array'
+					'rules' => 'required|is_array'
 				]
 			];
 

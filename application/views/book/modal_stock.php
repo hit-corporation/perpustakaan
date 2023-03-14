@@ -1,8 +1,8 @@
 <div id="modal_stock" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">
        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title mb-0">DETAIL BUKU</h5>
+            <div class="modal-header bg-orange">
+                <h5 class="modal-title text-white mb-0">DETAIL BUKU</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -10,7 +10,7 @@
             <form name="save-stock" id="save-stock" class="modal-body" action="<?=$this->e(base_url('stock/store'))?>" method="POST">
                 <div class="form-group">
                     <label class="form-label mb-0">Buku <span class="text-danger">*</span></label>
-                    <select class="form-control" name="book" value="<?=$this->e($book_id)?>" <?php if($is_readonly):?> readonly <?php endif ?>></select>
+                    <select class="form-control <?php if(!empty($_SESSION['error']['errors']['book'])): ?> is-invalid <?php endif ?>" name="book" value="<?=$this->e($book_id)?>" <?php if($is_readonly):?> readonly <?php endif ?>></select>
                     <?php if(!empty($_SESSION['error']['errors']['book'])): ?>
                         <small class="text-danger"><?=$_SESSION['error']['errors']['book']?></small>
                     <?php endif ?>
@@ -46,8 +46,12 @@
                             <?php 
                                     $i++;
                                     endforeach; 
-                                endif; 
+                                else:
                             ?>
+                                <?php if(!empty($_SESSION['error']['errors']['stock_codes'])): ?>
+                                        <small class="text-danger"><?=$_SESSION['error']['errors']['stock_codes']?></small>
+                                <?php endif ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

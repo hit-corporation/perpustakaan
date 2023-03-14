@@ -12,7 +12,8 @@
             create: false,
             valueField: 'id',
             labelField: 'title',
-            options: books
+            options: books,
+            searchField: ['title']
         });
 
         var sel = $select[0].selectize;
@@ -21,7 +22,7 @@
         setBookValue(sel, formStock['book']); 
         <?php if($is_readonly): ?>
                 sel.lock();
-            <?php endif ?>
+        <?php endif ?>
 
 
         $('#modal_stock').on('show.bs.modal', e => {
@@ -37,6 +38,10 @@
         btnAddStock.addEventListener('click', e => {
             addStockField();
         });
+
+        formStock.addEventListener('submit', e => {
+            loading();
+        })
     })(jQuery);
 
 
