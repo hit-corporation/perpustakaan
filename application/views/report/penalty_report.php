@@ -100,7 +100,7 @@
 <!-- SECTION JS -->
 <?php $this->start('js') ?>
 
-<!-- <script src="<? // =$this->e(base_url('assets/js/pages/orderReport.js'))?>"></script> -->
+<script src="<?= $this->e(base_url('assets/js/pages/penaltyReport.js'))?>"></script>
 
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
