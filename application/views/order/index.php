@@ -129,6 +129,14 @@
 								<tr class="d-flex flex-column d-lg-table-row">
                                     <td class="d-inline-block d-lg-table-cell">
                                         <label class="d-lg-none mb-0">Judul</label>
+                                        <input type="text" class="form-control <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][stock_code]'])): ?> is-invalid <?php endif ?>" 
+                                            name="book[<?=$key?>][stock_code]" value="<?=$_SESSION['error']['old']['book'][$key]['stock_code'] ?? NULL?>" autofocus>
+                                            <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][stock_code]'])): ?> 
+                                                <small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][stock_code]']?></small>
+                                            <?php endif ?>
+                                    </td>
+                                    <td class="d-inline-block d-lg-table-cell">
+                                        <label class="d-lg-none mb-0">Judul</label>
                                         <select class="form-control book-title <?php if(!empty($_SESSION['error']['errors']['book['.$key.'][title]'])):?> is-invalid <?php endif ?>" name="book[<?=$key?>][title]" value="<?=$_SESSION['error']['old']['book'][$key]['title'] ?? NULL ?>"></select>
 										<?php if(!empty($_SESSION['error']['errors']['book['.$key.'][title]'])): ?>
 											<small class="text-danger"><?=$_SESSION['error']['errors']['book['.$key.'][title]']?></small>

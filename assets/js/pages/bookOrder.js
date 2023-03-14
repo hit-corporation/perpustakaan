@@ -209,18 +209,19 @@ const deleteRow = async e => {
         // console.log(mut.addedNodes);
        $(document).ready(function() {
             var $nArr = [];
-            for(var n=0;n<=idx;n++)
-            {
 
-                $nArr.push($('select[name="book['+(n + 1)+'][title]"]').selectize({
-                    create: false,
-                    valueField: 'id',
-                    labelField: 'title',
-                    searchField: ['title'],
-                    options: books
-                }));
+            Array.from({length: idx}, (v, n) => {
+                var $select = $('select[name="book['+(n + 1)+'][title]"]').selectize({
+                   create: false,
+                   valueField: 'id',
+                   labelField: 'title',
+                   searchField: ['title'],
+                   options: books
+                });
 
-                var $ac = $('input[name="book['+(n + 1)+'][stock_code]"]').autocomplete({
+                 var sel = $select[0].selectize;
+
+                 var $ac = $('input[name="book['+(n + 1)+'][stock_code]"]').autocomplete({
                     label: 'stock_code',
                     value: 'id',
                     source: stocks,
@@ -228,12 +229,11 @@ const deleteRow = async e => {
                     onSelectItem: val => {
                         let stock = stocks.find(item => item.id == val.value);
                         // console.log($(`select[name="book[${n + 1}][title]"]`));
-                        sel.
+                        sel.setValue(stock.id);
                     }
                 });
-            }
-       })
-       
+            });
+       });
        
     });
     
