@@ -121,6 +121,16 @@ class Report extends MY_Controller
 		echo $this->template->render('report/penalty_report');
 	}
 
+	/**
+	 * get all penalty data
+	 *
+	 * @return void
+	 */
+	public function get_all_penalty(): void{
+		$data = $this->transaction_model->get_all_penalty();
+		echo json_encode($data, JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_TAG);
+	}
+
 }
 
 ?>
