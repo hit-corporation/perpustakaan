@@ -174,6 +174,11 @@
 							<i class="fa fa-user" aria-hidden="true"> </i>
 							<span>Buku</span>
 						</a>
+						
+						<a class="collapse-item <?=($CI->uri->segment(1) == 'report' && $CI->uri->segment(2) == 'penalty') ? 'active bg-dark-2 text-light' : '' ?>" href="<?=base_url('report/penalty')?>">
+							<i class="fa fa-user" aria-hidden="true"> </i>
+							<span>Denda</span>
+						</a>
 
                     </div>
                 </div>
