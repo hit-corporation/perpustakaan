@@ -112,6 +112,15 @@ class Report extends MY_Controller
 		echo json_encode($dataTable, JSON_HEX_AMP | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT);
 	}
 
+	/**
+     * function for view penalty report
+     *
+     * @return void
+     */
+	public function penalty(): void{
+		echo $this->template->render('report/penalty_report');
+	}
+
 }
 
 ?>
