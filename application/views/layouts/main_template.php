@@ -191,6 +191,13 @@
                     <span>Buku</span></a>
             </li>
 
+            <!-- Nav Item - Book -->
+            <li class="nav-item <?=$CI->uri->segment(1) == 'stock' ? 'active bg-dark-2' : '' ?>">
+                <a class="nav-link" href="<?=base_url('stock')?>">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <span>Stok Buku</span></a>
+            </li>
+
 			 <!-- Nav Item - Peminjaman -->
 			 <li class="nav-item <?=($CI->uri->segment(1) == 'order' && $CI->uri->segment(2) == null) ? 'active bg-dark-2' : '' ?>">
                 <a class="nav-link" href="<?=base_url('order')?>">
