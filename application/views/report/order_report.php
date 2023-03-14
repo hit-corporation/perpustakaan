@@ -35,7 +35,7 @@
 										if(isset($start)){ 
 											echo date('m/d/Y', strtotime($start));
 										} else { 
-											echo date('m', time()).'//1//'.date('Y', time()); 
+											echo date('m/01/Y');
 										}?> - <?php 
 										if(isset($end)){ 
 											echo date('m/d/Y', strtotime($end)); 
