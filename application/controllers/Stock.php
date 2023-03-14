@@ -83,9 +83,9 @@ class Stock extends MY_Controller {
 					'rules' => 'required|in_list['.implode(',', array_column($this->book_model->get_all(), 'id')).']'
 				],
 				[
-					'field' => 'stock_codes',
+					'field' => 'stock_codes[]',
 					'label' => 'Kode Stok',
-					'rules' => 'required|is_array'
+					'rules' => 'required'
 				]
 			];
 

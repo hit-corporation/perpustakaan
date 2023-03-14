@@ -29,6 +29,7 @@
                         </thead>
                         <tbody>
                             <?php 
+                            
                                 if(isset($_SESSION['error']['old']['stock_codes']) && count($_SESSION['error']['old']['stock_codes']) > 0):
                                     $i=0;
                                     foreach($_SESSION['error']['old']['stock_codes'] as $stock): 
