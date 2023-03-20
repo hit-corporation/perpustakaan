@@ -33,12 +33,16 @@ class Transaction_model extends CI_Model {
 		$this->db->select('transactions.*, transaction_book.id, transaction_book.book_id, transaction_book.qty, 
 						   transaction_book.return_date, transaction_book.updated_at, transaction_book.amount_paid, 
 						   transaction_book.note, books.title, members.member_name, 
-						   AGE(transaction_book.return_date::date, trans_timestamp::date) AS jumlah_hari_pinjam');
+						   AGE(transaction_book.return_date::date, trans_timestamp::date) AS jumlah_hari_pinjam,
+						   CASE WHEN CURRENT_DATE > transaction_book.return_date::date 
+						   		THEN AGE(CURRENT_DATE, transaction_book.return_date::date) 
+								ELSE NULL 
+							END as jumlah_hari_terlambat');
         $this->db->from('transactions');
 		$this->db->join('transaction_book', 'transactions.id = transaction_book.transaction_id');
 		$this->db->join('books', 'transaction_book.book_id = books.id');
 		$this->db->join('members', 'transactions.member_id = members.id');
-        
+
 		return $this->db->get()->result_array();
     }
 
